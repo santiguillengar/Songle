@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/SantiGuillenGar/.android/build-cache/1a4342beb34b72ca86a47ab756353263bd2efb5f/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="88246166d5afb106f532f6e6deae683c66b42c89">
+        <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_8dfffe1567934c924a92fa46e44487f35dd11f32/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/SantiGuillenGar/.android/build-cache/b4bf0f8874f9511f646bd6ea9ca3b531c016ee39/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="2430e711762a749feb00b3d64858ca4768251b9d">
+        <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_3cc19e022780df15ed33b0fae9635e37a7c0681b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/SantiGuillenGar/.android/build-cache/1110c52b2c840b23f0c2301a8ff2864fc50621a8/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="47471eb19df288158b00b8d9cfa41bce7373f5cc">
+        <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f876c31cf79286ef869f9bb2e94d91daf79476ef/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/SantiGuillenGar/.android/build-cache/e11c91d82066a89fed9da9db3346e9babd03f1a3/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="fcd01fd11233459f546c437ec927e9b61bf7caf1">
+        <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f9599a61f195a5fd93da1ea4e6e0166e637fa35e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/SantiGuillenGar/.android/build-cache/c05eab3155e763b5f394f8399aee680ecb6fca53/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="9935891f23923f39d002087085d9696568a9f657">
+        <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d6973de148f5a6b038baec7726a8d7f7d7335f73/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="2bcf6784a63438b79d047b8b843ac753443021f7">
+        <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_4e7940b05cf1b83a4493af6310473276eabec371/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/SantiGuillenGar/.android/build-cache/3cb58dc433af34517b809bf6e5f966f94792afa2/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="fcae52a60bc07924d370b4d376116cd8f8581f54">
+        <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_267e539ad7760ba68944b9e073206ead1528cf40/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/SantiGuillenGar/.android/build-cache/342c654f1067f4d555fd95709d427815b0661788/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="18d31838aa4fcc768a8a0516e22cc13b94655d89">
+        <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_6da3f4a508e553339d86b5ec4431ebbf7bdd673c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/SantiGuillenGar/.android/build-cache/9ac5d7a626db2fbb7398941aab1b9ad74cfd36c7/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="364364bf77b4a71afc5930fc3ae57b3f0eea637c">
+        <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b96dc0a2a5ea131937959afae5dbfa859c5826d7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/SantiGuillenGar/.android/build-cache/c47c56888c6f5e13c1f0b5af9133cc2d44e7b15d/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="2e92aa0163544a804a0b34f169ca61801770839a">
+        <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2984c44340d7fe6fcc91d4d9b373f9fb6a84afc2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/SantiGuillenGar/.android/build-cache/896a00cccb3b5a8923ffec89b789e54db1c6d5c4/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="952944218ecedea1554a513dec0c14d570642843">
+        <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b0234e38a2549e7b9787f8d7524bfa85c4e7cf14/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/SantiGuillenGar/.android/build-cache/7432e1273dbc8b923fe8bf5bbefa02d0343227ad/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d6ad6165b1c5be4d36d3630c483f7b0403489264/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/SantiGuillenGar/.android/build-cache/447b9957c5aa289f14460083a34bc163f5568082/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="70ffe00aaf049893f59d1dad57bd82992faa38ef">
+        <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_846df3fcb5529bcde96c0e3e57567712166e5a54/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/SantiGuillenGar/.android/build-cache/d0a56a850fff0a1884d0cb53450848baefa29863/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="41f47bbcd281fdb1e42e220220ab3bfa1da591e0">
+        <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_031e51e149ca9b2cbb183d9f2af6eb1ce2f32d82/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/SantiGuillenGar/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/26.0.0-alpha1/support-annotations-26.0.0-alpha1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="023ee503b631f69511e335a061ea008f8da60f40">
+        <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-26.0.0-alpha1_abec238aef9fa3e9921ce58be0dc00d8096391a2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/SantiGuillenGar/.android/build-cache/38623aa1374482b14915952d24778e61ff244448/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="8df0e365e40beb151bc42dee20817721a6cab7b0">
+        <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_915874aead6f7d225940373f0d887edfbb9d1638/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_623796f25b94aea3a1ee4882d524e67b659bb217/classes.dex" />
+    </item>
+
+</items>
