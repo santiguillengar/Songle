@@ -3,17 +3,16 @@ package s1546270.songle;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import com.google.android.gms.location.LocationListener;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
-import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -35,7 +34,10 @@ public class LyricMapUI
     private final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private boolean mLocationPermissionGranted = false;
     private Location mLastLocation;
-    private static final String TAG = "LyricMapUI";
+    private static final String TAG = "MapsActivity";
+
+    // (!) Mine
+    private Marker mCurrLocationMarker;
 
     // (!) MINE FROM IMPROVISNG BLOCK
     //private Marker mCurrLocationMarker;
@@ -47,6 +49,7 @@ public class LyricMapUI
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+
         mapFragment.getMapAsync(this);
 
         // Create an instance of GoogleAPIClient
@@ -79,7 +82,12 @@ public class LyricMapUI
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         */
+        LatLng latLng = new LatLng(55.944377, -3.187009);
+        mMap.addMarker(new MarkerOptions().position(latLng).title("Appleton Tower"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+
         try {
+
             // Visualise current position with a small blue circle
             mMap.setMyLocationEnabled(true);
         }
@@ -89,6 +97,7 @@ public class LyricMapUI
 
         //Add "My location" button to the UI
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
+
         /*
         // (!) FOLLOWING BLOCK IS ME IMPROVISING
         LatLng latLng = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
@@ -140,7 +149,7 @@ public class LyricMapUI
             mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         }
         else {
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
         }
     }
 
@@ -151,8 +160,11 @@ public class LyricMapUI
         String.valueOf(current.getLongitude()) +")");
         //Do something with current location
 
-        LatLng latLng = new LatLng(current.getLatitude(), current.getLongitude());
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
+        //LatLng latLng = new LatLng(current.getLatitude(), current.getLongitude());
+        //mMap.addMarker(new MarkerOptions().position(latLng).title("Marker in Current Position"));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
+
+
     }
 
     @Override
