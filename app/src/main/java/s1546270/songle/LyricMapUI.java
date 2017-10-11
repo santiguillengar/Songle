@@ -76,16 +76,6 @@ public class LyricMapUI
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        /*
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        */
-        LatLng latLng = new LatLng(55.944377, -3.187009);
-        mMap.addMarker(new MarkerOptions().position(latLng).title("Appleton Tower"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-
         try {
 
             // Visualise current position with a small blue circle
@@ -97,16 +87,6 @@ public class LyricMapUI
 
         //Add "My location" button to the UI
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
-
-        /*
-        // (!) FOLLOWING BLOCK IS ME IMPROVISING
-        LatLng latLng = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(latLng);
-        markerOptions.title("Current Position");
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
-        mCurrLocationMarker = mMap.addMarker(markerOptions);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));*/
     }
 
     @Override
@@ -158,13 +138,6 @@ public class LyricMapUI
         System.out.println(" [onLocationChanged] Lat/long now (" +
         String.valueOf(current.getLatitude()) + "," +
         String.valueOf(current.getLongitude()) +")");
-        //Do something with current location
-
-        //LatLng latLng = new LatLng(current.getLatitude(), current.getLongitude());
-        //mMap.addMarker(new MarkerOptions().position(latLng).title("Marker in Current Position"));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
-
-
     }
 
     @Override
