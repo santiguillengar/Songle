@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Songle</string>
     <string name="title_activity_lyric_map_ui">LyricMapUI</string>
+
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
