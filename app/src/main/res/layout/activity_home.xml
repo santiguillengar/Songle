@@ -1,0 +1,64 @@
+<android.support.design.widget.CoordinatorLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:src="@android:drawable/ic_dialog_map"
+        app:elevation="6dp"
+        app:fabSize="normal"
+        app:backgroundTint="@color/colorPrimaryDark"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        app:pressedTranslationZ="12dp" />
+
+
+    <TextView
+        android:id="@+id/home_headerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimary"
+        android:fontFamily="sans-serif"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="Welcome to Songle"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:typeface="monospace"/>
+
+
+    <TextView
+        android:id="@+id/home_infoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="136dp"
+        android:background="@color/colorPrimary"
+        android:fontFamily="sans-serif"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="Press the map button below to get started"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:typeface="monospace" />
+
+
+</android.support.design.widget.CoordinatorLayout>

@@ -3,6 +3,15 @@
 
     <item
         is-multidex="true"
+        jar="/Users/SantiGuillenGar/.android/build-cache/e10266689d475d35888df6f2c2842cd965932dbe/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="d6825a79ca6c134dd6f26fc15eff443b5215dbdc">
+        <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ab666aec0ed9620112628f2c775f9464a853d95a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/SantiGuillenGar/.android/build-cache/1a4342beb34b72ca86a47ab756353263bd2efb5f/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -30,6 +39,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/SantiGuillenGar/.android/build-cache/fb9819fbaf9399fac02c16f1ecd871c5d00e71e8/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_377c8a29cc2ad5e58e910211825be52ab73ad149/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/SantiGuillenGar/.android/build-cache/e11c91d82066a89fed9da9db3346e9babd03f1a3/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -52,7 +70,7 @@
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
-        sha1="2acea14924ad838f472a27c6a75167c44622b982">
+        sha1="719d57cac0df940a63db529eafc0f5f3ad421557">
         <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_4e7940b05cf1b83a4493af6310473276eabec371/classes.dex" />
     </item>
     <item
@@ -120,12 +138,39 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/SantiGuillenGar/.android/build-cache/63ab71f5c1a439ece6917be3e4abdbb5ff2fb8e5/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="c4f45092eee6cdf1a5dbd597b2b6819be652ce2e">
+        <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f20f79afc6b8b28940f760d784bf6d62538da368/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/SantiGuillenGar/.android/build-cache/31b050cdd5741a3ef91ea284eda2af172227416f/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="cddcd0fb93bc70e27325f2f715b2710332004ebb">
+        <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_24d48a01acd7ee0891b8b4ac8afa1ae9533c28dd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/SantiGuillenGar/.android/build-cache/d0a56a850fff0a1884d0cb53450848baefa29863/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.0"
         sha1="41f47bbcd281fdb1e42e220220ab3bfa1da591e0">
         <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_031e51e149ca9b2cbb183d9f2af6eb1ce2f32d82/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/SantiGuillenGar/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10/constraint-layout-solver-1.0.2_54e67c1995fd1b540cd5c17cd5a4d1e366a823fe/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -144,6 +189,15 @@
         revision="26.0.0"
         sha1="8df0e365e40beb151bc42dee20817721a6cab7b0">
         <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_915874aead6f7d225940373f0d887edfbb9d1638/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/SantiGuillenGar/.android/build-cache/830b590425f9e9e3416e002dc56f23a002e34dd3/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="6a022bf00ccd0948a8180c505e8e458bbddd43a6">
+        <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_6c2c3b41b52308912278315dd8e007884ce3e49f/classes.dex" />
     </item>
     <item
         is-multidex="true"

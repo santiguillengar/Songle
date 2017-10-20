@@ -16,25 +16,13 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
-        <LinearLayout
-            android:id="@+id/fullscreen_content_controls"
-            style="?metaButtonBarStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:background="@color/black_overlay"
-            android:orientation="horizontal"
-            tools:ignore="UselessParent">
 
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/imgLogo"
-            android:layout_width="wrap_content"
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:layout_gravity="center"
-            android:src="@drawable/songleb" />
+            android:src="@drawable/logo2"/>
+
     </FrameLayout>
 
 </FrameLayout>

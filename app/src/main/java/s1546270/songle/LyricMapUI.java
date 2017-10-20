@@ -1,8 +1,10 @@
 package s1546270.songle;
 
 import android.Manifest;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -36,11 +38,11 @@ public class LyricMapUI
     private Location mLastLocation;
     private static final String TAG = "MapsActivity";
 
+    // The broadcast receiver that tracks network connectivity changes.
+    private NetworkReceiver receiver = new NetworkReceiver();
+
     // (!) Mine
     private Marker mCurrLocationMarker;
-
-    // (!) MINE FROM IMPROVISNG BLOCK
-    //private Marker mCurrLocationMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,10 @@ public class LyricMapUI
                     .build();
         }
 
+        // Register BroadcastReceiver to track connection changes.
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        receiver = new NetworkReceiver();
+        this.registerReceiver(receiver, filter);
     }
 
     /**
