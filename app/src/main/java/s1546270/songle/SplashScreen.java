@@ -36,7 +36,7 @@ public class SplashScreen extends AppCompatActivity {
 
                 // This method will be executed once the timer is over
 
-                Intent i = new Intent(SplashScreen.this, HomeActivity.class);
+                Intent i = new Intent(SplashScreen.this, Home.class);
                 startActivity(i);
 
                 // close this activity

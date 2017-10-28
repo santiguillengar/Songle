@@ -28,6 +28,7 @@ public /*static*/ class Entry {
         this.link = link;
     }
 
+    // Instantiating the parser
     List<Entry> parse(InputStream in) throws XmlPullParserException, IOException {
 
         try {
@@ -41,6 +42,8 @@ public /*static*/ class Entry {
         }
     }
 
+    // Reading the XML feeds
+    /*Returns a list containing the entries extracted from the feed.*/
     private List<Entry> readFeed(XmlPullParser parser) throws XmlPullParserException, IOException {
 
         List<Entry> entries = new ArrayList<Entry>();
@@ -87,6 +90,7 @@ public /*static*/ class Entry {
         return new Entry(title, summary, link);
     }
 
+    // Reading a title
     private String readTitle(XmlPullParser parser) throws IOException, XmlPullParserException {
 
         parser.require(XmlPullParser.START_TAG, ns, "title");
@@ -95,6 +99,7 @@ public /*static*/ class Entry {
         return title;
     }
 
+    // Reading a link
     private String readLink(XmlPullParser parser) throws IOException, XmlPullParserException {
 
         String link = "";
@@ -111,6 +116,7 @@ public /*static*/ class Entry {
         return link;
     }
 
+    // Reading summaries
     private String readSummary(XmlPullParser parser) throws IOException, XmlPullParserException {
 
         parser.require(XmlPullParser.START_TAG, ns, "summary");
@@ -119,6 +125,7 @@ public /*static*/ class Entry {
         return summary;
     }
 
+    // Reading text
     private String readText(XmlPullParser parser) throws IOException, XmlPullParserException {
 
         String result = "";
@@ -129,6 +136,7 @@ public /*static*/ class Entry {
         return result;
     }
 
+    // Skipping uninteresting tags
     private void skip(XmlPullParser parser) throws XmlPullParserException, IOException {
 
         if(parser.getEventType() != XmlPullParser.START_TAG) {

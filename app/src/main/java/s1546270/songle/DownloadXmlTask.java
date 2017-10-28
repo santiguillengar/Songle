@@ -48,7 +48,7 @@ public class DownloadXmlTask extends AsyncTask<String, Void, String> {
 
         URL url = new URL(urlString);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        // Also available: HttpsUrlConenction
+        // Also available: HttpsUrlConnection
 
         conn.setReadTimeout(10000 /*milliseconds*/);
         conn.setConnectTimeout(15000 /*milliseconds*/);
