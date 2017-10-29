@@ -30,6 +30,15 @@
     </item>
     <item
         is-multidex="true"
+        jar="/Users/SantiGuillenGar/.android/build-cache/db8d6696cb5d3f47764cc85ca5ecc31cce620377/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="6f57b76211a1d7b0c1f18873af59faad95664681">
+        <dex dex="/Users/SantiGuillenGar/AndroidStudioProjects/Songle/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d0b929082fa35af0b61204607038ad09c466f9f0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="/Users/SantiGuillenGar/.android/build-cache/1110c52b2c840b23f0c2301a8ff2864fc50621a8/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"

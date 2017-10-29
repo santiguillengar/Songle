@@ -1,6 +1,9 @@
 package s1546270.songle;
 
 import android.os.AsyncTask;
+import android.webkit.WebView;
+
+import com.google.maps.android.kml.KmlLayer;
 
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -8,12 +11,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 /**
  * Created by SantiGuillenGar on 14/10/2017.
  */
 
 public class DownloadXmlTask extends AsyncTask<String, Void, String> {
+
+    private Placemark placemark;
+    private List<Placemark> placemarks;
+    KmlLayer layer; //KML object
 
     @Override
     protected String doInBackground(String... urls) {
@@ -29,18 +37,47 @@ public class DownloadXmlTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        // Do something with result
+        /*setContentView(R.layout.activity_home);
+
+        // Attempt at showing KML points on map.
+        try {
+            layer = new KmlLayer(mMap,/*KML file path - kmlInputStream, getApplicationContext());
+            layer.addLayerToMap();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
     }
 
     private String loadXmlFromNetwork(String urlString) throws XmlPullParserException, IOException {
 
         StringBuilder result = new StringBuilder();
 
-        try(InputStream stream = downloadUrl(urlString)) {
-            // Do something with stream e.g. parse as XML, build result
+        InputStream stream = null;
+        StackOverflowXmlParser parser = new StackOverflowXmlParser();
+        List<Placemark> placemarks = null;
+        String name;
+        String description;
+        String styleUrl;
+        String point;
+        String coordinates;
+
+        try {
+            stream = downloadUrl(urlString);
+            int current_byte = stream . read();
+            while (current_byte != -1)
+            {
+                char byte_as_char = (char) current_byte;
+                System.out.print(byte_as_char);
+                current_byte = stream . read();
+            }
+            placemarks = parser.parse(stream);
+        } finally {
+            if (stream != null) {
+                stream.close();
+            }
         }
 
-        return result.toString();
+        return placemarks.toString();
     }
 
     // Given a string representation of a URL, sets up a connection ang gets an input stream.

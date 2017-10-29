@@ -7,7 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import java.net.URL;
+
 public class Home extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,9 @@ public class Home extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        String placemarksUrl = "http://www.inf.ed.ac.uk/teaching/courses/selp/data/songs/01/map5.kml";
+        new DownloadXmlTask().execute(placemarksUrl);
     }
 }
 
