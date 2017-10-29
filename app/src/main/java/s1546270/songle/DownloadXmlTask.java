@@ -1,6 +1,7 @@
 package s1546270.songle;
 
 import android.os.AsyncTask;
+import android.util.Log;
 import android.webkit.WebView;
 
 import com.google.maps.android.kml.KmlLayer;
@@ -19,6 +20,7 @@ import java.util.List;
 
 public class DownloadXmlTask extends AsyncTask<String, Void, String> {
 
+    private static final String TAG = DownloadXmlTask.class.getSimpleName();
     private Placemark placemark;
     private List<Placemark> placemarks;
     KmlLayer layer; //KML object
@@ -62,20 +64,19 @@ public class DownloadXmlTask extends AsyncTask<String, Void, String> {
         String coordinates;
 
         try {
+
             stream = downloadUrl(urlString);
-            int current_byte = stream . read();
-            while (current_byte != -1)
-            {
-                char byte_as_char = (char) current_byte;
-                System.out.print(byte_as_char);
-                current_byte = stream . read();
-            }
+            System.out.print("STREAM: "+stream);
+            Log.d(TAG, "     |SANTI|     Stream: "+stream.toString());
+
             placemarks = parser.parse(stream);
+
         } finally {
             if (stream != null) {
                 stream.close();
             }
         }
+        Log.d(TAG, "     |SANTI|     Post parsing placemarks contents: "+placemarks.toString());
 
         return placemarks.toString();
     }
