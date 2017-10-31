@@ -2,7 +2,6 @@ package s1546270.songle;
 
 import android.os.AsyncTask;
 import android.util.Log;
-import android.webkit.WebView;
 
 import com.google.maps.android.kml.KmlLayer;
 
@@ -14,71 +13,72 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
+import s1546270.songle.Objects.Placemark;
+
 /**
  * Created by SantiGuillenGar on 14/10/2017.
  */
 
-public class DownloadXmlTask extends AsyncTask<String, Void, String> {
+public class DownloadXmlTask extends AsyncTask<String, Void, List<Placemark>> {
 
     private static final String TAG = DownloadXmlTask.class.getSimpleName();
-    private Placemark placemark;
-    private List<Placemark> placemarks;
-    KmlLayer layer; //KML object
+    StackOverflowXmlParser parser = new StackOverflowXmlParser();
 
     @Override
-    protected String doInBackground(String... urls) {
+    protected List<Placemark> doInBackground(String... urls) {
 
+        List<Placemark> placemarks = null;
         try {
-            return loadXmlFromNetwork(urls[0]);
+            placemarks = loadXmlFromNetwork(urls[0]);
+            return placemarks;
         } catch (IOException e) {
-            return "Unable to load content. Check your network connection";
+            Log.e(TAG, "ERROR: Failed attempt in DonwloadXmlTask when retrieving placemarks"+e);
+            return placemarks;
         } catch (XmlPullParserException e) {
-            return "Error parsing XML";
+            Log.e(TAG, "ERROR: Failed attempt in DonwloadXmlTask when retrieving placemarks"+e);
+            return placemarks;
         }
     }
 
     @Override
-    protected void onPostExecute(String result) {
-        /*setContentView(R.layout.activity_home);
+    protected void onPostExecute(List<Placemark> result) {
+        /*setContentView(R.layout.activity_lyric_map_ui);
 
         // Attempt at showing KML points on map.
         try {
-            layer = new KmlLayer(mMap,/*KML file path - kmlInputStream, getApplicationContext());
+            layer = new KmlLayer(mMap,placemarks, getApplicationContext());
             layer.addLayerToMap();
         } catch (Exception e) {
             e.printStackTrace();
         }*/
+
     }
 
-    private String loadXmlFromNetwork(String urlString) throws XmlPullParserException, IOException {
-
-        StringBuilder result = new StringBuilder();
+    private List<Placemark> loadXmlFromNetwork(String urlString) throws XmlPullParserException, IOException {
+        Log.d(TAG, "     |SANTI|     DownloadXmlTask loadXmlFromNetwork accessed");
 
         InputStream stream = null;
-        StackOverflowXmlParser parser = new StackOverflowXmlParser();
         List<Placemark> placemarks = null;
-        String name;
-        String description;
-        String styleUrl;
-        String point;
-        String coordinates;
 
         try {
 
             stream = downloadUrl(urlString);
+            placemarks = parser.parse(stream);
+
+            /*
             System.out.print("STREAM: "+stream);
             Log.d(TAG, "     |SANTI|     Stream: "+stream.toString());
 
             placemarks = parser.parse(stream);
-
+            */
         } finally {
             if (stream != null) {
                 stream.close();
             }
         }
-        Log.d(TAG, "     |SANTI|     Post parsing placemarks contents: "+placemarks.toString());
 
-        return placemarks.toString();
+        //return placemarks.toString();
+        return placemarks;
     }
 
     // Given a string representation of a URL, sets up a connection ang gets an input stream.

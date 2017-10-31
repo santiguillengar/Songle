@@ -5,11 +5,19 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import java.net.URL;
+import java.util.List;
+
+import s1546270.songle.Objects.Placemark;
 
 public class Home extends AppCompatActivity {
+
+    // For logging purposes
+    private static final String TAG = Home.class.getSimpleName();
+    //StackOverflowXmlParser parser = new StackOverflowXmlParser();
 
 
     @Override
@@ -27,9 +35,6 @@ public class Home extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-        String placemarksUrl = "http://www.inf.ed.ac.uk/teaching/courses/selp/data/songs/01/map5.kml";
-        new DownloadXmlTask().execute(placemarksUrl);
     }
 }
 

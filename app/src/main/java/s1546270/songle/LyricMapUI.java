@@ -5,12 +5,15 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.net.ConnectivityManager;
+import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
@@ -24,6 +27,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.maps.android.kml.KmlLayer;
+
+import java.util.List;
+
+import s1546270.songle.Objects.Placemark;
 
 public class LyricMapUI
         extends FragmentActivity
@@ -44,6 +51,9 @@ public class LyricMapUI
 
     // (!) Mine
     private Marker mCurrLocationMarker;
+
+    // Store placemarks parsed
+    List<Placemark> placemarks = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +81,57 @@ public class LyricMapUI
 
     }
 
+    public void placemarksOnMap() {
+
+        // HANDLE PLACEMARKS FOR MAP
+        String placemarksUrl = "http://www.inf.ed.ac.uk/teaching/courses/selp/data/songs/01/map5.kml";
+        //DownloadXmlTask downloadXmlTask(String;Void;String) = new DownloadXmlTask();
+        DownloadXmlTask dt = new DownloadXmlTask();
+
+        String[] strCoords = new String[3];
+
+        try {
+            dt.execute(placemarksUrl);
+            placemarks = dt.get();
+        } catch (Exception e) {
+
+        }
+
+        Placemark p1 = placemarks.get(0);
+        strCoords = p1.getPoint().split(",");
+
+
+        Log.d(TAG,"     |MAPMAPMAP| YOUR COORDS ARE THIS DUMB SHIT: "+strCoords[0]+" -- "+strCoords[1]);
+        LatLng latLng2 = new LatLng(Double.parseDouble(strCoords[1]), Double.parseDouble(strCoords[0]));
+        mMap.addMarker(new MarkerOptions().position(latLng2)
+                .title("test"));
+        Log.d(TAG, "--------------------------------------------------------------------");
+
+        /*LatLng sydney = new LatLng(-33.852, 151.211);
+        mMap.addMarker(new MarkerOptions().position(sydney)
+                .title("Marker in Sydney"));*/
+
+
+        try {
+            dt.execute(placemarksUrl);
+            placemarks = dt.get();
+
+        } catch (Exception e) {
+            Log.e(TAG, "ERROR: Couldn't download placemarks for map");
+        }
+
+
+        for (Placemark p : placemarks) {
+            // Add a marker for placemark
+
+            Log.d(TAG, "     |MAP|     MAP: COORDINATES: "+p.getPoint());
+            strCoords = p.getPoint().split(",");
+
+            LatLng latLng = new LatLng(Double.parseDouble(strCoords[1]), Double.parseDouble(strCoords[0]));
+            mMap.addMarker(new MarkerOptions().position(latLng).title(p.getName()));
+        }
+    }
+
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -88,6 +149,11 @@ public class LyricMapUI
 
             // Visualise current position with a small blue circle
             mMap.setMyLocationEnabled(true);
+            mMap.setMinZoomPreference(16.0f);
+            mMap.setMaxZoomPreference(22.0f);
+            LatLng at = new LatLng(-3.1899748612437024,55.94544964050534);
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(at, 0));
+
         }
         catch (SecurityException se){
             System.out.println("Security exception thrown [onMapReady]");
@@ -95,6 +161,8 @@ public class LyricMapUI
 
         //Add "My location" button to the UI
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
+
+        placemarksOnMap();
     }
 
     @Override
