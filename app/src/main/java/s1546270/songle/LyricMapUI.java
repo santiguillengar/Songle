@@ -114,12 +114,10 @@ public class LyricMapUI
             strCoords = p.getPoint().split(",");
 
             LatLng latLng = new LatLng(Double.parseDouble(strCoords[1]), Double.parseDouble(strCoords[0]));
+
             MarkerOptions marker = new MarkerOptions().position(latLng).title(p.getName());
             BitmapDescriptor icon = getPlacemarkIcon(p.getStyleUrl());
-            //BitmapDescriptorFactory.fromResource(R.drawable.red_stars);
             marker.icon(icon);
-            //Bitmap icon = getIconFromURL("http://maps.google.com/mapfiles/kml/paddle/ylw-circle.png");
-            //marker.icon(BitmapDescriptorFactory.fromBitmap(icon));
             mMap.addMarker(marker);
 
 

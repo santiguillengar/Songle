@@ -68,27 +68,18 @@ public class DownloadXmlTask extends AsyncTask<String, Void, List<Placemark>> {
 
         InputStream stream = null;
         List<Placemark> placemarks = null;
-        List<Style> styles = null;
 
         try {
 
             stream = downloadUrl(urlString);
-            //placemarks = parser.parse(stream);
             placemarks = parser.parsePlacemarks(stream);
 
-            /*
-            System.out.print("STREAM: "+stream);
-            Log.d(TAG, "     |SANTI|     Stream: "+stream.toString());
-
-            placemarks = parser.parse(stream);
-            */
         } finally {
             if (stream != null) {
                 stream.close();
             }
         }
 
-        //return placemarks.toString();
         return placemarks;
     }
 

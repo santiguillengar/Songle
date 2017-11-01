@@ -23,7 +23,7 @@ public class StackOverflowXmlParser {
 
     private static final String ns = null;
     // For logging purposes
-    private static final String TAG = DownloadXmlTask.class.getSimpleName();
+    private static final String TAG = StackOverflowXmlParser.class.getSimpleName();
 
 
     // Instantiating the parser
