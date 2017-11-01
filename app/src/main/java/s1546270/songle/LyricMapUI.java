@@ -5,7 +5,6 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.net.ConnectivityManager;
-import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -13,7 +12,6 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
@@ -22,15 +20,16 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.maps.android.kml.KmlLayer;
 
 import java.util.List;
 
 import s1546270.songle.Objects.Placemark;
+import s1546270.songle.Objects.Style;
 
 public class LyricMapUI
         extends FragmentActivity
@@ -54,6 +53,7 @@ public class LyricMapUI
 
     // Store placemarks parsed
     List<Placemark> placemarks = null;
+    List<Style> styles = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,36 +79,101 @@ public class LyricMapUI
         receiver = new NetworkReceiver();
         this.registerReceiver(receiver, filter);
 
+
     }
 
     public void placemarksOnMap() {
+        Log.d(TAG, "     |SANTI|     LyricMapUI - Placemarks being placed on map. ");
 
         // HANDLE PLACEMARKS FOR MAP
-        String placemarksUrl = "http://www.inf.ed.ac.uk/teaching/courses/selp/data/songs/01/map5.kml";
-        //DownloadXmlTask downloadXmlTask(String;Void;String) = new DownloadXmlTask();
-        DownloadXmlTask dt = new DownloadXmlTask();
+        String url = "http://www.inf.ed.ac.uk/teaching/courses/selp/data/songs/01/map1.kml";
+        DownloadXmlTask dtPlacemarks = new DownloadXmlTask();
+        DownloadStylesTask dtStyles = new DownloadStylesTask();
 
         String[] strCoords;
 
         try {
-            dt.execute(placemarksUrl);
-            placemarks = dt.get();
+            dtPlacemarks.execute(url);
+            placemarks = dtPlacemarks.get();
+            dtStyles.execute(url);
+            styles = dtStyles.get();
+
 
         } catch (Exception e) {
             Log.e(TAG, "ERROR: Couldn't download placemarks for map");
+        }
+
+        for (Style s : styles) {
+            Log.d(TAG, "STYLE: ID: "+s.getId()+" ICONSTYLE: "+s.getIconStyle());
         }
 
 
         for (Placemark p : placemarks) {
             // Add a marker for placemark
 
-            Log.d(TAG, "     |MAP|     MAP: COORDINATES: "+p.getPoint());
             strCoords = p.getPoint().split(",");
 
             LatLng latLng = new LatLng(Double.parseDouble(strCoords[1]), Double.parseDouble(strCoords[0]));
-            mMap.addMarker(new MarkerOptions().position(latLng).title(p.getName()));
+            MarkerOptions marker = new MarkerOptions().position(latLng).title(p.getName());
+            BitmapDescriptor icon = getPlacemarkIcon(p.getStyleUrl());
+            //BitmapDescriptorFactory.fromResource(R.drawable.red_stars);
+            marker.icon(icon);
+            //Bitmap icon = getIconFromURL("http://maps.google.com/mapfiles/kml/paddle/ylw-circle.png");
+            //marker.icon(BitmapDescriptorFactory.fromBitmap(icon));
+            mMap.addMarker(marker);
+
+
+
         }
     }
+
+    private BitmapDescriptor getPlacemarkIcon(String styleUrl) {
+        BitmapDescriptor icon = null;
+
+        switch (styleUrl) {
+            case "#boring":
+                icon = BitmapDescriptorFactory.fromResource(R.drawable.ylw_blank);
+                break;
+            case "#notboring":
+                icon = BitmapDescriptorFactory.fromResource(R.drawable.ylw_circle);
+                break;
+            case "#interesting":
+                icon = BitmapDescriptorFactory.fromResource(R.drawable.orange_diamond);
+                break;
+            case "#veryinteresting":
+                icon = BitmapDescriptorFactory.fromResource(R.drawable.red_stars);
+                break;
+            case "#unclassified":
+                icon = BitmapDescriptorFactory.fromResource(R.drawable.wht_blank);
+                break;
+            default:
+                icon = BitmapDescriptorFactory.fromResource(R.drawable.error_marker);
+                break;
+        }
+
+
+        return icon;
+    }
+
+    /*public Bitmap getIconFromURL(String imageUrl) {
+        Log.d(TAG, "Accessed getIconFromURL");
+        InputStream input = null;
+        try {
+            URL url = new URL(imageUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            //connection.setDoInput(true);
+            connection.connect();
+            input = connection.getInputStream();
+            Bitmap icon = BitmapFactory.decodeStream(input);
+            return icon;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            input.close();
+        }
+    }*/
 
     /**
      * Manipulates the map once available.
@@ -129,7 +194,7 @@ public class LyricMapUI
             mMap.setMyLocationEnabled(true);
             mMap.setMinZoomPreference(16.0f);
             mMap.setMaxZoomPreference(22.0f);
-            LatLng at = new LatLng(-3.1899748612437024,55.94544964050534);
+            LatLng at = new LatLng(-3.18701,55.9444);
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(at, 0));
 
         }

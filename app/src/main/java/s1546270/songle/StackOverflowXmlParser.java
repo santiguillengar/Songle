@@ -27,16 +27,32 @@ public class StackOverflowXmlParser {
 
 
     // Instantiating the parser
-    List parse(InputStream in) throws XmlPullParserException, IOException {
+    List parsePlacemarks(InputStream in) throws XmlPullParserException, IOException {
 
         try {
-            Log.d(TAG, "     |SANTI|     Accessed StackOverflowXmlParser parse method");
+            Log.d(TAG, "     |SANTI|     Accessed StackOverflowXmlParser parsePlacemarks method");
             Log.d(TAG, "     |SANTI|     Stream: "+in.toString());
             XmlPullParser parser = Xml.newPullParser();
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
             parser.setInput(in, null);
             parser.nextTag();
-            return readFeed(parser);
+            return readFeedPlacemarks(parser);
+        } finally {
+            in.close();
+        }
+    }
+
+    // Instantiating the parser
+    List parseStyles(InputStream in) throws XmlPullParserException, IOException {
+
+        try {
+            Log.d(TAG, "     |SANTI|     Accessed StackOverflowXmlParser parseStyles method");
+            Log.d(TAG, "     |SANTI|     Stream: "+in.toString());
+            XmlPullParser parser = Xml.newPullParser();
+            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+            parser.setInput(in, null);
+            parser.nextTag();
+            return readFeedStyles(parser);
         } finally {
             in.close();
         }
@@ -44,8 +60,8 @@ public class StackOverflowXmlParser {
 
 
     // Reading the XML feed
-    private List readFeed(XmlPullParser parser) throws XmlPullParserException, IOException {
-        Log.d(TAG, "     |SANTI|     Accessed StackOverflowXmlParser readFeed method");
+    private List readFeedPlacemarks(XmlPullParser parser) throws XmlPullParserException, IOException {
+        Log.d(TAG, "     |SANTI|     Accessed StackOverflowXmlParser readFeedPlacemarks method");
 
         List placemarks = new ArrayList();
 
@@ -62,13 +78,9 @@ public class StackOverflowXmlParser {
             String pName = parser.getName();
             Log.d(TAG, "     |SANTI|     readFeed Parsing a: "+pName);
 
-            // Starts by looking for the placemark tag
+            // Looking for the placemark tag
             if (pName.equals("Placemark")) {
                 placemarks.add(readPlacemark(parser));
-            }
-            else if (pName.equals("Style")) {
-                String id = parser.getAttributeValue(null, "id");
-                styles.add(readStyle(parser, id));
             }
             else if (pName.equals("Document")) {
                 readDocument();
@@ -81,6 +93,47 @@ public class StackOverflowXmlParser {
         
         return placemarks;
     }
+
+
+
+    // Reading the XML feed
+    private List readFeedStyles(XmlPullParser parser) throws XmlPullParserException, IOException {
+        Log.d(TAG, "     |SANTI|     Accessed StackOverflowXmlParser readFeedStyles method");
+
+        List styles = new ArrayList();
+
+        parser.require(XmlPullParser.START_TAG, ns, "kml");
+
+        while (parser.next() != XmlPullParser.END_TAG) {
+
+            if (parser.getEventType() != XmlPullParser.START_TAG) {
+                continue;
+            }
+
+            String pName = parser.getName();
+            Log.d(TAG, "     |SANTI|     readFeed Parsing a: "+pName);
+
+            // Looks for Style tags
+            if (pName.equals("Style")) {
+                String id = parser.getAttributeValue(null, "id");
+                styles.add(readStyle(parser, id));
+            }
+            else if (pName.equals("Document")) {
+                readDocument();
+
+            }
+            else {
+                skip(parser);
+            }
+        }
+
+        return styles;
+    }
+
+
+
+
+
 
     private void readDocument() {
         Log.d(TAG, "     |SANTI|     StackOverflowXmlParser.readDocument accessed");
@@ -162,6 +215,7 @@ public class StackOverflowXmlParser {
     private String readISIcon(XmlPullParser parser) throws IOException, XmlPullParserException {
         Log.d(TAG, "     |SANTI|     parser.readISIcon accessed");
         parser.require(XmlPullParser.START_TAG, ns, "Icon");
+        String href = null;
 
         while (parser.next() != XmlPullParser.END_TAG) {
             if (parser.getEventType() != XmlPullParser.START_TAG) {
@@ -170,12 +224,12 @@ public class StackOverflowXmlParser {
 
             String theName = parser.getName();
             if (theName.equals("href")) {
-                String href = readText(parser);
+                href = readText(parser);
                 Log.d(TAG, "     |SANTI|     parser.readText href: "+href);
             }
         }
 
-        return "";
+        return href;
     }
 
 

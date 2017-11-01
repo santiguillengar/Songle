@@ -16,4 +16,12 @@ public class IconStyle {
         this.icon = icon;
     }
 
+    public String getScale() {
+        return scale;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
 }

@@ -1,7 +1,9 @@
 package s1546270.songle;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.ProgressBar;
 
 import com.google.maps.android.kml.KmlLayer;
 
@@ -14,6 +16,7 @@ import java.net.URL;
 import java.util.List;
 
 import s1546270.songle.Objects.Placemark;
+import s1546270.songle.Objects.Style;
 
 /**
  * Created by SantiGuillenGar on 14/10/2017.
@@ -25,7 +28,12 @@ public class DownloadXmlTask extends AsyncTask<String, Void, List<Placemark>> {
     StackOverflowXmlParser parser = new StackOverflowXmlParser();
 
     @Override
+    protected void onPreExecute() {
+    }
+
+    @Override
     protected List<Placemark> doInBackground(String... urls) {
+
 
         List<Placemark> placemarks = null;
         try {
@@ -52,6 +60,7 @@ public class DownloadXmlTask extends AsyncTask<String, Void, List<Placemark>> {
             e.printStackTrace();
         }*/
 
+
     }
 
     private List<Placemark> loadXmlFromNetwork(String urlString) throws XmlPullParserException, IOException {
@@ -59,11 +68,13 @@ public class DownloadXmlTask extends AsyncTask<String, Void, List<Placemark>> {
 
         InputStream stream = null;
         List<Placemark> placemarks = null;
+        List<Style> styles = null;
 
         try {
 
             stream = downloadUrl(urlString);
-            placemarks = parser.parse(stream);
+            //placemarks = parser.parse(stream);
+            placemarks = parser.parsePlacemarks(stream);
 
             /*
             System.out.print("STREAM: "+stream);
