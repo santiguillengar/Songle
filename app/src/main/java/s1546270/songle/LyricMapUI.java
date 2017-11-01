@@ -88,29 +88,7 @@ public class LyricMapUI
         //DownloadXmlTask downloadXmlTask(String;Void;String) = new DownloadXmlTask();
         DownloadXmlTask dt = new DownloadXmlTask();
 
-        String[] strCoords = new String[3];
-
-        try {
-            dt.execute(placemarksUrl);
-            placemarks = dt.get();
-        } catch (Exception e) {
-
-        }
-
-        Placemark p1 = placemarks.get(0);
-        strCoords = p1.getPoint().split(",");
-
-
-        Log.d(TAG,"     |MAPMAPMAP| YOUR COORDS ARE THIS DUMB SHIT: "+strCoords[0]+" -- "+strCoords[1]);
-        LatLng latLng2 = new LatLng(Double.parseDouble(strCoords[1]), Double.parseDouble(strCoords[0]));
-        mMap.addMarker(new MarkerOptions().position(latLng2)
-                .title("test"));
-        Log.d(TAG, "--------------------------------------------------------------------");
-
-        /*LatLng sydney = new LatLng(-33.852, 151.211);
-        mMap.addMarker(new MarkerOptions().position(sydney)
-                .title("Marker in Sydney"));*/
-
+        String[] strCoords;
 
         try {
             dt.execute(placemarksUrl);
