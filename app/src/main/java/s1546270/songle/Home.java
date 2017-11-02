@@ -1,5 +1,7 @@
 package s1546270.songle;
 
+import android.app.AlertDialog;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -7,17 +9,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import java.net.URL;
 import java.util.List;
 
+import s1546270.songle.Objects.MapLevelDialogFragment;
 import s1546270.songle.Objects.Placemark;
+
+import static android.app.PendingIntent.getActivity;
 
 public class Home extends AppCompatActivity {
 
     // For logging purposes
     private static final String TAG = Home.class.getSimpleName();
-    //StackOverflowXmlParser parser = new StackOverflowXmlParser();
+
+    private String mapDifficulty = "" + R.integer.default_difficulty;
+
 
 
     @Override
@@ -27,15 +35,31 @@ public class Home extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        Log.d(TAG, "     |SANTI|      MAP_FAB");
+        FloatingActionButton home_fab = (FloatingActionButton) findViewById(R.id.home_fab);
+        home_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), LyricMapUI.class);
-                startActivity(i);
+
+                FragmentManager manager = getFragmentManager();
+
+                MapLevelDialogFragment mldf = new MapLevelDialogFragment();
+                mldf.show(manager, "");
             }
         });
     }
+
+    public void onUserSelectDifficulty(String inputDifficulty) {
+        Log.d(TAG, "     |SANTI|     RECEIVED CHALLENGE LEVEL: "+inputDifficulty);
+        mapDifficulty = inputDifficulty;
+
+
+
+        Intent intent = new Intent(getApplicationContext(), LyricMapUI.class);
+        intent.putExtra("difficulty", mapDifficulty);
+        startActivity(intent);
+    }
+
 }
 
 

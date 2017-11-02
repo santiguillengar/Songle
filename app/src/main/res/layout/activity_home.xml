@@ -33,13 +33,14 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/home_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
         app:srcCompat="@android:drawable/ic_dialog_map" />
+
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -48,7 +49,8 @@
         tools:context="s1546270.songle.Home"
         tools:showIn="@layout/activity_home">
 
-        <FrameLayout
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -60,11 +62,60 @@
                 android:text="@string/home_welcome" />
 
             <Button
-                android:id="@+id/button3"
-                android:layout_width="wrap_content"
+                android:id="@+id/btn_dialog_1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
-        </FrameLayout>
+                android:backgroundTint="#F44336"
+                android:padding="@dimen/btn_padding"
+                android:text="@string/main_dialog_simple"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/btn_dialog_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/btn_margin"
+                android:backgroundTint="#E91E63"
+                android:padding="@dimen/btn_padding"
+                android:text="@string/main_dialog_simple"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/btn_dialog_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/btn_margin"
+                android:backgroundTint="#9C27B0"
+                android:padding="@dimen/btn_padding"
+                android:text="@string/main_dialog_single_choice"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/btn_dialog_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/btn_margin"
+                android:backgroundTint="#3F51B5"
+                android:padding="@dimen/btn_padding"
+                android:text="@string/main_dialog_multi_choice"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/btn_dialog_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/btn_margin"
+                android:backgroundTint="#2196F3"
+                android:padding="@dimen/btn_padding"
+                android:text="@string/main_dialog_progress"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+        </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
 </android.support.design.widget.CoordinatorLayout>

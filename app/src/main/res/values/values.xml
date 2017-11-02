@@ -1,0 +1,4 @@
+<resources>
+    <integer name="default_difficulty">2</integer>
+    <integer name="numSongs">18</integer>
+</resources>

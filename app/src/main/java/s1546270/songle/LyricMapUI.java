@@ -1,15 +1,18 @@
 package s1546270.songle;
 
 import android.Manifest;
+import android.app.FragmentManager;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.View;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -28,6 +31,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 
+import s1546270.songle.Objects.MapLevelDialogFragment;
 import s1546270.songle.Objects.Placemark;
 import s1546270.songle.Objects.Style;
 
@@ -44,6 +48,7 @@ public class LyricMapUI
     private boolean mLocationPermissionGranted = false;
     private Location mLastLocation;
     private static final String TAG = "MapsActivity";
+    private String songNumber = null;
 
     // The broadcast receiver that tracks network connectivity changes.
     private NetworkReceiver receiver = new NetworkReceiver();
@@ -55,15 +60,40 @@ public class LyricMapUI
     List<Placemark> placemarks = null;
     List<Style> styles = null;
 
+    String mapDifficulty = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lyric_map_ui);
+
+        try {
+            mapDifficulty = getIntent().getExtras().getString("difficulty");
+
+        } catch (Exception e) {
+            Log.e(TAG, "Exception raised retriving map difficulty");
+        }
+        Log.d(TAG, "LyricMapUI activity created. Map Difficulty: "+mapDifficulty);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
 
         mapFragment.getMapAsync(this);
+
+
+        //add floating action button
+        Log.d(TAG, "     |SANTI|      FAB");
+        FloatingActionButton map_fab = (FloatingActionButton) findViewById(R.id.map_fab);
+        map_fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                FragmentManager manager = getFragmentManager();
+
+                //MapLevelDialogFragment mldf = new MapLevelDialogFragment();
+                //mldf.show(manager, "");
+            }
+        });
 
         // Create an instance of GoogleAPIClient
         if (mGoogleApiClient == null) {
@@ -86,7 +116,7 @@ public class LyricMapUI
         Log.d(TAG, "     |SANTI|     LyricMapUI - Placemarks being placed on map. ");
 
         // HANDLE PLACEMARKS FOR MAP
-        String url = "http://www.inf.ed.ac.uk/teaching/courses/selp/data/songs/01/map1.kml";
+        String url = determineMapUrl();
         DownloadXmlTask dtPlacemarks = new DownloadXmlTask();
         DownloadStylesTask dtStyles = new DownloadStylesTask();
 
@@ -125,6 +155,26 @@ public class LyricMapUI
         }
     }
 
+    private String determineMapUrl() {
+
+        // Example: "http://www.inf.ed.ac.uk/teaching/courses/selp/data/songs/01/map1.kml"
+
+        String baseUrl = "http://www.inf.ed.ac.uk/teaching/courses/selp/data/songs/";
+
+        //choose song randomly from range (1 - numSongs)
+        int random = (int) Math.random() * R.integer.numSongs + 1;
+        if (random < 10) {
+            songNumber = "0"+random;
+        } else {
+            songNumber = ""+random;
+        }
+
+        String url = baseUrl + songNumber + "/map" + mapDifficulty + ".kml";
+
+        return url;
+    }
+
+
     private BitmapDescriptor getPlacemarkIcon(String styleUrl) {
         BitmapDescriptor icon = null;
 
@@ -153,25 +203,6 @@ public class LyricMapUI
         return icon;
     }
 
-    /*public Bitmap getIconFromURL(String imageUrl) {
-        Log.d(TAG, "Accessed getIconFromURL");
-        InputStream input = null;
-        try {
-            URL url = new URL(imageUrl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            //connection.setDoInput(true);
-            connection.connect();
-            input = connection.getInputStream();
-            Bitmap icon = BitmapFactory.decodeStream(input);
-            return icon;
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        } finally {
-            input.close();
-        }
-    }*/
 
     /**
      * Manipulates the map once available.
