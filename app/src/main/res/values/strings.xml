@@ -31,5 +31,9 @@
     <string name="dialog_cancel">Cancel</string>
     <string name="dialog_neutral">Neutral</string>
     <string name="main_dialog_progress_title">Progress dialog...</string>
+    <string name="title_activity_navigation_drawer">NavigationDrawer</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
 </resources>

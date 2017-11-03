@@ -11,6 +11,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
@@ -90,10 +91,10 @@ public class LyricMapUI
 
                 FragmentManager manager = getFragmentManager();
 
-                //MapLevelDialogFragment mldf = new MapLevelDialogFragment();
-                //mldf.show(manager, "");
+
             }
         });
+
 
         // Create an instance of GoogleAPIClient
         if (mGoogleApiClient == null) {
@@ -114,6 +115,7 @@ public class LyricMapUI
 
     public void placemarksOnMap() {
         Log.d(TAG, "     |SANTI|     LyricMapUI - Placemarks being placed on map. ");
+
 
         // HANDLE PLACEMARKS FOR MAP
         String url = determineMapUrl();
@@ -145,12 +147,11 @@ public class LyricMapUI
 
             LatLng latLng = new LatLng(Double.parseDouble(strCoords[1]), Double.parseDouble(strCoords[0]));
 
-            MarkerOptions marker = new MarkerOptions().position(latLng).title(p.getName());
+            //Marker is displayed on map, when clicked it shows user it's style (interesting, boring...)
+            MarkerOptions marker = new MarkerOptions().position(latLng).title(p.getStyleUrl().substring(1));
             BitmapDescriptor icon = getPlacemarkIcon(p.getStyleUrl());
             marker.icon(icon);
             mMap.addMarker(marker);
-
-
 
         }
     }
@@ -223,8 +224,9 @@ public class LyricMapUI
             mMap.setMyLocationEnabled(true);
             mMap.setMinZoomPreference(16.0f);
             mMap.setMaxZoomPreference(22.0f);
-            LatLng at = new LatLng(-3.18701,55.9444);
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(at, 0));
+
+            LatLng mapMidpoint = new LatLng(55.944425, -3.188396);
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mapMidpoint, 0));
 
         }
         catch (SecurityException se){
@@ -283,9 +285,13 @@ public class LyricMapUI
 
     @Override
     public void onLocationChanged(Location current) {
-        System.out.println(" [onLocationChanged] Lat/long now (" +
-        String.valueOf(current.getLatitude()) + "," +
-        String.valueOf(current.getLongitude()) +")");
+
+        Log.d(TAG, "     |SANTI|     Location Changed to: "+current.getLatitude()+", "+current.getLongitude());
+
+
+
+        //LatLng latLng = new LatLng(current.getLatitude(),current.getLongitude());
+        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 0));
     }
 
     @Override
