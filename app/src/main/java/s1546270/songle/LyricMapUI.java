@@ -113,6 +113,7 @@ public class LyricMapUI
 
     }
 
+    //method moved
     public void placemarksOnMap() {
         Log.d(TAG, "     |SANTI|     LyricMapUI - Placemarks being placed on map. ");
 
@@ -156,6 +157,7 @@ public class LyricMapUI
         }
     }
 
+    //method moved
     private String determineMapUrl() {
 
         // Example: "http://www.inf.ed.ac.uk/teaching/courses/selp/data/songs/01/map1.kml"
@@ -176,6 +178,8 @@ public class LyricMapUI
     }
 
 
+
+//method moved
     private BitmapDescriptor getPlacemarkIcon(String styleUrl) {
         BitmapDescriptor icon = null;
 
@@ -205,6 +209,8 @@ public class LyricMapUI
     }
 
 
+
+    //Method moved
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -239,12 +245,14 @@ public class LyricMapUI
         placemarksOnMap();
     }
 
+    //Method moved
     @Override
     protected void onStart() {
         super.onStart();
         mGoogleApiClient.connect();
     }
 
+    //Method moved
     @Override
     protected void onStop() {
         super.onStop();
@@ -253,6 +261,7 @@ public class LyricMapUI
         }
     }
 
+    //Method moved
     protected void createLocationRequest() {
         // Set the parameters for the location request
         LocationRequest mLocationRequest = new LocationRequest();
@@ -267,6 +276,7 @@ public class LyricMapUI
         }
     }
 
+    // MEthod moved
     @Override
     public void onConnected(Bundle connectionHint) {
         try { createLocationRequest(); }
@@ -283,6 +293,7 @@ public class LyricMapUI
         }
     }
 
+    //Method moved
     @Override
     public void onLocationChanged(Location current) {
 
@@ -294,11 +305,13 @@ public class LyricMapUI
         //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 0));
     }
 
+    //Method moved
     @Override
     public void onConnectionSuspended(int flag) {
         System.out.println(" >>>> onConnectionSuspended");
     }
 
+    //Method moved
     @Override
     public void onConnectionFailed(ConnectionResult result) {
         // An unresolvable error has occurred and a connection to Google APIs

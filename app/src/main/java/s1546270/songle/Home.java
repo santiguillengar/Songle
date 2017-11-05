@@ -55,7 +55,8 @@ public class Home extends AppCompatActivity {
 
 
 
-        Intent intent = new Intent(getApplicationContext(), LyricMapUI.class);
+        //Originally LyricMapUI, currently DrawerActivity
+        Intent intent = new Intent(getApplicationContext(), DrawerActivity.class);
         intent.putExtra("difficulty", mapDifficulty);
         startActivity(intent);
     }
