@@ -8,6 +8,7 @@ import android.location.Location;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
@@ -83,17 +84,17 @@ public class LyricMapUI
 
 
         //add floating action button
-        Log.d(TAG, "     |SANTI|      FAB");
-        FloatingActionButton map_fab = (FloatingActionButton) findViewById(R.id.map_fab);
+        /*Log.d(TAG, "     |SANTI|      FAB");
+        FloatingActionButton map_fab = (FloatingActionButton) findViewById(R.id.map_fab1);
         map_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                FragmentManager manager = getFragmentManager();
+                Snackbar.make(view, "FAB pressed", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
 
 
             }
-        });
+        });*/
 
 
         // Create an instance of GoogleAPIClient

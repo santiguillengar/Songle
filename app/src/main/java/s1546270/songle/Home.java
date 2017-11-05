@@ -35,7 +35,7 @@ public class Home extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Log.d(TAG, "     |SANTI|      MAP_FAB");
+        Log.d(TAG, "     |SANTI|      HOME_FAB");
         FloatingActionButton home_fab = (FloatingActionButton) findViewById(R.id.home_fab);
         home_fab.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -45,19 +45,16 @@ public class DrawerActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
-        //tut
-        supportMapFragment = SupportMapFragment.newInstance();
-
-
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        //DEFAULT FAB
+        FloatingActionButton map_fab = (FloatingActionButton) findViewById(R.id.fab);
+        map_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "FAB pressed", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -77,8 +74,8 @@ public class DrawerActivity extends AppCompatActivity
         manager.beginTransaction().replace(R.id.mainLayout, mapFragment).commit();
         currentFragment = "mapFragment";
 
-
     }
+
 
     @Override
     public void onBackPressed() {
@@ -140,7 +137,9 @@ public class DrawerActivity extends AppCompatActivity
                 FragmentManager manager = getSupportFragmentManager();
                 manager.beginTransaction().replace(R.id.mainLayout, mapFragment).commit();
 
+
             }
+
         } else if (id == R.id.nav_words_found) {
             Log.d(TAG, "     |SANTI|     DrawerActivity: words_found page selected");
             Snackbar.make(findViewById(R.id.drawer_layout), "words found pressed", Snackbar.LENGTH_LONG)

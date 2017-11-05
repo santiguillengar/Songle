@@ -1,9 +1,12 @@
 package s1546270.songle;
 
+import android.app.FragmentManager;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 //import android.app.Fragment;
 import android.util.Log;
@@ -88,6 +91,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -101,15 +107,17 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             Log.e(TAG, "Exception raised retriving map difficulty");
         }
         Log.d(TAG, "LyricMapUI activity created. Map Difficulty: "+mapDifficulty);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-
         View view = inflater.inflate(R.layout.fragment_map, container, false);
+
+
+
         return view;
     }
 
