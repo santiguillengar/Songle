@@ -185,6 +185,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         //Add "My location" button to the UI
         map.getUiSettings().setMyLocationButtonEnabled(true);
+        //Hide map buttons that were previously appearing under FAB.
+        map.getUiSettings().setMapToolbarEnabled(false);
 
 
         // make sure placemarks are only downloaded and parsed once

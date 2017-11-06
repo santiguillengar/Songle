@@ -22,9 +22,7 @@ import s1546270.songle.R;
 
 public class MapLevelDialogFragment extends DialogFragment {
 
-    ArrayList mSelectedItems = new ArrayList();  // Where we track the selected items
 
-    public String selected = null;
     public String difficulty = "2";
 
     private static final String TAG = "MapLevelDialogFragment";

@@ -7,7 +7,14 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <string name="home_welcome">Welcome to Songle</string>
-    <string name="home_sub_welcome">Press the Map Button to get started!</string>
+    <string name="home_app_intro">
+        "\nSongle is an interactive game - it's easy, fun and helps you explore Edinburgh! "
+        "\n\nWalk around the map area, and when you're close enough to a placemark you'll be able to click on it and collect the hidden word!"
+        "\n\nOnce you have enough words to know the song, click on the yellow button to guess it!"
+        "\n\nHow many points can you get?"
+    </string>
+    <string name="home_press_button_message">Press the yellow Map Button above to get started!</string>
+    <string name="home_instructions_photo_header">This is what the game looks like:</string>
     <string name="title_activity_home">Home</string>
 
     <string name="action_settings">Settings</string>
@@ -36,5 +43,9 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_drawer">DrawerActivity</string>
+
+
+    <string name="dialog_guess_song">Which song is it?</string>
+    <string name="dialog_confirm_guess">Guess!</string>
 
 </resources>

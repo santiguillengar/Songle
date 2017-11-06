@@ -25,6 +25,9 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 
+import s1546270.songle.Objects.GuessSongFragment;
+import s1546270.songle.Objects.MapLevelDialogFragment;
+
 public class DrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
 
@@ -42,6 +45,8 @@ public class DrawerActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Songle");
+
         setSupportActionBar(toolbar);
 
 
@@ -50,8 +55,13 @@ public class DrawerActivity extends AppCompatActivity
         map_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "FAB pressed", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                // FAB has been pressed, user wants to guess what song it is.
+                // Show song guess options fragment.
+                android.app.FragmentManager manager = getFragmentManager();
+
+                GuessSongFragment guessSongFragment = new GuessSongFragment();
+                guessSongFragment.show(manager, "");
             }
         });
 

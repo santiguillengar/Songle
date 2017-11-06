@@ -50,15 +50,6 @@ public class DownloadXmlTask extends AsyncTask<String, Void, List<Placemark>> {
 
     @Override
     protected void onPostExecute(List<Placemark> result) {
-        /*setContentView(R.layout.activity_lyric_map_ui);
-
-        // Attempt at showing KML points on map.
-        try {
-            layer = new KmlLayer(mMap,placemarks, getApplicationContext());
-            layer.addLayerToMap();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
 
 
     }

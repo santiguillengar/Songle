@@ -9,4 +9,12 @@
         <item>So Chill</item>
     </string-array>
 
+    <string-array name="guess_song_options_demo">
+        <item>Last Resort</item>
+        <item>Baby</item>
+        <item>Despacito</item>
+        <item>La Macarena</item>
+        <item>Highway To Hell</item>
+    </string-array>
+
 </resources>
