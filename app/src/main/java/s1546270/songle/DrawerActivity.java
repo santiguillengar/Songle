@@ -8,7 +8,10 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -25,6 +28,10 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 
+import java.util.concurrent.TimeUnit;
+
+import s1546270.songle.Fragments.WordsFound;
+import s1546270.songle.Objects.CorrectGuessFragment;
 import s1546270.songle.Objects.GuessSongFragment;
 import s1546270.songle.Objects.MapLevelDialogFragment;
 
@@ -62,6 +69,26 @@ public class DrawerActivity extends AppCompatActivity
 
                 GuessSongFragment guessSongFragment = new GuessSongFragment();
                 guessSongFragment.show(manager, "");
+
+                //TODO (!) Change for an actual guess check
+                boolean correctGuess = true;
+                if(correctGuess) {
+                    //CorrectGuessFragment correctGuessFragment = new CorrectGuessFragment();
+                    //correctGuessFragment.show(manager, "");
+
+                    /*LayoutInflater inflater = getLayoutInflater();
+                    View dialogView = inflater.inflate(R.layout.fragment_correct_guess, null);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(DrawerActivity.this);
+                    builder.setView(dialogView);
+                    builder.show();*/
+                    /*LayoutInflater inflater2 = getLayoutInflater();
+                    View dialogView2 = inflater2.inflate(R.layout.fragment_wrong_guess, null);
+                    AlertDialog.Builder builder2 = new AlertDialog.Builder(DrawerActivity.this);
+                    builder2.setView(dialogView2);
+                    builder2.show();*/
+
+                }
+
             }
         });
 
@@ -158,7 +185,9 @@ public class DrawerActivity extends AppCompatActivity
             if (currentFragment != "wordsFoundFragment") {
                 currentFragment = "wordsFoundFragment";
 
-                //DO STUFF HERE
+                WordsFound wordsFound = new WordsFound();
+
+                DrawerActivity.this.getSupportFragmentManager().beginTransaction().replace(R.id.mainLayout, wordsFound).commit();
             }
 
         } else if (id == R.id.nav_hints) {

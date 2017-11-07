@@ -6,33 +6,21 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_map"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@android:drawable/ic_dialog_map"
             android:title="Map" />
         <item
             android:id="@+id/nav_words_found"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_star_black_24dp"
             android:title="Words Found" />
         <item
             android:id="@+id/nav_hints"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_help_black_24dp"
             android:title="Hints" />
         <item
             android:id="@+id/nav_about"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_info_black_24dp"
             android:title="About" />
     </group>
 
-    <!-- <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item> -->
 
 </menu>

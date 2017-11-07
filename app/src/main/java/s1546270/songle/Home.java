@@ -45,6 +45,7 @@ public class Home extends AppCompatActivity {
 
                 MapLevelDialogFragment mldf = new MapLevelDialogFragment();
                 mldf.show(manager, "");
+
             }
         });
     }
@@ -59,6 +60,10 @@ public class Home extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), DrawerActivity.class);
         intent.putExtra("difficulty", mapDifficulty);
         startActivity(intent);
+
+
+        // user should not be allowed to go back to home once the game has started
+        finish();
     }
 
 }
