@@ -13,6 +13,7 @@ import java.util.List;
 
 import s1546270.songle.Objects.IconStyle;
 import s1546270.songle.Objects.Placemark;
+import s1546270.songle.Objects.Song;
 import s1546270.songle.Objects.Style;
 
 /**
@@ -53,6 +54,22 @@ public class StackOverflowXmlParser {
             parser.setInput(in, null);
             parser.nextTag();
             return readFeedStyles(parser);
+        } finally {
+            in.close();
+        }
+    }
+
+    // Instantiating the parser
+    List parseSongs(InputStream in) throws XmlPullParserException, IOException {
+
+        try {
+            Log.d(TAG, "     |SANTI|     Accessed StackOverflowXmlParser parseSongs method");
+            Log.d(TAG, "     |SANTI|     Stream: "+in.toString());
+            XmlPullParser parser = Xml.newPullParser();
+            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+            parser.setInput(in, null);
+            parser.nextTag();
+            return readFeedSongs(parser);
         } finally {
             in.close();
         }
@@ -128,6 +145,109 @@ public class StackOverflowXmlParser {
         }
 
         return styles;
+    }
+
+    // Reading the XML feed
+    private List readFeedSongs(XmlPullParser parser) throws XmlPullParserException, IOException {
+        Log.d(TAG, "     |SANTI|     Accessed StackOverflowXmlParser readFeedSongs method");
+
+        List songs = new ArrayList();
+
+        parser.require(XmlPullParser.START_TAG, ns, "Songs");
+
+        while (parser.next() != XmlPullParser.END_TAG) {
+
+            if (parser.getEventType() != XmlPullParser.START_TAG) {
+                continue;
+            }
+
+            String pName = parser.getName();
+            Log.d(TAG, "     |SANTI|     readFeed Parsing a: "+pName);
+
+            // Looking for the placemark tag
+            if (pName.equals("Song")) {
+                songs.add(readSong(parser));
+            }
+            else {
+                skip(parser);
+            }
+        }
+
+        return songs;
+    }
+
+
+
+
+    private Song readSong(XmlPullParser parser) throws XmlPullParserException, IOException {
+        Log.d(TAG, "     |SANTI|     StackOverflowXmlParser.readSong accessed");
+
+        parser.require(XmlPullParser.START_TAG, ns, "Song");
+
+        int number = -1;
+        String artist = null;
+        String title = null;
+        String link = null;
+
+        while (parser.next() != XmlPullParser.END_TAG) {
+
+            if (parser.getEventType() != XmlPullParser.START_TAG) {
+                continue;
+            }
+
+            String pName = parser.getName();
+
+            if (pName.equals("Number")) {
+                number = readNumber(parser);
+            } else if (pName.equals("Artist")) {
+                artist = readArtist(parser);
+            } else if (pName.equals("Title")) {
+                title = readTitle(parser);
+            } else if (pName.equals("Link")) {
+                link = readLink(parser);
+            } else {
+                skip(parser);
+            }
+        }
+
+        Song song = new Song(number, artist, title, link);
+        String sValues = "NUMBER: "+song.getNumber()+" ARTIST: "+song.getArtist()+" TITLE: "+song.getTitle()+" LINK: "+song.getLink();
+        Log.d(TAG, "     |SANTI|     New Placemark: "+sValues);
+        return song;
+    }
+
+
+    private int readNumber(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, ns, "Number");
+        String number = readText(parser);
+        parser.require(XmlPullParser.END_TAG, ns, "Number");
+        Log.d(TAG, "     |SANTI|     parser.readNumber number is: "+number);
+        return Integer.parseInt(number);
+    }
+
+    private String readArtist(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, ns, "Artist");
+        String artist = readText(parser);
+        parser.require(XmlPullParser.END_TAG, ns, "Artist");
+        Log.d(TAG, "     |SANTI|     parser.readArtist artist is: "+artist);
+        return artist;
+    }
+
+    private String readTitle(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, ns, "Title");
+        String title = readText(parser);
+        parser.require(XmlPullParser.END_TAG, ns, "Title");
+        Log.d(TAG, "     |SANTI|     parser.readTitle title is: "+title);
+        return title;
+    }
+
+
+    private String readLink(XmlPullParser parser) throws IOException, XmlPullParserException {
+        parser.require(XmlPullParser.START_TAG, ns, "Link");
+        String link = readText(parser);
+        parser.require(XmlPullParser.END_TAG, ns, "Link");
+        Log.d(TAG, "     |SANTI|     parser.readLink link is: "+link);
+        return link;
     }
 
 

@@ -106,7 +106,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         } catch (Exception e) {
             Log.e(TAG, "Exception raised retriving map difficulty");
         }
-        Log.d(TAG, "LyricMapUI activity created. Map Difficulty: "+mapDifficulty);
+        Log.d(TAG, "Map created. Map Difficulty: "+mapDifficulty);
 
     }
 
@@ -214,7 +214,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
 
     public void placemarksOnMap() {
-        Log.d(TAG, "     |SANTI|     LyricMapUI - Placemarks being placed on map. ");
+        Log.d(TAG, "     |SANTI|     Map - Placemarks being placed on map. ");
 
 
         // HANDLE PLACEMARKS FOR MAP

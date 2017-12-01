@@ -7,10 +7,10 @@ package s1546270.songle.Objects;
 
 public class Placemark {
 
-    public final String name;
-    public final String description;
-    public final String styleUrl;
-    public final String point;
+    private final String name;
+    private final String description;
+    private final String styleUrl;
+    private final String point;
 
 
     public Placemark(String name, String description, String styleUrl, String point) {

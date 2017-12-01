@@ -15,8 +15,8 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="s1546270.songle.LyricMapUI"
-        tools:showIn="@layout/activity_lyric_map_ui" />
+        tools:context="s1546270.songle.MapFragment"
+        tools:showIn="@layout/fragment_map" />
 
 
 </android.support.constraint.ConstraintLayout>

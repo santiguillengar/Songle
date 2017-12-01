@@ -1,4 +1,4 @@
-package s1546270.songle.Objects;
+package s1546270.songle.Fragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

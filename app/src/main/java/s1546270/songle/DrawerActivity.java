@@ -1,17 +1,11 @@
 package s1546270.songle;
 
 //import android.app.FragmentManager;
-import android.support.v4.app.Fragment;
-import android.content.IntentFilter;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -22,18 +16,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 
-import java.util.concurrent.TimeUnit;
-
 import s1546270.songle.Fragments.WordsFound;
-import s1546270.songle.Objects.CorrectGuessFragment;
-import s1546270.songle.Objects.GuessSongFragment;
-import s1546270.songle.Objects.MapLevelDialogFragment;
+import s1546270.songle.Fragments.GuessSongFragment;
 
 public class DrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {

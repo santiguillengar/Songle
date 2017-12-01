@@ -1,20 +1,13 @@
-package s1546270.songle.Objects;
+package s1546270.songle.Fragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-import s1546270.songle.Home;
-import s1546270.songle.MapFragment;
 import s1546270.songle.R;
 
 /**
