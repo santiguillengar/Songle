@@ -64,7 +64,6 @@ public class Home extends AppCompatActivity {
         mapDifficulty = inputDifficulty;
 
 
-
         Intent intent = new Intent(getApplicationContext(), DrawerActivity.class);
         intent.putExtra("difficulty", mapDifficulty);
         intent.putExtra("song", gameSong);

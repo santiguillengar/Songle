@@ -33,19 +33,24 @@ public class DrawerActivity extends AppCompatActivity
     //For fragment refresh purposes
     private String currentFragment = null;
 
-    private Song gameSong = null;
+    private Song gameSong;
+
 
     //tut
     SupportMapFragment supportMapFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Songle");
 
         setSupportActionBar(toolbar);
+
+        gameSong = (Song) getIntent().getSerializableExtra("song");
+        Log.d(TAG, "     |SANTI|     Song that will be played: "+gameSong.getTitle()+" "+gameSong.getArtist());
 
 
         //DEFAULT FAB
@@ -147,11 +152,6 @@ public class DrawerActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-
-        //FragmentManager fragmentManager = getSupportFragmentManager();
-        //Fragment currentFragment = fragmentManager.findFragmentById(R.id.mainLayout);
-        //Log.d(TAG, "     |SANTI|      CURRENT FRAGMENT: "+currentFragment.getTag());
 
         if (id == R.id.nav_map) {
             Log.d(TAG, "     |SANTI|     DrawerActivity: map page selected");
