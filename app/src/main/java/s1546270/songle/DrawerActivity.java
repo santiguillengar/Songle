@@ -1,11 +1,12 @@
 package s1546270.songle;
 
-//import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -22,6 +23,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 
 import java.util.List;
 
+import s1546270.songle.Fragments.CorrectGuessFragment;
 import s1546270.songle.Fragments.WordsFound;
 import s1546270.songle.Fragments.GuessSongFragment;
 import s1546270.songle.Objects.Song;
@@ -69,26 +71,6 @@ public class DrawerActivity extends AppCompatActivity
 
                 GuessSongFragment guessSongFragment = new GuessSongFragment();
                 guessSongFragment.show(manager, "");
-
-                //TODO (!) Change for an actual guess check
-                boolean correctGuess = true;
-                if(correctGuess) {
-                    //CorrectGuessFragment correctGuessFragment = new CorrectGuessFragment();
-                    //correctGuessFragment.show(manager, "");
-
-                    /*LayoutInflater inflater = getLayoutInflater();
-                    View dialogView = inflater.inflate(R.layout.fragment_correct_guess, null);
-                    AlertDialog.Builder builder = new AlertDialog.Builder(DrawerActivity.this);
-                    builder.setView(dialogView);
-                    builder.show();*/
-                    /*LayoutInflater inflater2 = getLayoutInflater();
-                    View dialogView2 = inflater2.inflate(R.layout.fragment_wrong_guess, null);
-                    AlertDialog.Builder builder2 = new AlertDialog.Builder(DrawerActivity.this);
-                    builder2.setView(dialogView2);
-                    builder2.show();*/
-
-                }
-
             }
         });
 
@@ -212,6 +194,37 @@ public class DrawerActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void onUserGuessSong(String guessedSongTitle) {
+        Log.d(TAG, "BACK TO DRAWER ACTIVITY. USER GUESSED: "+guessedSongTitle);
+
+
+
+        // TODO: NOW CHECK IF GUESS WAS CORRECT OR WRONG!
+
+        if (guessedSongTitle.equals(gameSong.getTitle())){
+
+            Snackbar.make(findViewById(R.id.drawer_layout), "correct guess!", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+
+            LayoutInflater inflater = getLayoutInflater();
+            View dialogView = inflater.inflate(R.layout.fragment_correct_guess, null);
+            AlertDialog.Builder builder = new AlertDialog.Builder(DrawerActivity.this);
+            builder.setView(dialogView);
+            builder.show();
+
+        } else {
+
+            Snackbar.make(findViewById(R.id.drawer_layout), "U WRONG!", Snackbar.LENGTH_LONG);
+
+            LayoutInflater inflater2 = getLayoutInflater();
+            View dialogView2 = inflater2.inflate(R.layout.fragment_wrong_guess, null);
+            AlertDialog.Builder builder2 = new AlertDialog.Builder(DrawerActivity.this);
+            builder2.setView(dialogView2);
+            builder2.show();
+
+        }
     }
 
     public Song getGameSong() {

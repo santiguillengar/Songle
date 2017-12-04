@@ -40,6 +40,8 @@ public class GuessSongFragment extends DialogFragment {
 
     private ArrayList<String> guess_song_options;
 
+    private int guessedSong = 2;
+
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -66,6 +68,7 @@ public class GuessSongFragment extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int guess) {
 
+                        guessedSong = guess;
                         Log.d(TAG, "     |SANTI|      Guess Dialog Option Clicked "+guess);
 
                         System.out.print(guess);
@@ -77,10 +80,12 @@ public class GuessSongFragment extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
 
-                        Log.d(TAG, "     |SANTI|      Guess Dialog Ok Clicked "+guess);
+                        Log.d(TAG, "     |SANTI|      Guess Dialog Ok Clicked "+id);
 
-                        //Home callingActivity = (Home) getActivity();
-                        //callingActivity.onUserSelectDifficulty(difficulty);
+                        DrawerActivity callingActivity = (DrawerActivity) getActivity();
+                        callingActivity.onUserGuessSong(guess_song_options.get(guessedSong));
+                        //Log.d(TAG,"FINDME GUESS: "+guessedSong);
+                        //Log.d(TAG,"FINDME What I Passed: "+guess_song_options.get(guessedSong));
                     }
                 })
                 .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
@@ -115,7 +120,13 @@ public class GuessSongFragment extends DialogFragment {
         else {
 
             for (int i = 0; i < 4; i++) {
+
+                // Check that random option chosen hasn't been chosen already or is the correct guess.
                 index = random.nextInt(possibleSongs.size());
+                while((possibleSongs.get(index).getTitle()).equals(gameSong.getTitle()) || guess_song_options.contains(possibleSongs.get(index).getTitle())) {
+                    index = random.nextInt(possibleSongs.size());
+                }
+
                 guess_song_options.add(possibleSongs.get(index).getTitle());
             }
             guess_song_options.add(gameSong.getTitle());
