@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
@@ -37,6 +38,9 @@ public class GuessSongFragment extends DialogFragment {
 
     private static final String TAG = GuessSongFragment.class.getSimpleName();
 
+    private ArrayList<String> guess_song_options;
+
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
@@ -48,7 +52,13 @@ public class GuessSongFragment extends DialogFragment {
         Log.d(TAG, "     |SANTI|      Dialog onCreateDialog Accessed");
         builder.setTitle(R.string.dialog_guess_song);
 
-        ArrayList<String> guess_song_options = makeSongList();
+        String check_song_options = check_song_options_determined();
+        if (check_song_options == "") {
+            guess_song_options = makeSongList();
+        }
+        else {
+            guess_song_options = new ArrayList<>(Arrays.asList(check_song_options.split(",")));
+        }
 
         String[] guess_song_array = guess_song_options.toArray(new String[guess_song_options.size()]);
         builder.setSingleChoiceItems(guess_song_array, 2,
@@ -90,11 +100,15 @@ public class GuessSongFragment extends DialogFragment {
         List<Song> possibleSongs = ((DrawerActivity) getActivity()).getSongsList();
         Log.d(TAG, "PossibleSongs in GuessSongFragment: "+possibleSongs.toString());
         Random random = new Random();
+        String guessSongOptionsStr = "";
         int index;
 
 
+        // Initialization
+        SharedPreferences pref = this.getActivity().getSharedPreferences("SonglePref", 0);
+        SharedPreferences.Editor editor = pref.edit();
+
         if (possibleSongs == null) {
-            String[] a = {"a","b","c"};
             guess_song_options.add(gameSong.getTitle());
             guess_song_options.addAll(Arrays.asList(getResources().getStringArray(R.array.guess_song_options_demo)));
         }
@@ -107,12 +121,34 @@ public class GuessSongFragment extends DialogFragment {
             guess_song_options.add(gameSong.getTitle());
             Collections.shuffle(guess_song_options);
         }
+
+
+        for (String guessableSong : guess_song_options) {
+            if (guessSongOptionsStr.equals("")) {
+                guessSongOptionsStr = guessSongOptionsStr + guessableSong;
+            } else {
+                guessSongOptionsStr = guessSongOptionsStr + "," + guessableSong;
+            }
+        }
+
+
+        editor.putString("guessSongOptions",guessSongOptionsStr);
+        editor.commit();
+
         return guess_song_options;
     }
 
 
+    public String check_song_options_determined() {
 
 
+        // Initialization
+        SharedPreferences pref = this.getActivity().getSharedPreferences("SonglePref", 0);
+        SharedPreferences.Editor editor = pref.edit();
+
+        String guess_song_options = pref.getString("guessSongOptions", null);
+        return guess_song_options;
+    }
 
 
 

@@ -1,6 +1,7 @@
 package s1546270.songle;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +24,15 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+
+        // Reset choices for guessing song for game.
+        // Initialization
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("SonglePref", 0);
+        SharedPreferences.Editor editor = pref.edit();
+        // Update Preferences to include the newly chosen song
+        editor.putString("guessSongOptions","");
+        editor.commit();
 
 
         new Handler().postDelayed(new Runnable() {
