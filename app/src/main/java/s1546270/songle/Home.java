@@ -3,31 +3,24 @@ package s1546270.songle;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
 import java.util.Random;
-import java.util.Set;
 
 import s1546270.songle.Fragments.MapLevelDialogFragment;
-import s1546270.songle.Objects.Placemark;
 import s1546270.songle.Objects.PropertyReader;
 import s1546270.songle.Objects.Song;
-import s1546270.songle.Objects.Style;
 
-
-import static android.app.PendingIntent.getActivity;
 
 public class Home extends AppCompatActivity {
 
@@ -39,10 +32,6 @@ public class Home extends AppCompatActivity {
     // Store list of songs parsed
     List<Song> songs = null;
 
-    // Used to open properties file
-    private PropertyReader propertyReader;
-    private Context context;
-    private Properties properties;
     private Song gameSong = null;
 
     @Override
@@ -88,6 +77,14 @@ public class Home extends AppCompatActivity {
 
     public Song selectGameplaySong() {
 
+        Random generator = new Random();
+
+        String[] recentSongsPlayed;
+        String rspStr;
+
+        ArrayList<String> availableSongs = new ArrayList<>();
+
+
         DownloadSongsTask dtSongs = new DownloadSongsTask();
         String url = "http://www.inf.ed.ac.uk/teaching/courses/selp/data/songs/songs.xml";
 
@@ -104,36 +101,46 @@ public class Home extends AppCompatActivity {
         }
 
 
+        // Initialization
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("SonglePref", 0);
+        SharedPreferences.Editor editor = pref.edit();
 
-        // read properties to find
-        context = this;
-        propertyReader = new PropertyReader(context);
-        properties = propertyReader.getProperties("config.properties");
 
-        Log.d(TAG, "     |SANTI|     Properties found: "+properties);
+        // Retrieving songs played
+        rspStr = pref.getString("recentSongsPlayed", null);
+        Log.d(TAG, "     |SANTI|     Shared Pref Retrieved");
+        recentSongsPlayed = rspStr.split(",");
+        Log.d(TAG, "     |SANTI|     recentSongsPlayed list: "+Arrays.toString(recentSongsPlayed));
 
-        // Make list of song numbers from which to chose song the user will guess
-        String[] recentGameplaySongs = properties.getProperty("recentGameplaySongs").split(",");
-        ArrayList<String> availableSongs = new ArrayList<>();
         for (int i=1; i <= songs.size(); i++){
-            if (!Arrays.asList(recentGameplaySongs).contains(""+i)) {
+            if (!Arrays.asList(recentSongsPlayed).contains(""+i)) {
                 availableSongs.add(""+i);
             }
         }
+        Log.d(TAG, "     |SANTI|     availableSongs list: "+Arrays.toString(availableSongs.toArray()));
 
+        // All songs are in the recent songs so restart cycle through song list
         if (availableSongs.isEmpty()){
             for (int i=1; i <= songs.size(); i++){
                 availableSongs.add(""+i);
             }
+            rspStr="";
         }
 
-        Random generator = new Random();
         int randomIndex = generator.nextInt(availableSongs.size());
 
+        String newRspStr = null;
+        if (rspStr!=""){
+            newRspStr = rspStr+","+availableSongs.get(randomIndex);
+        } else {
+            newRspStr = rspStr+availableSongs.get(randomIndex);
+        }
 
-        //update properties to include chosen song
+        Log.d(TAG, "     |SANTI|     recentSongsPlayed updated to: "+newRspStr);
 
-
+        // Update Preferences to include the newly chosen song
+        editor.putString("recentSongsPlayed",newRspStr);
+        editor.commit();
 
         for (Song song : songs) {
             if (song.getNumber() == randomIndex){
@@ -141,6 +148,7 @@ public class Home extends AppCompatActivity {
             }
         }
         return null;
+
     }
 }
 
