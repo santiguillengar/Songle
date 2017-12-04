@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -67,6 +68,7 @@ public class Home extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), DrawerActivity.class);
         intent.putExtra("difficulty", mapDifficulty);
         intent.putExtra("song", gameSong);
+        intent.putExtra("songsList",(Serializable) songs);
         startActivity(intent);
 
 
@@ -148,6 +150,10 @@ public class Home extends AppCompatActivity {
         }
         return null;
 
+    }
+
+    public List<Song> getSongs() {
+        return songs;
     }
 }
 

@@ -8,15 +8,21 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
+import s1546270.songle.DrawerActivity;
+import s1546270.songle.Home;
+import s1546270.songle.Objects.Song;
 import s1546270.songle.R;
 
+import static java.util.Arrays.asList;
+
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link GuessSongFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link GuessSongFragment#newInstance} factory method to
- * create an instance of this fragment.
+ *
  */
 public class GuessSongFragment extends DialogFragment {
 
@@ -27,6 +33,7 @@ public class GuessSongFragment extends DialogFragment {
         // Required empty public constructor
     }
 
+    private Song gameSong;
 
     private static final String TAG = GuessSongFragment.class.getSimpleName();
 
@@ -34,11 +41,17 @@ public class GuessSongFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
 
+        gameSong = ((DrawerActivity) getActivity()).getGameSong();
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         Log.d(TAG, "     |SANTI|      Dialog onCreateDialog Accessed");
         builder.setTitle(R.string.dialog_guess_song);
-        builder.setSingleChoiceItems(R.array.guess_song_options_demo, 2,
+
+        ArrayList<String> guess_song_options = makeSongList();
+
+        String[] guess_song_array = guess_song_options.toArray(new String[guess_song_options.size()]);
+        builder.setSingleChoiceItems(guess_song_array, 2,
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int guess) {
@@ -71,7 +84,31 @@ public class GuessSongFragment extends DialogFragment {
 
     }
 
+    public  ArrayList<String> makeSongList() {
 
+        ArrayList<String> guess_song_options = new ArrayList<>();
+        List<Song> possibleSongs = ((DrawerActivity) getActivity()).getSongsList();
+        Log.d(TAG, "PossibleSongs in GuessSongFragment: "+possibleSongs.toString());
+        Random random = new Random();
+        int index;
+
+
+        if (possibleSongs == null) {
+            String[] a = {"a","b","c"};
+            guess_song_options.add(gameSong.getTitle());
+            guess_song_options.addAll(Arrays.asList(getResources().getStringArray(R.array.guess_song_options_demo)));
+        }
+        else {
+
+            for (int i = 0; i < 4; i++) {
+                index = random.nextInt(possibleSongs.size());
+                guess_song_options.add(possibleSongs.get(index).getTitle());
+            }
+            guess_song_options.add(gameSong.getTitle());
+            Collections.shuffle(guess_song_options);
+        }
+        return guess_song_options;
+    }
 
 
 

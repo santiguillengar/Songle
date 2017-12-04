@@ -20,6 +20,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 
+import java.util.List;
+
 import s1546270.songle.Fragments.WordsFound;
 import s1546270.songle.Fragments.GuessSongFragment;
 import s1546270.songle.Objects.Song;
@@ -34,6 +36,7 @@ public class DrawerActivity extends AppCompatActivity
     private String currentFragment = null;
 
     private Song gameSong;
+    private List<Song> songs;
 
 
     //tut
@@ -50,6 +53,7 @@ public class DrawerActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         gameSong = (Song) getIntent().getSerializableExtra("song");
+        songs = (List<Song>) getIntent().getSerializableExtra("songsList");
         Log.d(TAG, "     |SANTI|     Song that will be played: "+gameSong.getTitle()+" "+gameSong.getArtist());
 
 
@@ -208,5 +212,13 @@ public class DrawerActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public Song getGameSong() {
+        return gameSong;
+    }
+
+    public List<Song> getSongsList() {
+        return songs;
     }
 }
