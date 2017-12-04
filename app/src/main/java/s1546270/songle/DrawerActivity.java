@@ -22,6 +22,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 
 import s1546270.songle.Fragments.WordsFound;
 import s1546270.songle.Fragments.GuessSongFragment;
+import s1546270.songle.Objects.Song;
 
 public class DrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
@@ -31,6 +32,8 @@ public class DrawerActivity extends AppCompatActivity
 
     //For fragment refresh purposes
     private String currentFragment = null;
+
+    private Song gameSong = null;
 
     //tut
     SupportMapFragment supportMapFragment;

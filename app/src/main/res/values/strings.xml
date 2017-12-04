@@ -1,4 +1,8 @@
 <resources>
+
+    <string name="songsListUrl">"http://www.inf.ed.ac.uk/teaching/courses/selp/data/songs/songs.xml"</string>
+
+
     <string name="app_name">Songle</string>
     <string name="title_activity_lyric_map_ui">LyricMapUI</string>
 
@@ -61,5 +65,7 @@
 
     <string name="dialog_guess_song">Which song is it?</string>
     <string name="dialog_confirm_guess">Guess!</string>
+
+
 
 </resources>

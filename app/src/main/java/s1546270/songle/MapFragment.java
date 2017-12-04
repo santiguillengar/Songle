@@ -27,6 +27,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.List;
 
 import s1546270.songle.Objects.Placemark;
+import s1546270.songle.Objects.Song;
 import s1546270.songle.Objects.Style;
 
 
@@ -57,8 +58,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     String mapDifficulty = null;
 
-    private String songNumber = null;
+    private Song song = null;
 
+    private String songNumber = null;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -102,6 +104,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         try {
             mapDifficulty = getActivity().getIntent().getExtras().getString("difficulty");
+            song  = (Song) getActivity().getIntent().getSerializableExtra("song");
+            Log.d(TAG, "SONG passed through to map fragment: "+song.getNumber()+" "+song.getTitle());
 
         } catch (Exception e) {
             Log.e(TAG, "Exception raised retriving map difficulty");
@@ -264,14 +268,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         //choose song randomly from range (1 - numSongs)
         int random = (int) Math.random() * R.integer.numSongs + 1;
-        if (random < 10) {
-            songNumber = "0"+random;
+        if (song.getNumber() < 10) {
+            songNumber = "0"+song.getNumber();
         } else {
-            songNumber = ""+random;
+            songNumber = ""+song.getNumber();
         }
 
         String url = baseUrl + songNumber + "/map" + mapDifficulty + ".kml";
-
+        Log.d(TAG, "SONG CHOSEN: "+songNumber);
         return url;
     }
 

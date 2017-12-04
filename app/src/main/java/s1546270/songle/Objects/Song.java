@@ -1,11 +1,13 @@
 package s1546270.songle.Objects;
 
 
+import java.io.Serializable;
+
 /**
  * Class used to store a song that may be downloaded for the user to guess and all its information.
  */
 
-public class Song {
+public class Song implements Serializable {
 
     private final int number;
     private final String artist;
