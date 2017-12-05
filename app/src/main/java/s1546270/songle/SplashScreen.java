@@ -32,6 +32,7 @@ public class SplashScreen extends AppCompatActivity {
         SharedPreferences.Editor editor = pref.edit();
         // Update Preferences to include the newly chosen song
         editor.putString("guessSongOptions","");
+        editor.putString("mapDifficulty","");
         editor.commit();
 
 

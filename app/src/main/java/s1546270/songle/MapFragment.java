@@ -2,6 +2,7 @@ package s1546270.songle;
 
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -103,7 +104,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
 
         try {
-            mapDifficulty = getActivity().getIntent().getExtras().getString("difficulty");
+            SharedPreferences pref = this.getActivity().getSharedPreferences("SonglePref", 0);
+            SharedPreferences.Editor editor = pref.edit();
+            mapDifficulty = pref.getString("mapDifficulty", null);
+            Log.d(TAG, "     |SANTI|     Shared Pref Retrieved");
+
             song  = (Song) getActivity().getIntent().getSerializableExtra("song");
             Log.d(TAG, "SONG passed through to map fragment: "+song.getNumber()+" "+song.getTitle());
 
@@ -220,29 +225,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public void placemarksOnMap() {
         Log.d(TAG, "     |SANTI|     Map - Placemarks being placed on map. ");
 
-
-        // HANDLE PLACEMARKS FOR MAP
-        String url = determineMapUrl();
-        DownloadXmlTask dtPlacemarks = new DownloadXmlTask();
-        DownloadStylesTask dtStyles = new DownloadStylesTask();
+        placemarks = ((DrawerActivity) getActivity()).getPlacemarks();
 
         String[] strCoords;
-
-        try {
-            dtPlacemarks.execute(url);
-            placemarks = dtPlacemarks.get();
-            dtStyles.execute(url);
-            styles = dtStyles.get();
-
-
-        } catch (Exception e) {
-            Log.e(TAG, "ERROR: Couldn't download placemarks for map");
-        }
-
-        for (Style s : styles) {
-            Log.d(TAG, "STYLE: ID: "+s.getId()+" ICONSTYLE: "+s.getIconStyle());
-        }
-
 
         for (Placemark p : placemarks) {
             // Add a marker for placemark
@@ -259,26 +244,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         }
     }
-
-    private String determineMapUrl() {
-
-        // Example: "http://www.inf.ed.ac.uk/teaching/courses/selp/data/songs/01/map1.kml"
-
-        String baseUrl = "http://www.inf.ed.ac.uk/teaching/courses/selp/data/songs/";
-
-        //choose song randomly from range (1 - numSongs)
-        int random = (int) Math.random() * R.integer.numSongs + 1;
-        if (song.getNumber() < 10) {
-            songNumber = "0"+song.getNumber();
-        } else {
-            songNumber = ""+song.getNumber();
-        }
-
-        String url = baseUrl + songNumber + "/map" + mapDifficulty + ".kml";
-        Log.d(TAG, "SONG CHOSEN: "+songNumber);
-        return url;
-    }
-
 
 
     //method moved

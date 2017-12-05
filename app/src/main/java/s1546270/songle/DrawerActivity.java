@@ -1,5 +1,6 @@
 package s1546270.songle;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -27,7 +28,9 @@ import s1546270.songle.Fragments.AboutFragment;
 import s1546270.songle.Fragments.CorrectGuessFragment;
 import s1546270.songle.Fragments.WordsFound;
 import s1546270.songle.Fragments.GuessSongFragment;
+import s1546270.songle.Objects.Placemark;
 import s1546270.songle.Objects.Song;
+import s1546270.songle.Objects.Style;
 
 public class DrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
@@ -40,8 +43,12 @@ public class DrawerActivity extends AppCompatActivity
 
     private Song gameSong;
     private List<Song> songs;
+    private List<Placemark> placemarks;
+    private List<Style> styles;
 
     private MapFragment mapFragment;
+
+    private String mapDifficulty;
 
 
     //tut
@@ -61,6 +68,14 @@ public class DrawerActivity extends AppCompatActivity
         songs = (List<Song>) getIntent().getSerializableExtra("songsList");
         Log.d(TAG, "     |SANTI|     Song that will be played: "+gameSong.getTitle()+" "+gameSong.getArtist());
 
+
+        // Retrieving Map Difficulty
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("SonglePref", 0);
+        SharedPreferences.Editor editor = pref.edit();
+        mapDifficulty = pref.getString("mapDifficulty", null);
+        Log.d(TAG, "     |SANTI|     Shared Pref Retrieved");
+
+        downloadPlacemarksAndStyles();
 
         //DEFAULT FAB
         FloatingActionButton map_fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -121,6 +136,8 @@ public class DrawerActivity extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+
+        Log.d(TAG, "Options Item Selected");
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -229,11 +246,69 @@ public class DrawerActivity extends AppCompatActivity
         }
     }
 
+    public void downloadPlacemarksAndStyles() {
+        // HANDLE PLACEMARKS FOR MAP
+        String url = determineMapUrl();
+        DownloadXmlTask dtPlacemarks = new DownloadXmlTask();
+        DownloadStylesTask dtStyles = new DownloadStylesTask();
+
+        String[] strCoords;
+
+        try {
+            dtPlacemarks.execute(url);
+            placemarks = dtPlacemarks.get();
+            dtStyles.execute(url);
+            styles = dtStyles.get();
+
+
+        } catch (Exception e) {
+            Log.e(TAG, "ERROR: Couldn't download placemarks for map");
+        }
+
+        for (Style s : styles) {
+            Log.d(TAG, "STYLE: ID: "+s.getId()+" ICONSTYLE: "+s.getIconStyle());
+        }
+
+    }
+
+
+
+    private String determineMapUrl() {
+
+        // Example: "http://www.inf.ed.ac.uk/teaching/courses/selp/data/songs/01/map1.kml"
+
+        String baseUrl = "http://www.inf.ed.ac.uk/teaching/courses/selp/data/songs/";
+        String songNumber = null;
+
+        //choose song randomly from range (1 - numSongs)
+        int random = (int) Math.random() * R.integer.numSongs + 1;
+        if (gameSong.getNumber() < 10) {
+            songNumber = "0"+gameSong.getNumber();
+        } else {
+            songNumber = ""+gameSong.getNumber();
+        }
+
+        String url = baseUrl + songNumber + "/map" + mapDifficulty + ".kml";
+        Log.d(TAG, "SONG CHOSEN: "+songNumber);
+        return url;
+    }
+
+
+
+
     public Song getGameSong() {
         return gameSong;
     }
 
     public List<Song> getSongsList() {
         return songs;
+    }
+
+    public List<Placemark> getPlacemarks() {
+        return placemarks;
+    }
+
+    public List<Style> getStyles() {
+        return styles;
     }
 }

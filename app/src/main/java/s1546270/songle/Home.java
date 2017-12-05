@@ -65,12 +65,18 @@ public class Home extends AppCompatActivity {
         mapDifficulty = inputDifficulty;
 
 
+
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("SonglePref", 0);
+        SharedPreferences.Editor editor = pref.edit();
+        // Update Preferences to include the difficulty of the map
+        editor.putString("mapDifficulty",mapDifficulty);
+        editor.commit();
+
+
         Intent intent = new Intent(getApplicationContext(), DrawerActivity.class);
-        intent.putExtra("difficulty", mapDifficulty);
         intent.putExtra("song", gameSong);
         intent.putExtra("songsList",(Serializable) songs);
         startActivity(intent);
-
 
         // user should not be allowed to go back to home once the game has started
         finish();
