@@ -22,14 +22,16 @@
     <string name="title_activity_home">Home</string>
 
     <string name="action_settings">Settings</string>
-    <string name="map_help">"\nHELP SCREEN - MAPS"
+    <string name="action_instructions">Open Instructions</string>
+    <string name="map_help">
         "In the map, every marker shows the location of a word from the lyrics of the song."
-        "When you're close enough to a placemark, you'll be able to tap it to reveal the word!"
+        "When you're close enough to a placemark, you'll be able to reveal and collect the word!"
         "\n\nIf you click the icon in the top left the menu will be displayed, where you can find:"
-        "\nHints"
-        "\nThe words you've found already"
-        "\nOnce you think you know the song, press on the yellow button at the bottom of the screen to guess!"
-        "\n\n\nGood luck!"
+        "\nHints - different ways of making the game a little easier for you."
+        "\nWords Found - The collection of words that you've found already."
+        "\nAbout - Information about the app."
+        "\n\nOnce you think you know the song, press on the yellow button at the bottom right of the screen to guess!"
+        "\n\nGood luck!"
     </string>
     <string name="title_activity_basic">BasicActivity</string>
     <!-- networkPref probably shouldnt be declared here-->
@@ -65,6 +67,8 @@
 
     <string name="dialog_guess_song">Which song is it?</string>
     <string name="dialog_confirm_guess">Guess!</string>
+
+    <string name="dialog_instructions_header">Instructions</string>
 
 
     <!-- about screen messages -->

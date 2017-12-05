@@ -9,6 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
+import s1546270.songle.DrawerActivity;
 import s1546270.songle.R;
 import s1546270.songle.Recycler.MyAdapter;
 
@@ -20,7 +23,7 @@ public class WordsFound extends Fragment {
 
 
     private RecyclerView rv;
-    private static String[] wordsFound={"body","music","yes","dreams","superstar","where","you","Deitrich"};
+    private static String[] wordsFound;
 
     public WordsFound() {
         // Required empty public constructor
@@ -30,6 +33,8 @@ public class WordsFound extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        wordsFound = makeWordsFoundArray();
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_words_found, container, false);
 
@@ -47,6 +52,11 @@ public class WordsFound extends Fragment {
 
 
         return wordsFound;
+    }
+
+    public String[] makeWordsFoundArray() {
+        List<String> wordsFound = ((DrawerActivity) getActivity()).getWordsFound();
+        return wordsFound.toArray(new String[0]);
     }
 
     @Override

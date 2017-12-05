@@ -22,10 +22,13 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 
+import java.util.Arrays;
 import java.util.List;
 
 import s1546270.songle.Fragments.AboutFragment;
 import s1546270.songle.Fragments.CorrectGuessFragment;
+import s1546270.songle.Fragments.InstructionsFragment;
+import s1546270.songle.Fragments.MapLevelDialogFragment;
 import s1546270.songle.Fragments.WordsFound;
 import s1546270.songle.Fragments.GuessSongFragment;
 import s1546270.songle.Objects.Placemark;
@@ -50,6 +53,8 @@ public class DrawerActivity extends AppCompatActivity
 
     private String mapDifficulty;
 
+    private List<String> wordsFound;
+
 
     //tut
     SupportMapFragment supportMapFragment;
@@ -64,10 +69,15 @@ public class DrawerActivity extends AppCompatActivity
 
         setSupportActionBar(toolbar);
 
-        gameSong = (Song) getIntent().getSerializableExtra("song");
-        songs = (List<Song>) getIntent().getSerializableExtra("songsList");
-        Log.d(TAG, "     |SANTI|     Song that will be played: "+gameSong.getTitle()+" "+gameSong.getArtist());
+        wordsFound = Arrays.asList("WordFound1","WordFound2","WordFound3","WordFound4","WordFound5","WordFound6","WordFound7","WordFound8");
 
+        try {
+            gameSong = (Song) getIntent().getSerializableExtra("song");
+            songs = (List<Song>) getIntent().getSerializableExtra("songsList");
+            Log.d(TAG, "     |SANTI|     Song that will be played: "+gameSong.getTitle()+" "+gameSong.getArtist());
+        } catch (Exception e){
+            Log.e(TAG, "Exception raised in DrawerActivity onCreate");
+        }
 
         // Retrieving Map Difficulty
         SharedPreferences pref = getApplicationContext().getSharedPreferences("SonglePref", 0);
@@ -137,12 +147,32 @@ public class DrawerActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
 
-        Log.d(TAG, "Options Item Selected");
+        Log.d(TAG, "     |SANTI|     Options Item Selected");
         int id = item.getItemId();
+
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+
+
+            /*LayoutInflater inflater = getLayoutInflater();
+            View dialogView = inflater.inflate(R.layout.fragment_instructions, null);
+            AlertDialog.Builder builder = new AlertDialog.Builder(DrawerActivity.this);
+            builder.setView(dialogView);
+            builder.show();
+            return true;*/
+
+
+            FragmentManager manager = getSupportFragmentManager();
+            InstructionsFragment instructionsFragment = new InstructionsFragment();
+            instructionsFragment.show(manager, "");
+
+            /*
+            InstructionsFragment instructionsFragment = new InstructionsFragment();
+
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction().replace(R.id.mainLayout, instructionsFragment).commit();*/
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -252,6 +282,7 @@ public class DrawerActivity extends AppCompatActivity
         DownloadXmlTask dtPlacemarks = new DownloadXmlTask();
         DownloadStylesTask dtStyles = new DownloadStylesTask();
 
+
         String[] strCoords;
 
         try {
@@ -282,10 +313,15 @@ public class DrawerActivity extends AppCompatActivity
 
         //choose song randomly from range (1 - numSongs)
         int random = (int) Math.random() * R.integer.numSongs + 1;
-        if (gameSong.getNumber() < 10) {
-            songNumber = "0"+gameSong.getNumber();
+        if (gameSong != null) {
+            if (gameSong.getNumber() < 10) {
+                songNumber = "0"+gameSong.getNumber();
+            } else {
+                songNumber = ""+gameSong.getNumber();
+            }
         } else {
-            songNumber = ""+gameSong.getNumber();
+            Log.e(TAG, "gameSong was null in determineMapUrl");
+            songNumber = "" + ((int) Math.random() * 10 + 1);
         }
 
         String url = baseUrl + songNumber + "/map" + mapDifficulty + ".kml";
@@ -310,5 +346,9 @@ public class DrawerActivity extends AppCompatActivity
 
     public List<Style> getStyles() {
         return styles;
+    }
+
+    public List<String> getWordsFound() {
+        return wordsFound;
     }
 }
