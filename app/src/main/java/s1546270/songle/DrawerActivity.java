@@ -27,6 +27,7 @@ import java.util.List;
 
 import s1546270.songle.Fragments.AboutFragment;
 import s1546270.songle.Fragments.CorrectGuessFragment;
+import s1546270.songle.Fragments.HintsFragment;
 import s1546270.songle.Fragments.InstructionsFragment;
 import s1546270.songle.Fragments.MapLevelDialogFragment;
 import s1546270.songle.Fragments.WordsFound;
@@ -154,34 +155,20 @@ public class DrawerActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
 
-
-            /*LayoutInflater inflater = getLayoutInflater();
-            View dialogView = inflater.inflate(R.layout.fragment_instructions, null);
-            AlertDialog.Builder builder = new AlertDialog.Builder(DrawerActivity.this);
-            builder.setView(dialogView);
-            builder.show();
-            return true;*/
-
-
             FragmentManager manager = getSupportFragmentManager();
             InstructionsFragment instructionsFragment = new InstructionsFragment();
             instructionsFragment.show(manager, "");
-
-            /*
-            InstructionsFragment instructionsFragment = new InstructionsFragment();
-
-            FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.mainLayout, instructionsFragment).commit();*/
-
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+
     @Override
     public void onMapReady(GoogleMap mMap) {
 
     }
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -205,8 +192,6 @@ public class DrawerActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_words_found) {
             Log.d(TAG, "     |SANTI|     DrawerActivity: words_found page selected");
-            Snackbar.make(findViewById(R.id.drawer_layout), "words found pressed", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
 
             if (currentFragment != "wordsFoundFragment") {
                 currentFragment = "wordsFoundFragment";
@@ -218,15 +203,15 @@ public class DrawerActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_hints) {
             Log.d(TAG, "     |SANTI|     DrawerActivity: hints page selected");
-            Snackbar.make(findViewById(R.id.drawer_layout), "hints pressed", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-
 
             if (currentFragment != "hintsFragment") {
                 currentFragment = "hintsFragment";
 
-                //DO STUFF HERE
+                HintsFragment hintsFragment = new HintsFragment();
+                DrawerActivity.this.getSupportFragmentManager().beginTransaction().replace(R.id.mainLayout, hintsFragment).commit();
+
             }
+
         } else if (id == R.id.nav_about) {
             Log.d(TAG, "     |SANTI|     DrawerActivity: about page selected");
 
@@ -234,7 +219,6 @@ public class DrawerActivity extends AppCompatActivity
                 currentFragment = "aboutFragment";
 
                 AboutFragment aboutFragment = new AboutFragment();
-
                 DrawerActivity.this.getSupportFragmentManager().beginTransaction().replace(R.id.mainLayout, aboutFragment).commit();
 
             }
@@ -245,12 +229,11 @@ public class DrawerActivity extends AppCompatActivity
         return true;
     }
 
+
+
     public void onUserGuessSong(String guessedSongTitle) {
+
         Log.d(TAG, "BACK TO DRAWER ACTIVITY. USER GUESSED: "+guessedSongTitle);
-
-
-
-        // TODO: NOW CHECK IF GUESS WAS CORRECT OR WRONG!
 
         if (guessedSongTitle.equals(gameSong.getTitle())){
 
