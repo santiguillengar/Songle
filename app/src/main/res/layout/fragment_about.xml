@@ -1,0 +1,169 @@
+<!-- <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="s1546270.songle.Fragments.AboutFragment">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/hello_blank_fragment" />
+
+</FrameLayout> -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:fillViewport="true">
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ralf.gpstelephony.TelephonyManagerFragment">
+
+
+    <!-- WHAT -->
+    <TextView
+        android:id="@+id/TextView_What"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/about_what"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/TextView_What2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/about_what_text"
+        app:layout_constraintTop_toBottomOf="@id/TextView_What"
+        app:layout_constraintLeft_toLeftOf="@id/TextView_What"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"  />
+
+
+
+    <!-- WHY -->
+    <TextView
+        android:id="@+id/TextView_Why"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/about_why"
+        app:layout_constraintTop_toBottomOf="@id/TextView_What2"
+        app:layout_constraintLeft_toLeftOf="@id/TextView_What2"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/TextView_Why2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/about_why_text"
+        app:layout_constraintTop_toBottomOf="@id/TextView_Why"
+        app:layout_constraintLeft_toLeftOf="@id/TextView_Why"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"  />
+
+
+
+    <!-- WHO -->
+    <TextView
+        android:id="@+id/TextView_Who"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/about_who"
+        app:layout_constraintTop_toBottomOf="@id/TextView_Why2"
+        app:layout_constraintLeft_toLeftOf="@id/TextView_Why2"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/TextView_Who2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/about_who_text"
+        app:layout_constraintTop_toBottomOf="@id/TextView_Who"
+        app:layout_constraintLeft_toLeftOf="@id/TextView_Who"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"  />
+
+
+
+    <!-- WHEN -->
+    <TextView
+        android:id="@+id/TextView_When"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/about_when"
+        app:layout_constraintTop_toBottomOf="@id/TextView_Who2"
+        app:layout_constraintLeft_toLeftOf="@id/TextView_Who2"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/TextView_When2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/about_when_text"
+        app:layout_constraintTop_toBottomOf="@id/TextView_When"
+        app:layout_constraintLeft_toLeftOf="@id/TextView_When"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"  />
+
+
+
+    <!-- HOW -->
+    <TextView
+        android:id="@+id/TextView_How"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/about_how"
+        app:layout_constraintTop_toBottomOf="@id/TextView_When2"
+        app:layout_constraintLeft_toLeftOf="@id/TextView_When2"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/TextView_How2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/about_how_text"
+        app:layout_constraintTop_toBottomOf="@id/TextView_How"
+        app:layout_constraintLeft_toLeftOf="@id/TextView_How"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"  />
+
+
+    <ImageView
+        android:id="@+id/imageView_logo"
+        android:layout_width="120dp"
+        android:layout_height="121dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="30dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/TextView_How2"
+        app:srcCompat="@drawable/songleb" />
+
+</android.support.constraint.ConstraintLayout>
+
+</ScrollView>

@@ -23,6 +23,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 
 import java.util.List;
 
+import s1546270.songle.Fragments.AboutFragment;
 import s1546270.songle.Fragments.CorrectGuessFragment;
 import s1546270.songle.Fragments.WordsFound;
 import s1546270.songle.Fragments.GuessSongFragment;
@@ -39,6 +40,8 @@ public class DrawerActivity extends AppCompatActivity
 
     private Song gameSong;
     private List<Song> songs;
+
+    private MapFragment mapFragment;
 
 
     //tut
@@ -141,13 +144,12 @@ public class DrawerActivity extends AppCompatActivity
 
         if (id == R.id.nav_map) {
             Log.d(TAG, "     |SANTI|     DrawerActivity: map page selected");
-            Snackbar.make(findViewById(R.id.drawer_layout), "map pressed", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
 
             if (currentFragment != "mapFragment") {
                 currentFragment = "mapFragment";
                 //Display Map Fragment
-                MapFragment mapFragment = new MapFragment();
+                mapFragment = new MapFragment();
+
                 FragmentManager manager = getSupportFragmentManager();
                 manager.beginTransaction().replace(R.id.mainLayout, mapFragment).commit();
 
@@ -180,14 +182,14 @@ public class DrawerActivity extends AppCompatActivity
             }
         } else if (id == R.id.nav_about) {
             Log.d(TAG, "     |SANTI|     DrawerActivity: about page selected");
-            Snackbar.make(findViewById(R.id.drawer_layout), "about pressed", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-
 
             if (currentFragment != "aboutFragment") {
                 currentFragment = "aboutFragment";
 
-                //DO STUFF HERE
+                AboutFragment aboutFragment = new AboutFragment();
+
+                DrawerActivity.this.getSupportFragmentManager().beginTransaction().replace(R.id.mainLayout, aboutFragment).commit();
+
             }
         }
 

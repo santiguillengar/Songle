@@ -67,5 +67,20 @@
     <string name="dialog_confirm_guess">Guess!</string>
 
 
+    <!-- about screen messages -->
+    <string name="about_what">What?</string>
+    <string name="about_why">Why?</string>
+    <string name="about_who">Who?</string>
+    <string name="about_when">When?</string>
+    <string name="about_how">How?</string>
+
+    <string name="about_what_text">Songle is an interactive game in which you must guess a song based on words from the lyrics that you\'ve collected!
+        Walk around the Edinburgh University Campus to get close enough to a placemark, and when you get there the word will be revealed to you.</string>
+    <string name="about_why_text">This app as developed as a project for the UG3 Software Engineering Large Practical course, which takes place during the third year of students from the School of Informatics at the University of Edinburgh.</string>
+    <string name="about_who_text">Songle was developed by student s1546270.
+        Please contact via email at s1546270@sms.ed.ac.uk</string>
+    <string name="about_when_text">Songle was designed and implemented between September 2017 and December 2017</string>
+    <string name="about_how_text">The student was provided with the app concept and basic requirements, together with instructions on how to tackle several aspects of this project through lectures and labs.
+    The design of the app and the implementation was carried out by the student, together with some additional features to enhance the usability and appeal of the application.</string>
 
 </resources>
