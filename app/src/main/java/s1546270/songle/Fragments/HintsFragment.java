@@ -69,15 +69,16 @@ public class HintsFragment extends Fragment {
         String url = determineLyricsUrl();
         DownloadLyricsTask dtLyrics = new DownloadLyricsTask();
 
-        String chosenLine = null;
         int chosenIndex;
         Random generator = new Random();
 
 
         try {
-            dtLyrics.execute(url);
-            lyricsLines = dtLyrics.get();
-
+            // If we haven't got the lyrics, download them.
+            if (lyricsLines == null) {
+                dtLyrics.execute(url);
+                lyricsLines = dtLyrics.get();
+            }
             chosenIndex = generator.nextInt(lyricsLines.size());
             while( lyricsLines.get(chosenIndex).substring(9)=="" || lyricsLines.get(chosenIndex).substring(9)==null ){
                 chosenIndex = generator.nextInt(lyricsLines.size());

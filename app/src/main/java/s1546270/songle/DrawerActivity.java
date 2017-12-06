@@ -1,5 +1,6 @@
 package s1546270.songle;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -17,6 +18,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -38,6 +41,8 @@ import s1546270.songle.Fragments.GuessSongFragment;
 import s1546270.songle.Objects.Placemark;
 import s1546270.songle.Objects.Song;
 import s1546270.songle.Objects.Style;
+
+import static android.provider.CalendarContract.CalendarCache.URI;
 
 public class DrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
@@ -238,26 +243,80 @@ public class DrawerActivity extends AppCompatActivity
 
         Log.d(TAG, "BACK TO DRAWER ACTIVITY. USER GUESSED: "+guessedSongTitle);
 
+        AlertDialog.Builder dialog = new AlertDialog.Builder(DrawerActivity.this);
+        LayoutInflater inflater = getLayoutInflater();
+
         if (guessedSongTitle.equals(gameSong.getTitle())){
 
-            Snackbar.make(findViewById(R.id.drawer_layout), "correct guess!", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
 
-            LayoutInflater inflater = getLayoutInflater();
             View dialogView = inflater.inflate(R.layout.fragment_correct_guess, null);
-            AlertDialog.Builder builder = new AlertDialog.Builder(DrawerActivity.this);
-            builder.setView(dialogView);
-            builder.show();
+
+            Button ok_Button = (Button) dialogView.findViewById(R.id.correct_guess_ok_button);
+            Button youtube_Button = (Button) dialogView.findViewById(R.id.correct_guess_youtube_button);
+
+            dialog.setView(dialogView);
+
+            final AlertDialog alertDialog = dialog.create();
+
+            ok_Button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    alertDialog.dismiss();
+                }
+            });
+
+            // If link isn't working don't show youtube button to user.
+            if (gameSong.getLink() == null || gameSong.getLink().equals("")) {
+                youtube_Button.setVisibility(View.INVISIBLE);
+            }
+            youtube_Button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(URI.parse(gameSong.getLink()));
+                    startActivity(intent);
+
+                    alertDialog.dismiss();
+                }
+            });
+
+            alertDialog.show();
 
         } else {
 
-            Snackbar.make(findViewById(R.id.drawer_layout), "U WRONG!", Snackbar.LENGTH_LONG);
+            View dialogView = inflater.inflate(R.layout.fragment_wrong_guess, null);
 
-            LayoutInflater inflater2 = getLayoutInflater();
-            View dialogView2 = inflater2.inflate(R.layout.fragment_wrong_guess, null);
-            AlertDialog.Builder builder2 = new AlertDialog.Builder(DrawerActivity.this);
-            builder2.setView(dialogView2);
-            builder2.show();
+            Button ok_Button = (Button) dialogView.findViewById(R.id.wrong_guess_ok_button);
+            Button hints_Button = (Button) dialogView.findViewById(R.id.wrong_guess_hint_button);
+
+            dialog.setView(dialogView);
+
+            final AlertDialog alertDialog = dialog.create();
+
+            ok_Button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    alertDialog.dismiss();
+                }
+            });
+
+            hints_Button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    if (currentFragment != "hintsFragment") {
+                        currentFragment = "hintsFragment";
+
+                        HintsFragment hintsFragment = new HintsFragment();
+                        DrawerActivity.this.getSupportFragmentManager().beginTransaction().replace(R.id.mainLayout, hintsFragment).commit();
+                    }
+                    alertDialog.dismiss();
+
+                }
+            });
+
+            alertDialog.show();
 
         }
     }
@@ -280,8 +339,12 @@ public class DrawerActivity extends AppCompatActivity
             Log.e(TAG, "ERROR: Couldn't download placemarks for map");
         }
 
-        for (Style s : styles) {
-            Log.d(TAG, "STYLE: ID: "+s.getId()+" ICONSTYLE: "+s.getIconStyle());
+        if (styles != null) {
+            for (Style s : styles) {
+                Log.d(TAG, "STYLE: ID: "+s.getId()+" ICONSTYLE: "+s.getIconStyle());
+            }
+        } else {
+            Log.e(TAG, "ERROR: Styles is null in donwloadPlacemarksAndStyles() ");
         }
 
     }
@@ -299,7 +362,11 @@ public class DrawerActivity extends AppCompatActivity
             Log.d(TAG, "Determining Map URL: gameSong number: "+gameSong.getNumber());
             if (gameSong.getNumber() < 10) {
                 songNumber = "0"+gameSong.getNumber();
-            } else {
+            } // I don't know why but when the number is 1 the above if doesn't catch it.
+            else if (gameSong.getNumber() == 1) {
+                songNumber = "0"+gameSong.getNumber();
+            }
+            else {
                 songNumber = ""+gameSong.getNumber();
             }
             Log.d(TAG, "Determining Map URL: songNumber string: "+songNumber);

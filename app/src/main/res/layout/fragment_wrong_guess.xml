@@ -28,7 +28,7 @@
             android:layout_marginBottom="@dimen/btn_margin"/>
 
         <Button
-            android:id="@+id/correct_guess_youtube_button"
+            android:id="@+id/wrong_guess_hint_button"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/correct_guess_ok_button"
+                android:id="@+id/wrong_guess_ok_button"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
