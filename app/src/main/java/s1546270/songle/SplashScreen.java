@@ -33,6 +33,7 @@ public class SplashScreen extends AppCompatActivity {
         // Update Preferences to include the newly chosen song
         editor.putString("guessSongOptions","");
         editor.putString("mapDifficulty","");
+        editor.putInt("numGuessableSongs",5);
         editor.commit();
 
 

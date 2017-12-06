@@ -22,8 +22,11 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import s1546270.songle.Fragments.AboutFragment;
 import s1546270.songle.Fragments.CorrectGuessFragment;
@@ -266,8 +269,6 @@ public class DrawerActivity extends AppCompatActivity
         DownloadStylesTask dtStyles = new DownloadStylesTask();
 
 
-        String[] strCoords;
-
         try {
             dtPlacemarks.execute(url);
             placemarks = dtPlacemarks.get();
@@ -294,24 +295,78 @@ public class DrawerActivity extends AppCompatActivity
         String baseUrl = "http://www.inf.ed.ac.uk/teaching/courses/selp/data/songs/";
         String songNumber = null;
 
-        //choose song randomly from range (1 - numSongs)
-        int random = (int) Math.random() * R.integer.numSongs + 1;
         if (gameSong != null) {
+            Log.d(TAG, "Determining Map URL: gameSong number: "+gameSong.getNumber());
             if (gameSong.getNumber() < 10) {
                 songNumber = "0"+gameSong.getNumber();
             } else {
                 songNumber = ""+gameSong.getNumber();
             }
+            Log.d(TAG, "Determining Map URL: songNumber string: "+songNumber);
         } else {
             Log.e(TAG, "gameSong was null in determineMapUrl");
             songNumber = "" + ((int) Math.random() * 10 + 1);
         }
 
         String url = baseUrl + songNumber + "/map" + mapDifficulty + ".kml";
+
+        Log.d(TAG, "     |SANTI|     URL determined: "+url);
         Log.d(TAG, "SONG CHOSEN: "+songNumber);
         return url;
     }
 
+
+
+
+
+    public ArrayList<String> makeSongList() {
+
+        ArrayList<String> guess_song_options = new ArrayList<>();
+        Log.d(TAG, "PossibleSongs in GuessSongFragment: "+songs.toString());
+        Random random = new Random();
+        String guessSongOptionsStr = "";
+        int index;
+
+
+        // Initialization
+        SharedPreferences pref = getSharedPreferences("SonglePref", 0);
+        SharedPreferences.Editor editor = pref.edit();
+
+        if (songs == null) {
+            guess_song_options.add(gameSong.getTitle());
+            guess_song_options.addAll(Arrays.asList(getResources().getStringArray(R.array.guess_song_options_demo)));
+        }
+        else {
+
+            for (int i = 0; i < 4; i++) {
+
+                // Check that random option chosen hasn't been chosen already or is the correct guess.
+                index = random.nextInt(songs.size());
+                while((songs.get(index).getTitle()).equals(gameSong.getTitle()) || guess_song_options.contains(songs.get(index).getTitle())) {
+                    index = random.nextInt(songs.size());
+                }
+
+                guess_song_options.add(songs.get(index).getTitle());
+            }
+            guess_song_options.add(gameSong.getTitle());
+            Collections.shuffle(guess_song_options);
+        }
+
+
+        for (String guessableSong : guess_song_options) {
+            if (guessSongOptionsStr.equals("")) {
+                guessSongOptionsStr = guessSongOptionsStr + guessableSong;
+            } else {
+                guessSongOptionsStr = guessSongOptionsStr + "," + guessableSong;
+            }
+        }
+
+
+        editor.putString("guessSongOptions",guessSongOptionsStr);
+        editor.commit();
+
+        return guess_song_options;
+    }
 
 
 

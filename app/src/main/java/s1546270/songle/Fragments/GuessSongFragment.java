@@ -56,7 +56,7 @@ public class GuessSongFragment extends DialogFragment {
 
         String check_song_options = check_song_options_determined();
         if (check_song_options == "") {
-            guess_song_options = makeSongList();
+            guess_song_options = ((DrawerActivity)getActivity()).makeSongList();;
         }
         else {
             guess_song_options = new ArrayList<>(Arrays.asList(check_song_options.split(",")));
@@ -97,56 +97,6 @@ public class GuessSongFragment extends DialogFragment {
 
         return builder.create();
 
-    }
-
-    public  ArrayList<String> makeSongList() {
-
-        ArrayList<String> guess_song_options = new ArrayList<>();
-        List<Song> possibleSongs = ((DrawerActivity) getActivity()).getSongsList();
-        Log.d(TAG, "PossibleSongs in GuessSongFragment: "+possibleSongs.toString());
-        Random random = new Random();
-        String guessSongOptionsStr = "";
-        int index;
-
-
-        // Initialization
-        SharedPreferences pref = this.getActivity().getSharedPreferences("SonglePref", 0);
-        SharedPreferences.Editor editor = pref.edit();
-
-        if (possibleSongs == null) {
-            guess_song_options.add(gameSong.getTitle());
-            guess_song_options.addAll(Arrays.asList(getResources().getStringArray(R.array.guess_song_options_demo)));
-        }
-        else {
-
-            for (int i = 0; i < 4; i++) {
-
-                // Check that random option chosen hasn't been chosen already or is the correct guess.
-                index = random.nextInt(possibleSongs.size());
-                while((possibleSongs.get(index).getTitle()).equals(gameSong.getTitle()) || guess_song_options.contains(possibleSongs.get(index).getTitle())) {
-                    index = random.nextInt(possibleSongs.size());
-                }
-
-                guess_song_options.add(possibleSongs.get(index).getTitle());
-            }
-            guess_song_options.add(gameSong.getTitle());
-            Collections.shuffle(guess_song_options);
-        }
-
-
-        for (String guessableSong : guess_song_options) {
-            if (guessSongOptionsStr.equals("")) {
-                guessSongOptionsStr = guessSongOptionsStr + guessableSong;
-            } else {
-                guessSongOptionsStr = guessSongOptionsStr + "," + guessableSong;
-            }
-        }
-
-
-        editor.putString("guessSongOptions",guessSongOptionsStr);
-        editor.commit();
-
-        return guess_song_options;
     }
 
 
