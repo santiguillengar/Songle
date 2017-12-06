@@ -22,7 +22,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/s1546270/songle/DrawerActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/s1546270/songle/DrawerActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/HintsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/HintsFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_wrong_guess.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_wrong_guess.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/s1546270/songle/SplashScreen.java" afterPath="$PROJECT_DIR$/app/src/main/java/s1546270/songle/SplashScreen.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_correct_guess.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_correct_guess.xml" />
     </list>
     <ignored path="Songle.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,22 +55,40 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DrawerActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DrawerActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/DrawerActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1726">
-              <caret line="273" column="19" lean-forward="false" selection-start-line="273" selection-start-column="19" selection-end-line="273" selection-end-column="19" />
+            <state relative-caret-position="272">
+              <caret line="255" column="9" lean-forward="true" selection-start-line="255" selection-start-column="9" selection-end-line="255" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#9197#9375#0" expanded="true" />
-                <element signature="e#9374#9375#0" expanded="true" />
-                <element signature="e#10009#10010#0" expanded="true" />
-                <element signature="e#10487#10665#0" expanded="true" />
-                <element signature="e#10664#10665#0" expanded="true" />
-                <element signature="e#10713#11253#0" expanded="true" />
-                <element signature="e#11252#11253#0" expanded="true" />
+                <element signature="e#9514#9692#0" expanded="true" />
+                <element signature="e#9691#9692#0" expanded="true" />
+                <element signature="e#10111#10469#0" expanded="true" />
+                <element signature="e#10468#10469#0" expanded="true" />
+                <element signature="e#11024#11202#0" expanded="true" />
+                <element signature="e#11201#11202#0" expanded="true" />
+                <element signature="e#11250#11790#0" expanded="true" />
+                <element signature="e#11789#11790#0" expanded="true" />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fragment_correct_guess.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_correct_guess.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="27" column="0" lean-forward="false" selection-start-line="26" selection-start-column="48" selection-end-line="27" selection-end-column="0" />
+              <folding>
+                <element signature="e#624#657#0" expanded="true" />
+                <element signature="e#1095#1114#0" expanded="true" />
+                <element signature="e#1874#1898#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
           </provider>
         </entry>
       </file>
@@ -111,8 +130,8 @@
       <file leaf-file-name="SplashScreen.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/SplashScreen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="48" column="28" lean-forward="false" selection-start-line="48" selection-start-column="28" selection-end-line="48" selection-end-column="28" />
+            <state relative-caret-position="660">
+              <caret line="60" column="1" lean-forward="false" selection-start-line="60" selection-start-column="1" selection-end-line="60" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -128,11 +147,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HintsFragment.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HintsFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/HintsFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="80" column="13" lean-forward="true" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
+            <state relative-caret-position="457">
+              <caret line="111" column="33" lean-forward="false" selection-start-line="111" selection-start-column="33" selection-end-line="111" selection-end-column="33" />
               <folding>
                 <element signature="e#1300#1549#0" expanded="true" />
                 <element signature="e#1548#1549#0" expanded="true" />
@@ -179,20 +198,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>determineM</find>
-      <find>determineMa</find>
-      <find>determineMap</find>
-      <find>gue</find>
-      <find>guessSong</find>
-      <find>guessSongO</find>
-      <find>guessSongOp</find>
-      <find>guessSongOptio</find>
       <find>guessSongOptions</find>
       <find>r</find>
       <find>Random</find>
       <find>Random(</find>
       <find>Random()</find>
-      <find>g</find>
       <find>generator</find>
       <find>make</find>
       <find>makeS</find>
@@ -200,7 +210,6 @@
       <find>makeSon</find>
       <find>for</find>
       <find>Determining</find>
-      <find>getShared</find>
       <find>find</find>
       <find>findView</find>
       <find>findViewB</find>
@@ -209,6 +218,16 @@
       <find>findViewById</find>
       <find>dis</find>
       <find>dismiss</find>
+      <find>g</find>
+      <find>getIn</find>
+      <find>getInt</find>
+      <find>d</find>
+      <find>determine</find>
+      <find>determineM</find>
+      <find>determineMap</find>
+      <find>getShared</find>
+      <find>pu</find>
+      <find>putInt</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -1946,7 +1965,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/GuessCorrectDialog.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/arrays.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_home_content.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_correct_guess.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Objects/CorrectGuessFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/nav_header_drawer.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
@@ -1980,12 +1998,13 @@
         <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/DownloadSongsTask.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/GuessSongFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/SplashScreen.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_wrong_guess.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/CorrectGuessFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/WrongGuessFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/DrawerActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/SplashScreen.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_correct_guess.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/HintsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/DrawerActivity.java" />
       </list>
     </option>
   </component>
@@ -2569,7 +2588,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512581693247" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512584418689" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -2617,7 +2636,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512581693247" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512584418690" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -2800,7 +2819,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512581693248" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512584418697" />
       </method>
     </configuration>
     <list size="1">
@@ -2860,11 +2879,11 @@
       <window_info id="Logcat" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3761468" sideWeight="0.49676898" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24989079" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3172043" sideWeight="0.4898844" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16129032" sideWeight="0.45303625" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16129032" sideWeight="0.45128876" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -2873,12 +2892,12 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286119" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32872504" sideWeight="0.4925926" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1889401" sideWeight="0.5102665" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16129032" sideWeight="0.54871124" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26430756" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32906324" sideWeight="0.40997067" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15130569" sideWeight="0.48973352" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15130569" sideWeight="0.48798603" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -2907,13 +2926,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Objects/Placemark.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="14" lean-forward="false" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Objects/Style.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -3232,14 +3244,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/SplashScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="48" column="28" lean-forward="false" selection-start-line="48" selection-start-column="28" selection-end-line="48" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/GuessSongFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -3279,11 +3283,13 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Home.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/InstructionsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="55" column="35" lean-forward="false" selection-start-line="55" selection-start-column="35" selection-end-line="55" selection-end-column="35" />
-          <folding />
+        <state relative-caret-position="600">
+          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3295,42 +3301,64 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/InstructionsFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Home.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+        <state relative-caret-position="463">
+          <caret line="55" column="35" lean-forward="false" selection-start-line="55" selection-start-column="35" selection-end-line="55" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/SplashScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="60" column="1" lean-forward="false" selection-start-line="60" selection-start-column="1" selection-end-line="60" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_correct_guess.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="26" selection-start-column="48" selection-end-line="27" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#624#657#0" expanded="true" />
+            <element signature="e#1095#1114#0" expanded="true" />
+            <element signature="e#1874#1898#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/HintsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="457">
+          <caret line="111" column="33" lean-forward="false" selection-start-line="111" selection-start-column="33" selection-end-line="111" selection-end-column="33" />
+          <folding>
+            <element signature="e#1300#1549#0" expanded="true" />
+            <element signature="e#1548#1549#0" expanded="true" />
+            <element signature="e#1632#1886#0" expanded="true" />
+            <element signature="e#1885#1886#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/DrawerActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1726">
-          <caret line="273" column="19" lean-forward="false" selection-start-line="273" selection-start-column="19" selection-end-line="273" selection-end-column="19" />
+        <state relative-caret-position="272">
+          <caret line="255" column="9" lean-forward="true" selection-start-line="255" selection-start-column="9" selection-end-line="255" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#9197#9375#0" expanded="true" />
-            <element signature="e#9374#9375#0" expanded="true" />
-            <element signature="e#10009#10010#0" expanded="true" />
-            <element signature="e#10487#10665#0" expanded="true" />
-            <element signature="e#10664#10665#0" expanded="true" />
-            <element signature="e#10713#11253#0" expanded="true" />
-            <element signature="e#11252#11253#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/HintsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="80" column="13" lean-forward="true" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
-          <folding>
-            <element signature="e#1300#1549#0" expanded="true" />
-            <element signature="e#1548#1549#0" expanded="true" />
-            <element signature="e#1632#1886#0" expanded="true" />
-            <element signature="e#1885#1886#0" expanded="true" />
+            <element signature="e#9514#9692#0" expanded="true" />
+            <element signature="e#9691#9692#0" expanded="true" />
+            <element signature="e#10111#10469#0" expanded="true" />
+            <element signature="e#10468#10469#0" expanded="true" />
+            <element signature="e#11024#11202#0" expanded="true" />
+            <element signature="e#11201#11202#0" expanded="true" />
+            <element signature="e#11250#11790#0" expanded="true" />
+            <element signature="e#11789#11790#0" expanded="true" />
           </folding>
         </state>
       </provider>

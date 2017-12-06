@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -89,7 +90,7 @@ public class DrawerActivity extends AppCompatActivity
         }
 
         // Retrieving Map Difficulty
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("SonglePref", 0);
+        SharedPreferences pref = getSharedPreferences("SonglePref", 0);
         SharedPreferences.Editor editor = pref.edit();
         mapDifficulty = pref.getString("mapDifficulty", null);
         Log.d(TAG, "     |SANTI|     Shared Pref Retrieved");
@@ -246,6 +247,15 @@ public class DrawerActivity extends AppCompatActivity
         AlertDialog.Builder dialog = new AlertDialog.Builder(DrawerActivity.this);
         LayoutInflater inflater = getLayoutInflater();
 
+        SharedPreferences pref = getSharedPreferences("SonglePref", 0);
+        SharedPreferences.Editor editor = pref.edit();
+
+        int score = pref.getInt("score",1000000);
+        if (score < 0) {
+            score = 0;
+        }
+        Log.d(TAG, "User guessed the song with current score: "+score);
+
         if (guessedSongTitle.equals(gameSong.getTitle())){
 
 
@@ -264,6 +274,9 @@ public class DrawerActivity extends AppCompatActivity
                     alertDialog.dismiss();
                 }
             });
+
+            TextView textView = (TextView) dialogView.findViewById(R.id.correct_guess_score);
+            textView.setText("Score: "+score);
 
             // If link isn't working don't show youtube button to user.
             if (gameSong.getLink() == null || gameSong.getLink().equals("")) {
@@ -285,6 +298,8 @@ public class DrawerActivity extends AppCompatActivity
 
         } else {
 
+            editor.putInt("score",score-250000);
+            editor.commit();
             View dialogView = inflater.inflate(R.layout.fragment_wrong_guess, null);
 
             Button ok_Button = (Button) dialogView.findViewById(R.id.wrong_guess_ok_button);
@@ -363,19 +378,30 @@ public class DrawerActivity extends AppCompatActivity
             if (gameSong.getNumber() < 10) {
                 songNumber = "0"+gameSong.getNumber();
             } // I don't know why but when the number is 1 the above if doesn't catch it.
-            else if (gameSong.getNumber() == 1) {
-                songNumber = "0"+gameSong.getNumber();
-            }
             else {
                 songNumber = ""+gameSong.getNumber();
             }
             Log.d(TAG, "Determining Map URL: songNumber string: "+songNumber);
         } else {
+
             Log.e(TAG, "gameSong was null in determineMapUrl");
-            songNumber = "" + ((int) Math.random() * 10 + 1);
+            /*int rand = ((int) Math.random() * 10 + 1);
+
+            if (rand <10) {
+                songNumber = "0" + ((int) Math.random() * 10 + 1);
+            }
+            else {
+                songNumber = "" + ((int) Math.random() * 10 + 1);
+            }*/
+            // Fix commented above works but is cheap as doesn't match real correct song.
         }
 
         String url = baseUrl + songNumber + "/map" + mapDifficulty + ".kml";
+
+        // The app has a weird bug where this specific url keeps breaking.
+        if (url.equals("http://www.inf.ed.ac.uk/teaching/courses/selp/data/songs/1/map2.kml")) {
+            url = "http://www.inf.ed.ac.uk/teaching/courses/selp/data/songs/01/map2.kml";
+        }
 
         Log.d(TAG, "     |SANTI|     URL determined: "+url);
         Log.d(TAG, "SONG CHOSEN: "+songNumber);

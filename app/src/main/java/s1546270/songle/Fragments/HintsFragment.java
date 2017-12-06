@@ -66,10 +66,15 @@ public class HintsFragment extends Fragment {
 
     public void showLyricsLine() {
 
+        // Initialization
+        SharedPreferences pref = this.getActivity().getSharedPreferences("SonglePref", 0);
+        SharedPreferences.Editor editor = pref.edit();
+
         String url = determineLyricsUrl();
         DownloadLyricsTask dtLyrics = new DownloadLyricsTask();
 
         int chosenIndex;
+        int score;
         Random generator = new Random();
 
 
@@ -84,7 +89,11 @@ public class HintsFragment extends Fragment {
                 chosenIndex = generator.nextInt(lyricsLines.size());
             }
 
-            Toast.makeText(getActivity(), lyricsLines.get(chosenIndex).substring(7), Toast.LENGTH_LONG ).show();
+            Toast.makeText(getActivity(), lyricsLines.get(chosenIndex).substring(7), Toast.LENGTH_SHORT ).show();
+
+            score = pref.getInt("score",1000000);
+            editor.putInt("score",score-50000);
+            editor.commit();
 
         } catch (Exception e) {
             Log.e(TAG, "ERROR: Couldn't download lyrics for song");
@@ -96,16 +105,30 @@ public class HintsFragment extends Fragment {
         // Initialization
         SharedPreferences pref = this.getActivity().getSharedPreferences("SonglePref", 0);
         SharedPreferences.Editor editor = pref.edit();
+        int score;
 
         int numGuessableSongs = pref.getInt("numGuessableSongs",2);
 
         if (numGuessableSongs <= 2) {
-            Toast.makeText(getActivity(), "You can't reduce the number of options anymore!", Toast.LENGTH_LONG ).show();
+            Toast.makeText(getActivity(), "You can't reduce the number of options anymore!", Toast.LENGTH_SHORT ).show();
         }
         else {
 
-            editor.putInt("numGuessableSongs",numGuessableSongs-1);
+            // Adjust score depending on how many times the user has asked for a reduction in the number of possible answers.
+            score = pref.getInt("score",1000000);
+            if (numGuessableSongs == 5) {
+                editor.putInt("score",score-100000);
+                editor.commit();
+            } else if (numGuessableSongs == 4) {
+                editor.putInt("score",score-180000);
+                editor.commit();
+            } else {
+                editor.putInt("score",score-220000);
+                editor.commit();
+            }
 
+            editor.putInt("numGuessableSongs",numGuessableSongs-1);
+            editor.commit();
             ArrayList<String> guess_song_options;
             String check_song_options = check_song_options_determined();
             Song gameSong = ((DrawerActivity)getActivity()).getGameSong();

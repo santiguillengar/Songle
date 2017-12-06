@@ -26,7 +26,7 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
 
-        // Reset choices for guessing song for game.
+        // Refresh important values to start of game state.
         // Initialization
         SharedPreferences pref = getApplicationContext().getSharedPreferences("SonglePref", 0);
         SharedPreferences.Editor editor = pref.edit();
@@ -34,6 +34,7 @@ public class SplashScreen extends AppCompatActivity {
         editor.putString("guessSongOptions","");
         editor.putString("mapDifficulty","");
         editor.putInt("numGuessableSongs",5);
+        editor.putInt("score",1000000);
         editor.commit();
 
 
