@@ -37,8 +37,10 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import s1546270.songle.Objects.Placemark;
@@ -73,6 +75,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
     // Store placemarks parsed
     List<Placemark> placemarks = null;
     List<Style> styles = null;
+
+    ArrayList<Marker> markers;
 
     String mapDifficulty = null;
 
@@ -111,6 +115,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        markers = new ArrayList<>();
 
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -291,7 +297,76 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
     @Override
     public void onLocationChanged(Location current) {
         Log.d(TAG,"     |SANTI|     Location Changed");
+
+        for (Marker marker: markers) {
+            if (marker.isVisible()) {
+
+                /**
+                 * For each marker:
+                 * if its visible and its within the wanted closeness range
+                 * set visibility to false
+                 * pass word to wordsFound
+                 * remove marker from markers
+                 * tell user that word has been collected
+                 *
+                 * possible improvements:
+                 * placemarks change icon to a green one or something when they are collectable
+                 * and user has to tap on it to collect, instead of automatic collection when close enough
+                 */
+
+
+                LatLng markerLatLng = marker.getPosition();
+                double distance = getDistance(markerLatLng.latitude, markerLatLng.longitude,current.getLatitude(),current.getLongitude());
+                Log.d(TAG, "The Dist: "+getDistance(markerLatLng.latitude, markerLatLng.longitude,current.getLatitude(),current.getLongitude()));
+
+                if (distance <= getMinimiumDistance()) {
+                    //marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.red_stars));
+                    marker.setVisible(false);
+                }
+
+                //marker.setVisible(false);
+                //markers.remove(marker);
+            }
+        }
     }
+
+    public double getMinimiumDistance() {
+        double distance = 20.0;
+        switch(mapDifficulty) {
+            case "1":
+                distance = 25.0;
+                break;
+            case "2":
+                distance = 25.0;
+                break;
+            case "3":
+                distance = 20.0;
+                break;
+            case "4":
+                distance = 20.0;
+                break;
+            case "5":
+                distance = 15.0;
+                break;
+        }
+        return distance;
+    }
+
+    // Return distance between two points in meters
+    public static double getDistance(double lat1, double lng1, double lat2, double lng2) {
+        double earthRadius = 6371000;
+        double dLat = Math.toRadians(lat2-lat1);
+        double dLng = Math.toRadians(lng2-lng1);
+        double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) *
+                        Math.sin(dLng/2) * Math.sin(dLng/2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        float distance = (float) (earthRadius * c);
+
+        return distance;
+    }
+
+
 
     @Override
     public void onConnectionSuspended(int flag) {
@@ -341,10 +416,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
             LatLng latLng = new LatLng(Double.parseDouble(strCoords[1]), Double.parseDouble(strCoords[0]));
 
             //Marker is displayed on map, when clicked it shows user it's style (interesting, boring...)
-            MarkerOptions marker = new MarkerOptions().position(latLng).title(p.getStyleUrl().substring(1));
-            BitmapDescriptor icon = getPlacemarkIcon(p.getStyleUrl());
-            marker.icon(icon);
-            map.addMarker(marker);
+            //MarkerOptions marker = new MarkerOptions().position(latLng).title(p.getStyleUrl().substring(1));
+            //BitmapDescriptor icon = getPlacemarkIcon(p.getStyleUrl());
+            //marker.icon(icon);
+            //map.addMarker(marker);
+            //markers.add(marker);
+
+            Marker marker = map.addMarker(new MarkerOptions().position(latLng).icon(getPlacemarkIcon(p.getStyleUrl())).title(p.getStyleUrl().substring(1)));
+            markers.add(marker);
+
 
         }
     }

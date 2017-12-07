@@ -43,6 +43,9 @@ public class Home extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         gameSong = selectGameplaySong();
+        if (gameSong == null) {
+            Log.e(TAG, "ERROR: Couldn't retrieve song for the game in Home");
+        }
 
         Log.d(TAG, "     |SANTI|      HOME_FAB");
         FloatingActionButton home_fab = (FloatingActionButton) findViewById(R.id.home_fab);
