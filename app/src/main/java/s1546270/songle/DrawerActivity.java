@@ -196,7 +196,6 @@ public class DrawerActivity extends AppCompatActivity
                 FragmentManager manager = getSupportFragmentManager();
                 manager.beginTransaction().replace(R.id.mainLayout, mapFragment).commit();
 
-
             }
 
         } else if (id == R.id.nav_words_found) {

@@ -1,20 +1,34 @@
 package s1546270.songle;
 
+import android.Manifest;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+//import android.location.Location;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.location.LocationListener;
+
+import android.icu.lang.UScript;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-//import android.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -40,7 +54,7 @@ import s1546270.songle.Objects.Style;
  * Use the {@link MapFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MapFragment extends Fragment implements OnMapReadyCallback {
+public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -50,8 +64,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     GoogleMap map;
 
 
-
-    //EVERYTHING NEW BELOW
+    // LYRICMAPUI IMPORTS
+    SupportMapFragment mapFrag;
+    private Location mLastLocation;
+    private final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
+    // END OF LYRICMAPUI IMPORTS
 
     // Store placemarks parsed
     List<Placemark> placemarks = null;
@@ -95,13 +112,22 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
+        // Start of LYRICMAPUI
+
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(getContext())
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(LocationServices.API)
+                    .build();
+
+        }
+        // END OF LYRICMAPUI
 
         try {
             SharedPreferences pref = this.getActivity().getSharedPreferences("SonglePref", 0);
@@ -204,6 +230,84 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         }
 
     }
+
+
+    // START OF LYRICMAPUI SECTION -----------------------------------------------------------------
+
+    private GoogleApiClient mGoogleApiClient;
+
+
+    // Should be protected not public
+    @Override
+    public void onStart() {
+
+        try {
+            super.onStart();
+            mGoogleApiClient.connect();
+        } catch (Exception e) {
+            Log.d(TAG, "ERROR: GPSU: "+GooglePlayServicesUtil.isGooglePlayServicesAvailable(getContext()));
+        }
+    }
+
+    // Should be protected not public
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.disconnect();
+        }
+    }
+
+    protected void createLocationRequest() {
+
+        LocationRequest mLocationRequest = new LocationRequest();
+        mLocationRequest.setInterval(5000); // preferably every 5 seconds
+        mLocationRequest.setFastestInterval(1000); // at most every second
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        // Can we access the user's current location?
+        int permissionCheck = ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION);
+        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
+            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+        }
+    }
+
+    @Override
+    public void onConnected(Bundle connectionHint) {
+
+        try { createLocationRequest(); }
+        catch (java.lang.IllegalStateException ise) {
+            Log.e(TAG, "IllegalStateException thrown [onConnected]");
+        }
+
+        // Can we access the user's current location?
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        } else {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+        }
+    }
+
+    @Override
+    public void onLocationChanged(Location current) {
+        Log.d(TAG,"     |SANTI|     Location Changed");
+    }
+
+    @Override
+    public void onConnectionSuspended(int flag) {
+        Log.e(TAG, "onConnectionSuspended");
+        System.out.println("");
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult result) {
+        Log.e(TAG, "onConnectionFailed");
+    }
+
+
+
+
+    // END OF LYRICMAPUI SECTION -------------------------------------------------------------------
 
     /**
      * This interface must be implemented by activities that contain this
