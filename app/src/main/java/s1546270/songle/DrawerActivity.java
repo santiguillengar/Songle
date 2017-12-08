@@ -78,7 +78,8 @@ public class DrawerActivity extends AppCompatActivity
 
         setSupportActionBar(toolbar);
 
-        wordsFound = Arrays.asList("WordFound1","WordFound2","WordFound3","WordFound4","WordFound5","WordFound6","WordFound7","WordFound8");
+        wordsFound = new ArrayList<>();
+        wordsFound.add("TESTME");// = Arrays.asList("WordFound1","WordFound2","WordFound3","WordFound4","WordFound5","WordFound6","WordFound7","WordFound8");
 
         try {
             gameSong = (Song) getIntent().getSerializableExtra("song");
@@ -536,12 +537,16 @@ public class DrawerActivity extends AppCompatActivity
     @Override
     public void newWordFound(String wordIndex) {
         Log.d(TAG, "New word collected in DrawerActivity: "+wordIndex);
+
         String[] wordPos = wordIndex.split(":");
         String newWordLine = lyricsMap2.get(Integer.parseInt(wordPos[0]));
         String[] words = newWordLine.split(" ");
+        String wordFound = words[Integer.parseInt(wordPos[1])-1];
 
-        Log.d(TAG, "Word received  pos: " + wordPos[0]);
-        Log.d(TAG, "Word received text: "+words[Integer.parseInt(wordPos[1])-1]);
+        wordsFound.add(wordFound);
+
+        Log.d(TAG, "Word received:  Pos: " + wordIndex+"Text: "+wordFound);
+
 
     }
 
