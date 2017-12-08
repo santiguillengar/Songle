@@ -56,6 +56,11 @@ public class WordsFound extends Fragment {
 
     public String[] makeWordsFoundArray() {
         List<String> wordsFound = ((DrawerActivity) getActivity()).getWordsFound();
+        String[] noWords = {"You haven't collected any words yet!"};
+
+        if (wordsFound.isEmpty()) {
+            return noWords;
+        }
         return wordsFound.toArray(new String[0]);
     }
 

@@ -525,7 +525,7 @@ public class DrawerActivity extends AppCompatActivity
     public String getLyricsLine() {
         Random generator = new Random();
         int chosenIndex = generator.nextInt(lyricsLines.size());
-        String line = lyricsLines.get(chosenIndex).substring(8);
+        String line = lyricsLines.get(chosenIndex).substring(7);
         while( line=="" || line==null ){
             chosenIndex = generator.nextInt(lyricsLines.size());
         }
@@ -548,6 +548,12 @@ public class DrawerActivity extends AppCompatActivity
         Toast.makeText(this, "New Word Collected: "+wordFound, Toast.LENGTH_SHORT ).show();
         Log.d(TAG, "Word received:  Pos: " + wordIndex+"Text: "+wordFound);
 
+
+    }
+
+    public void revealSongTitle() {
+        Log.d(TAG, "someone called secret method to reveal answer!");
+        Toast.makeText(this, gameSong.getTitle(), Toast.LENGTH_SHORT ).show();
 
     }
 

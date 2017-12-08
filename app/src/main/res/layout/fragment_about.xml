@@ -164,6 +164,21 @@ android:fillViewport="true">
         app:layout_constraintTop_toBottomOf="@id/TextView_How2"
         app:srcCompat="@drawable/songleb" />
 
+
+    <Button
+        android:id="@+id/reveal_song_button"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="4dp"
+        android:layout_weight="1"
+        android:textAlignment="gravity"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView_logo" />
+
+
 </android.support.constraint.ConstraintLayout>
 
 </ScrollView>

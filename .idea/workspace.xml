@@ -21,8 +21,11 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/s1546270/songle/DrawerActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/s1546270/songle/DrawerActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/s1546270/songle/MapFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/s1546270/songle/MapFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/word_found_card.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/word_found_card.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/AboutFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/AboutFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/GuessSongFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/GuessSongFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/WordsFound.java" afterPath="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/WordsFound.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Home.java" afterPath="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Home.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_about.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_about.xml" />
     </list>
     <ignored path="Songle.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,40 +57,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DrawerActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DrawerActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/DrawerActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5741">
-              <caret line="108" column="29" lean-forward="false" selection-start-line="108" selection-start-column="29" selection-end-line="108" selection-end-column="29" />
+            <state relative-caret-position="4043">
+              <caret line="532" column="0" lean-forward="true" selection-start-line="532" selection-start-column="0" selection-end-line="532" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fragment_words_found.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_words_found.xml">
-          <provider selected="true" editor-type-id="android-designer2">
-            <state />
-          </provider>
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="word_found_card.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/word_found_card.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -98,11 +75,34 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-100">
-              <caret line="39" column="4" lean-forward="false" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="51" />
+            <state relative-caret-position="1152">
+              <caret line="174" column="33" lean-forward="false" selection-start-line="174" selection-start-column="33" selection-end-line="174" selection-end-column="33" />
               <folding>
                 <element signature="e#4479#4504#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WordsFound.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/WordsFound.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="32" column="13" lean-forward="true" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+              <folding>
+                <element signature="e#1817#1818#0" expanded="true" />
+                <element signature="e#1852#1853#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AboutFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/AboutFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="37" column="55" lean-forward="false" selection-start-line="37" selection-start-column="55" selection-end-line="37" selection-end-column="55" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -120,44 +120,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MapFragment.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/MapFragment.java">
+      <file leaf-file-name="fragment_correct_guess.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_correct_guess.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="262" column="67" lean-forward="true" selection-start-line="262" selection-start-column="67" selection-end-line="262" selection-end-column="67" />
+            <state relative-caret-position="616">
+              <caret line="57" column="32" lean-forward="false" selection-start-line="57" selection-start-column="32" selection-end-line="57" selection-end-column="32" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#1095#1114#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WordsFound.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/WordsFound.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="36" column="37" lean-forward="false" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HintsFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/HintsFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="79" column="0" lean-forward="false" selection-start-line="78" selection-start-column="12" selection-end-line="79" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StackOverflowXmlParser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/StackOverflowXmlParser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="459" column="0" lean-forward="false" selection-start-line="459" selection-start-column="0" selection-end-line="459" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -165,8 +138,40 @@
       <file leaf-file-name="Home.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Home.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="604">
-              <caret line="156" column="17" lean-forward="false" selection-start-line="156" selection-start-column="17" selection-end-line="156" selection-end-column="17" />
+            <state relative-caret-position="105">
+              <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="29" selection-end-column="65" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GuessSongFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/GuessSongFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="825">
+              <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+              <folding>
+                <element signature="e#1342#1368#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HintsFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/HintsFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="207">
+              <caret line="78" column="28" lean-forward="false" selection-start-line="78" selection-start-column="28" selection-end-line="78" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SplashScreen.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/SplashScreen.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="33" column="38" lean-forward="false" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -184,14 +189,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>mapFragment</find>
-      <find>lat</find>
-      <find>latLng</find>
-      <find>100</find>
-      <find>mapDiffi</find>
-      <find>game</find>
-      <find>SONG: NUMBER</find>
-      <find>gameSong</find>
       <find>pal</find>
       <find>pl</find>
       <find>placemark</find>
@@ -210,10 +207,18 @@
       <find>wordsFound</find>
       <find>marker</find>
       <find>lyricsMap</find>
-      <find>chosen</find>
       <find>wordsF</find>
-      <find>Toast</find>
       <find>TESTME</find>
+      <find>g</find>
+      <find>guessSo</find>
+      <find>guessSong</find>
+      <find>guessSongO</find>
+      <find>guessSongOptio</find>
+      <find>guessSongOptions</find>
+      <find>c</find>
+      <find>chosen</find>
+      <find>T</find>
+      <find>Toast</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -1966,31 +1971,31 @@
         <option value="$PROJECT_DIR$/app/src/main/assets/config.properties" />
         <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Objects/Song.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_about_screen.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/AboutFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_home.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_about.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_home.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/drawer.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_instructions.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/WordsFound.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/InstructionsFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_hints.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/DownloadLyricsTask.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/DownloadSongsTask.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/GuessSongFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_wrong_guess.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/CorrectGuessFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/WrongGuessFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/SplashScreen.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_correct_guess.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_map.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Home.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/StackOverflowXmlParser.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/HintsFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/MapFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/DrawerActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/word_found_card.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/GuessSongFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Home.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/AboutFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_about.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/WordsFound.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/s1546270/songle/DrawerActivity.java" />
       </list>
     </option>
   </component>
@@ -2574,7 +2579,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512768624761" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512770261887" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -2622,7 +2627,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512768624761" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512770261887" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -2784,7 +2789,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512768624761" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1512770261888" />
       </method>
     </configuration>
     <list size="1">
@@ -2840,7 +2845,7 @@
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.53684974" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.06120527" sideWeight="0.5173445" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.063088514" sideWeight="0.5173445" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Logcat" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46830145" sideWeight="0.49676898" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -2855,7 +2860,7 @@
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1631664" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.4978836" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286119" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.06120527" sideWeight="0.4826555" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.063088514" sideWeight="0.4826555" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32840723" sideWeight="0.5105008" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26375598" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
@@ -3056,13 +3061,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/AboutFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/DownloadLyricsTask.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="870">
@@ -3101,14 +3099,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/GuessSongFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="29" column="54" lean-forward="false" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/WrongGuessFragment.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/CorrectGuessFragment.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -3142,25 +3132,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_correct_guess.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="0" lean-forward="false" selection-start-line="26" selection-start-column="48" selection-end-line="27" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/SplashScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="60" column="1" lean-forward="false" selection-start-line="60" selection-start-column="1" selection-end-line="60" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_map.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -3188,62 +3159,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Home.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="604">
-          <caret line="156" column="17" lean-forward="false" selection-start-line="156" selection-start-column="17" selection-end-line="156" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/StackOverflowXmlParser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="459" column="0" lean-forward="false" selection-start-line="459" selection-start-column="0" selection-end-line="459" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/HintsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="79" column="0" lean-forward="false" selection-start-line="78" selection-start-column="12" selection-end-line="79" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_words_found.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_hints.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="631">
-          <caret line="72" column="40" lean-forward="false" selection-start-line="72" selection-start-column="40" selection-end-line="72" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_about.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-100">
-          <caret line="39" column="4" lean-forward="false" selection-start-line="39" selection-start-column="4" selection-end-line="39" selection-end-column="51" />
-          <folding>
-            <element signature="e#4479#4504#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3258,28 +3178,121 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/DrawerActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/MapFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5741">
-          <caret line="108" column="29" lean-forward="false" selection-start-line="108" selection-start-column="29" selection-end-line="108" selection-end-column="29" />
+        <state relative-caret-position="231">
+          <caret line="253" column="0" lean-forward="false" selection-start-line="253" selection-start-column="0" selection-end-line="253" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/WordsFound.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="36" column="37" lean-forward="false" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_words_found.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="19" lean-forward="false" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/MapFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/GuessSongFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="262" column="67" lean-forward="true" selection-start-line="262" selection-start-column="67" selection-end-line="262" selection-end-column="67" />
+        <state relative-caret-position="825">
+          <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+          <folding>
+            <element signature="e#1342#1368#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/SplashScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="33" column="38" lean-forward="false" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_correct_guess.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="57" column="32" lean-forward="false" selection-start-line="57" selection-start-column="32" selection-end-line="57" selection-end-column="32" />
+          <folding>
+            <element signature="e#1095#1114#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_hints.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="631">
+          <caret line="72" column="40" lean-forward="false" selection-start-line="72" selection-start-column="40" selection-end-line="72" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Home.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="29" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/AboutFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="37" column="55" lean-forward="false" selection-start-line="37" selection-start-column="55" selection-end-line="37" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/WordsFound.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="32" column="13" lean-forward="true" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+          <folding>
+            <element signature="e#1817#1818#0" expanded="true" />
+            <element signature="e#1852#1853#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/Fragments/HintsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="78" column="28" lean-forward="false" selection-start-line="78" selection-start-column="28" selection-end-line="78" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_about.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1152">
+          <caret line="174" column="33" lean-forward="false" selection-start-line="174" selection-start-column="33" selection-end-line="174" selection-end-column="33" />
+          <folding>
+            <element signature="e#4479#4504#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/s1546270/songle/DrawerActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4043">
+          <caret line="532" column="0" lean-forward="true" selection-start-line="532" selection-start-column="0" selection-end-line="532" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
