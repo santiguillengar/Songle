@@ -21,8 +21,8 @@
             android:gravity="center"
             android:padding="10dp"
             android:text="Name"
+            android:textColor="@color/colorSecondaryText"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/colorAccent"
             android:textStyle="bold" />
 
     </RelativeLayout>

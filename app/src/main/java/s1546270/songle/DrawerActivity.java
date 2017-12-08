@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -79,7 +80,6 @@ public class DrawerActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         wordsFound = new ArrayList<>();
-        wordsFound.add("TESTME");// = Arrays.asList("WordFound1","WordFound2","WordFound3","WordFound4","WordFound5","WordFound6","WordFound7","WordFound8");
 
         try {
             gameSong = (Song) getIntent().getSerializableExtra("song");
@@ -545,6 +545,7 @@ public class DrawerActivity extends AppCompatActivity
 
         wordsFound.add(wordFound);
 
+        Toast.makeText(this, "New Word Collected: "+wordFound, Toast.LENGTH_SHORT ).show();
         Log.d(TAG, "Word received:  Pos: " + wordIndex+"Text: "+wordFound);
 
 

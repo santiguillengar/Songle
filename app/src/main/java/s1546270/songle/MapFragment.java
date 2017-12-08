@@ -290,32 +290,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
         for (Marker marker: markersMap.keySet()) {
             if (marker.isVisible()) {
 
-                /**
-                 * For each marker:
-                 * if its visible and its within the wanted closeness range
-                 * set visibility to false
-                 * pass word to wordsFound
-                 * remove marker from markers
-                 * tell user that word has been collected
-                 *
-                 * possible improvements:
-                 * placemarks change icon to a green one or something when they are collectable
-                 * and user has to tap on it to collect, instead of automatic collection when close enough
-                 */
-
 
                 LatLng markerLatLng = marker.getPosition();
                 double distance = getDistance(markerLatLng.latitude, markerLatLng.longitude,current.getLatitude(),current.getLongitude());
 
                 if (distance <= getMinimiumDistance()) {
-                    //marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.red_stars));
                     marker.setVisible(false);
-                    //((DrawerActivity) getActivity()).newWordFound("TEST_PASSING_NEW_WORD");
                     mCallBack.newWordFound(markersMap.get(marker));
-                }
 
-                //marker.setVisible(false);
-                //markers.remove(marker);
+                }
             }
         }
     }
@@ -395,18 +378,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
         String[] strCoords;
 
         for (Placemark p : placemarks) {
-            // Add a marker for placemark
 
+            // Add a marker for placemark
             strCoords = p.getPoint().split(",");
 
             LatLng latLng = new LatLng(Double.parseDouble(strCoords[1]), Double.parseDouble(strCoords[0]));
-
-            //Marker is displayed on map, when clicked it shows user it's style (interesting, boring...)
-            //MarkerOptions marker = new MarkerOptions().position(latLng).title(p.getStyleUrl().substring(1));
-            //BitmapDescriptor icon = getPlacemarkIcon(p.getStyleUrl());
-            //marker.icon(icon);
-            //map.addMarker(marker);
-            //markers.add(marker);
 
             Marker marker = map.addMarker(new MarkerOptions().position(latLng).icon(getPlacemarkIcon(p.getStyleUrl())).title(p.getStyleUrl().substring(1)));
             markersMap.put(marker, p.getName());
