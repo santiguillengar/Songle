@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -18,7 +17,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -29,14 +27,14 @@ import com.google.android.gms.maps.SupportMapFragment;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import s1546270.songle.Fragments.AboutFragment;
-import s1546270.songle.Fragments.CorrectGuessFragment;
 import s1546270.songle.Fragments.HintsFragment;
 import s1546270.songle.Fragments.InstructionsFragment;
-import s1546270.songle.Fragments.MapLevelDialogFragment;
 import s1546270.songle.Fragments.WordsFound;
 import s1546270.songle.Fragments.GuessSongFragment;
 import s1546270.songle.Objects.Placemark;
@@ -46,7 +44,7 @@ import s1546270.songle.Objects.Style;
 import static android.provider.CalendarContract.CalendarCache.URI;
 
 public class DrawerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
+        implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback, MapFragment.WordCollectedListener {
 
     // For logging purposes
     private static final String TAG = DrawerActivity.class.getSimpleName();
@@ -60,14 +58,14 @@ public class DrawerActivity extends AppCompatActivity
     private List<Style> styles;
 
     private MapFragment mapFragment;
-
     private String mapDifficulty;
 
     private List<String> wordsFound;
 
+    private HashMap<Integer, String> lyricsMap2 = new HashMap<>();
+    List<String> lyricsLines;
 
-    //tut
-    SupportMapFragment supportMapFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +74,7 @@ public class DrawerActivity extends AppCompatActivity
         setContentView(R.layout.activity_drawer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Songle");
+
 
         setSupportActionBar(toolbar);
 
@@ -95,6 +94,8 @@ public class DrawerActivity extends AppCompatActivity
         mapDifficulty = pref.getString("mapDifficulty", null);
         Log.d(TAG, "     |SANTI|     Shared Pref Retrieved");
 
+
+        processLyrics();
         downloadPlacemarksAndStyles();
 
         //DEFAULT FAB
@@ -384,15 +385,7 @@ public class DrawerActivity extends AppCompatActivity
         } else {
 
             Log.e(TAG, "gameSong was null in determineMapUrl");
-            /*int rand = ((int) Math.random() * 10 + 1);
 
-            if (rand <10) {
-                songNumber = "0" + ((int) Math.random() * 10 + 1);
-            }
-            else {
-                songNumber = "" + ((int) Math.random() * 10 + 1);
-            }*/
-            // Fix commented above works but is cheap as doesn't match real correct song.
         }
 
         String url = baseUrl + songNumber + "/map" + mapDifficulty + ".kml";
@@ -461,6 +454,96 @@ public class DrawerActivity extends AppCompatActivity
     }
 
 
+    public void processLyrics() {
+
+        Log.d(TAG, "processLyrics() accessed");
+
+        String url = determineLyricsUrl();
+        DownloadLyricsTask dtLyrics = new DownloadLyricsTask();
+        String lineIndex;
+        String lineText;
+
+        try {
+            dtLyrics.execute(url);
+            lyricsLines = dtLyrics.get();
+
+        } catch (Exception e) {
+            Log.e(TAG, "ERROR: Couldn't download lyrics for song "+url);
+        }
+
+        try {
+            for (String line: lyricsLines) {
+
+                lineIndex = line.substring(0,7);
+                int testIndex = Integer.parseInt(lineIndex.replaceAll("\\D+",""));
+                Log.d(TAG, "testIndex: "+testIndex);
+                lineText = "";
+
+                if (line.length() > 7) {
+                    lineText = line.substring(7);
+                }
+
+                lyricsMap2.put(testIndex, lineText);
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Error processing lyrics into lyricsMap");
+        }
+    }
+
+
+    public String determineLyricsUrl() {
+
+        String baseUrl = "http://www.inf.ed.ac.uk/teaching/courses/selp/data/songs/";
+        String songNumber;
+
+        if (gameSong != null) {
+
+            Log.d(TAG, "Determining Lyrics URL: gameSong number: "+gameSong.getNumber());
+
+            if (gameSong.getNumber() < 10) {
+                songNumber = "0"+gameSong.getNumber();
+            } else {
+                songNumber = ""+gameSong.getNumber();
+            }
+
+            Log.d(TAG, "Determining Lyrics URL: songNumber string: "+songNumber);
+
+        } else {
+
+            Log.e(TAG, "gameSong was null in determineLyricsUrl");
+            songNumber = "" + ((int) Math.random() * 10 + 1);
+        }
+
+        String url = baseUrl + songNumber + "/words.txt";
+        Log.d(TAG, "     |SANTI|     URL determined: "+url);
+
+        return url;
+    }
+
+
+    public String getLyricsLine() {
+        Random generator = new Random();
+        int chosenIndex = generator.nextInt(lyricsLines.size());
+        String line = lyricsLines.get(chosenIndex).substring(8);
+        while( line=="" || line==null ){
+            chosenIndex = generator.nextInt(lyricsLines.size());
+        }
+        return line;
+
+    }
+
+
+    @Override
+    public void newWordFound(String wordIndex) {
+        Log.d(TAG, "New word collected in DrawerActivity: "+wordIndex);
+        String[] wordPos = wordIndex.split(":");
+        String newWordLine = lyricsMap2.get(Integer.parseInt(wordPos[0]));
+        String[] words = newWordLine.split(" ");
+
+        Log.d(TAG, "Word received  pos: " + wordPos[0]);
+        Log.d(TAG, "Word received text: "+words[Integer.parseInt(wordPos[1])-1]);
+
+    }
 
     public Song getGameSong() {
         return gameSong;

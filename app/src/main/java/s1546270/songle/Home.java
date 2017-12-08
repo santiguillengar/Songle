@@ -87,6 +87,7 @@ public class Home extends AppCompatActivity {
 
     public Song selectGameplaySong() {
 
+        Log.d(TAG, "selectGameplaySong() accessed");
         Random generator = new Random();
 
         String[] recentSongsPlayed;
@@ -137,13 +138,13 @@ public class Home extends AppCompatActivity {
             rspStr="";
         }
 
-        int randomIndex = generator.nextInt(availableSongs.size());
+        int randomIndexAS = generator.nextInt((availableSongs.size()));
 
         String newRspStr = null;
         if (rspStr!=""){
-            newRspStr = rspStr+","+availableSongs.get(randomIndex);
+            newRspStr = rspStr+","+availableSongs.get(randomIndexAS);
         } else {
-            newRspStr = rspStr+availableSongs.get(randomIndex);
+            newRspStr = rspStr+availableSongs.get(randomIndexAS);
         }
 
         Log.d(TAG, "     |SANTI|     recentSongsPlayed updated to: "+newRspStr);
@@ -152,12 +153,15 @@ public class Home extends AppCompatActivity {
         editor.putString("recentSongsPlayed",newRspStr);
         editor.commit();
 
+        Log.d(TAG, "Random Song Index Chosen: "+availableSongs.get(randomIndexAS));
         for (Song song : songs) {
-            if (song.getNumber() == randomIndex){
+            Log.d(TAG, "Looking for gameplay Song. Song Number: "+song.getNumber());
+            if (song.getNumber() == Integer.parseInt(availableSongs.get(randomIndexAS))){
                 return song;
             }
         }
-        return null;
+        Log.e(TAG,"Error selecting random song, returned song 1");
+        return songs.get(1);
 
     }
 

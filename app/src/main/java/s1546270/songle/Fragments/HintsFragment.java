@@ -70,35 +70,24 @@ public class HintsFragment extends Fragment {
         SharedPreferences pref = this.getActivity().getSharedPreferences("SonglePref", 0);
         SharedPreferences.Editor editor = pref.edit();
 
-        String url = determineLyricsUrl();
-        DownloadLyricsTask dtLyrics = new DownloadLyricsTask();
-
-        int chosenIndex;
         int score;
-        Random generator = new Random();
+        String line;
 
 
         try {
-            // If we haven't got the lyrics, download them.
-            if (lyricsLines == null) {
-                dtLyrics.execute(url);
-                lyricsLines = dtLyrics.get();
-            }
-            chosenIndex = generator.nextInt(lyricsLines.size());
-            while( lyricsLines.get(chosenIndex).substring(9)=="" || lyricsLines.get(chosenIndex).substring(9)==null ){
-                chosenIndex = generator.nextInt(lyricsLines.size());
-            }
-
-            Toast.makeText(getActivity(), lyricsLines.get(chosenIndex).substring(7), Toast.LENGTH_SHORT ).show();
+            line = ((DrawerActivity)getActivity()).getLyricsLine();
+            Toast.makeText(getActivity(), line, Toast.LENGTH_SHORT ).show();
 
             score = pref.getInt("score",1000000);
             editor.putInt("score",score-50000);
             editor.commit();
 
         } catch (Exception e) {
-            Log.e(TAG, "ERROR: Couldn't download lyrics for song");
+            Log.e(TAG, "ERROR: Couldn't retrieve lyrics line from song");
         }
     }
+
+
 
     public void reducePossibleGuesses() {
 
@@ -165,38 +154,6 @@ public class HintsFragment extends Fragment {
 
         }
 
-    }
-
-
-
-    public String determineLyricsUrl() {
-
-        Song gameSong = ((DrawerActivity)getActivity()).getGameSong();
-        String baseUrl = "http://www.inf.ed.ac.uk/teaching/courses/selp/data/songs/";
-        String songNumber;
-
-        if (gameSong != null) {
-
-            Log.d(TAG, "Determining Lyrics URL: gameSong number: "+gameSong.getNumber());
-
-            if (gameSong.getNumber() < 10) {
-                songNumber = "0"+gameSong.getNumber();
-            } else {
-                songNumber = ""+gameSong.getNumber();
-            }
-
-            Log.d(TAG, "Determining Lyrics URL: songNumber string: "+songNumber);
-
-        } else {
-
-            Log.e(TAG, "gameSong was null in determineLyricsUrl");
-            songNumber = "" + ((int) Math.random() * 10 + 1);
-        }
-
-        String url = baseUrl + songNumber + "/words.txt";
-        Log.d(TAG, "     |SANTI|     URL determined: "+url);
-
-        return url;
     }
 
 

@@ -1,6 +1,7 @@
 package s1546270.songle;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -41,7 +42,9 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import s1546270.songle.Objects.Placemark;
 import s1546270.songle.Objects.Song;
@@ -66,27 +69,18 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
     GoogleMap map;
 
 
-    // LYRICMAPUI IMPORTS
     SupportMapFragment mapFrag;
     private Location mLastLocation;
     private final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
-    // END OF LYRICMAPUI IMPORTS
 
     // Store placemarks parsed
     List<Placemark> placemarks = null;
-    List<Style> styles = null;
 
-    ArrayList<Marker> markers;
+    private Map<Marker,String> markersMap = new HashMap<>();
 
     String mapDifficulty = null;
 
     private Song song = null;
-
-    private String songNumber = null;
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
@@ -116,14 +110,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        markers = new ArrayList<>();
-
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-
-        // Start of LYRICMAPUI
 
         if (mGoogleApiClient == null) {
             mGoogleApiClient = new GoogleApiClient.Builder(getContext())
@@ -133,7 +119,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
                     .build();
 
         }
-        // END OF LYRICMAPUI
 
         try {
             SharedPreferences pref = this.getActivity().getSharedPreferences("SonglePref", 0);
@@ -169,21 +154,26 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
         }
     }
 
-    /*@Override
+    WordCollectedListener mCallBack;
+
+    public interface WordCollectedListener {
+         public void newWordFound(String wordIndex);
+    }
+
+    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+        try {
+            mCallBack = (WordCollectedListener) getActivity();
+        } catch (ClassCastException e) {
+            throw new ClassCastException(getActivity().toString() + " must implement WordCollected");
         }
-    }*/
+    }
 
     @Override
     public void onDetach() {
+        mCallBack = null;
         super.onDetach();
-        mListener = null;
     }
 
 
@@ -238,10 +228,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
     }
 
 
-    // START OF LYRICMAPUI SECTION -----------------------------------------------------------------
 
     private GoogleApiClient mGoogleApiClient;
-
 
     // Should be protected not public
     @Override
@@ -294,11 +282,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
         }
     }
 
+
     @Override
     public void onLocationChanged(Location current) {
         Log.d(TAG,"     |SANTI|     Location Changed");
 
-        for (Marker marker: markers) {
+        for (Marker marker: markersMap.keySet()) {
             if (marker.isVisible()) {
 
                 /**
@@ -317,11 +306,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
 
                 LatLng markerLatLng = marker.getPosition();
                 double distance = getDistance(markerLatLng.latitude, markerLatLng.longitude,current.getLatitude(),current.getLongitude());
-                Log.d(TAG, "The Dist: "+getDistance(markerLatLng.latitude, markerLatLng.longitude,current.getLatitude(),current.getLongitude()));
 
                 if (distance <= getMinimiumDistance()) {
                     //marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.red_stars));
                     marker.setVisible(false);
+                    //((DrawerActivity) getActivity()).newWordFound("TEST_PASSING_NEW_WORD");
+                    mCallBack.newWordFound(markersMap.get(marker));
                 }
 
                 //marker.setVisible(false);
@@ -380,10 +370,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
     }
 
 
-
-
-    // END OF LYRICMAPUI SECTION -------------------------------------------------------------------
-
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -423,8 +409,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
             //markers.add(marker);
 
             Marker marker = map.addMarker(new MarkerOptions().position(latLng).icon(getPlacemarkIcon(p.getStyleUrl())).title(p.getStyleUrl().substring(1)));
-            markers.add(marker);
-
+            markersMap.put(marker, p.getName());
 
         }
     }
