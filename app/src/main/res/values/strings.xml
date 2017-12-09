@@ -106,4 +106,7 @@
         "\n\nBeware: Using a hint will affect your final score!"</string>
     <string name="hints_button_show_lyrics">Line From Lyrics</string>
     <string name="hints_button_reduce_guesses">Reduce Possible Guesses</string>
+
+    <string name="facebook_app_id">170218130379883</string>
+    <string name="fb_login_protocol_scheme">fb170218130379883</string>
 </resources>

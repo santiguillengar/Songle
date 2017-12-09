@@ -6,25 +6,30 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AlertDialog;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.CallbackManager;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,6 +68,7 @@ public class DrawerActivity extends AppCompatActivity
     private List<Song> songs;
     private List<Placemark> placemarks;
     private List<Style> styles;
+    private String fbData;
 
     private MapFragment mapFragment;
     private String mapDifficulty;
@@ -72,8 +78,15 @@ public class DrawerActivity extends AppCompatActivity
     private HashMap<Integer, String> lyricsMap2 = new HashMap<>();
     List<String> lyricsLines;
 
+
+    private TextView userName;
+    private ImageView userPicture;
+
+
     NetworkReceiver networkReceiver;
     static IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+
+    CallbackManager callbackManager;
 
 
 
@@ -93,9 +106,15 @@ public class DrawerActivity extends AppCompatActivity
         this.networkReceiver = new NetworkReceiver();
         registerReceiver(this.networkReceiver, filter);
 
+
         try {
             gameSong = (Song) getIntent().getSerializableExtra("song");
             songs = (List<Song>) getIntent().getSerializableExtra("songsList");
+            fbData = (String) getIntent().getSerializableExtra("fbData");
+
+            setNavigationHeader();
+            setUserProfile(fbData);
+            Log.d(TAG,"Facebook data received: "+fbData);
             Log.d(TAG, "Song that will be played: "+gameSong.getTitle()+" "+gameSong.getArtist());
         } catch (Exception e){
             Log.e(TAG, "Exception raised in DrawerActivity onCreate");
@@ -144,7 +163,39 @@ public class DrawerActivity extends AppCompatActivity
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.mainLayout, mapFragment).commit();
         currentFragment = "mapFragment";
+    }
 
+
+    public void setNavigationHeader() {
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View header = LayoutInflater.from(this).inflate(R.layout.nav_header_drawer, null);
+        navigationView.removeHeaderView(navigationView.getHeaderView(0));
+        navigationView.addHeaderView(header);
+        userName = (TextView) header.findViewById(R.id.userName);
+        userPicture = (ImageView) header.findViewById(R.id.userPicture);
+        navigationView.setNavigationItemSelectedListener(this);
+
+    }
+
+    public void setUserProfile(String json) {
+        try {
+            JSONObject response = new JSONObject(json);
+            userName.setText(response.get("name").toString());
+            JSONObject profilePicData = new JSONObject(response.get("picture").toString());
+            JSONObject profilePicUrl = new JSONObject(profilePicData.getString("data"));
+            Picasso.with(this).load(profilePicUrl.getString("url")).into(userPicture);
+
+        } catch (Exception e) {
+
+        }
+    }
+
+    // Part of FB integration
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
