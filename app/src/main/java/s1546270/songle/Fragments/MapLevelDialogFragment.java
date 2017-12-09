@@ -6,11 +6,8 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ListView;
 
-import java.util.ArrayList;
-
-import s1546270.songle.Home;
+import s1546270.songle.Activities.HomeActivity;
 import s1546270.songle.R;
 
 /**
@@ -54,7 +51,7 @@ public class MapLevelDialogFragment extends DialogFragment {
 
                 Log.d(TAG, "     |SANTI|      Dialog Option Clicked "+difficulty);
 
-                Home callingActivity = (Home) getActivity();
+                HomeActivity callingActivity = (HomeActivity) getActivity();
                 callingActivity.onUserSelectDifficulty(difficulty);
             }
         });

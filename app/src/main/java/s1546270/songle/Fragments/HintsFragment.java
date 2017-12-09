@@ -3,7 +3,6 @@ package s1546270.songle.Fragments;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,8 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import s1546270.songle.DownloadLyricsTask;
-import s1546270.songle.DrawerActivity;
+import s1546270.songle.Activities.DrawerActivity;
 import s1546270.songle.Objects.Song;
 import s1546270.songle.R;
 

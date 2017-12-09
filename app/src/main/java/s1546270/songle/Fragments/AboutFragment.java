@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import s1546270.songle.DrawerActivity;
+import s1546270.songle.Activities.DrawerActivity;
 import s1546270.songle.R;
 
 /**

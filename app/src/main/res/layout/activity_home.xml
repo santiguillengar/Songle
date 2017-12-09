@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="s1546270.songle.Home">
+    tools:context="s1546270.songle.Activities.HomeActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
@@ -48,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context="s1546270.songle.Home"
+        tools:context="s1546270.songle.Activities.HomeActivity"
         tools:showIn="@layout/activity_home">
 
         <LinearLayout
