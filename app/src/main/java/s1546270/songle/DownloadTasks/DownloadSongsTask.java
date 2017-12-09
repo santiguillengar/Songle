@@ -50,7 +50,7 @@ public class DownloadSongsTask extends AsyncTask<String, Void, List<Song>> {
     }
 
     private List<Song> loadXmlFromNetwork(String urlString) throws XmlPullParserException, IOException {
-        Log.d(TAG, "     |SANTI|     DownloadSongsTask loadXmlFromNetwork accessed");
+        Log.d(TAG, "DownloadSongsTask loadXmlFromNetwork accessed");
 
         InputStream stream = null;
         List<Song> songs = null;

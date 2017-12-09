@@ -50,7 +50,7 @@ public class DownloadStylesTask extends AsyncTask<String, Void, List<Style>> {
     }
 
     private List<Style> loadXmlFromNetwork(String urlString) throws XmlPullParserException, IOException {
-        Log.d(TAG, "     |SANTI|     DownloadStylesTask loadXmlFromNetwork accessed");
+        Log.d(TAG, "DownloadStylesTask loadXmlFromNetwork accessed");
 
         InputStream stream = null;
         List<Style> styles = null;

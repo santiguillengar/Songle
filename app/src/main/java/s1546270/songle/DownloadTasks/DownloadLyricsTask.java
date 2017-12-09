@@ -49,7 +49,7 @@ public class DownloadLyricsTask extends AsyncTask<String, Void, List<String>> {
     }
 
     private List<String> loadLyricsFromNetwork(String urlString) throws XmlPullParserException, IOException {
-        Log.d(TAG, "     |SANTI|     DownloadLyricsTask loadLyricsFromNetwork accessed");
+        Log.d(TAG, "DownloadLyricsTask loadLyricsFromNetwork accessed");
 
         ArrayList<String> lyricsLines = new ArrayList<>();
 

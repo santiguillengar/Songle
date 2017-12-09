@@ -118,7 +118,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
             SharedPreferences pref = this.getActivity().getSharedPreferences("SonglePref", 0);
             SharedPreferences.Editor editor = pref.edit();
             mapDifficulty = pref.getString("mapDifficulty", null);
-            Log.d(TAG, "     |SANTI|     Shared Pref Retrieved");
+            Log.d(TAG, "Shared Pref Retrieved");
 
             song  = (Song) getActivity().getIntent().getSerializableExtra("song");
             Log.d(TAG, "SONG passed through to map fragment: "+song.getNumber()+" "+song.getTitle());
@@ -279,7 +279,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
 
     @Override
     public void onLocationChanged(Location current) {
-        Log.d(TAG,"     |SANTI|     Location Changed");
+        Log.d(TAG,"Location Changed");
 
         for (Marker marker: markersMap.keySet()) {
             if (marker.isVisible()) {
@@ -365,7 +365,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
 
 
     public void placemarksOnMap() {
-        Log.d(TAG, "     |SANTI|     Map - Placemarks being placed on map. ");
+        Log.d(TAG, "Map - Placemarks being placed on map. ");
 
         placemarks = ((DrawerActivity) getActivity()).getPlacemarks();
 

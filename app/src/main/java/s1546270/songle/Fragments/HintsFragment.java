@@ -45,7 +45,7 @@ public class HintsFragment extends Fragment {
         view.findViewById(R.id.hints_show_lyrics_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "     |SANTI|     Hints Fragment: show lyrics line button pressed");
+                Log.d(TAG, "Hints Fragment: show lyrics line button pressed");
                 showLyricsLine();
             }
         });
@@ -53,7 +53,7 @@ public class HintsFragment extends Fragment {
         view.findViewById(R.id.hints_reduce_guesses_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "     |SANTI|     Hints Fragment: reduce guesses button pressed");
+                Log.d(TAG, "Hints Fragment: reduce guesses button pressed");
                 reducePossibleGuesses();
             }
         });

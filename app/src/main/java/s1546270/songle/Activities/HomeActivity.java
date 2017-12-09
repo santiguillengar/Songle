@@ -2,7 +2,9 @@ package s1546270.songle.Activities;
 
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +19,8 @@ import java.util.List;
 import java.util.Random;
 
 import s1546270.songle.DownloadTasks.DownloadSongsTask;
-import s1546270.songle.Fragments.MapLevelDialogFragment;
+import s1546270.songle.Fragments.MapDifficultyDialog;
+import s1546270.songle.Objects.NetworkReceiver;
 import s1546270.songle.Objects.Song;
 import s1546270.songle.R;
 
@@ -34,6 +37,10 @@ public class HomeActivity extends AppCompatActivity {
 
     private Song gameSong = null;
 
+
+    NetworkReceiver networkReceiver;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,12 +48,15 @@ public class HomeActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        this.networkReceiver = new NetworkReceiver();
+        registerReceiver(this.networkReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+
         gameSong = selectGameplaySong();
         if (gameSong == null) {
             Log.e(TAG, "ERROR: Couldn't retrieve song for the game in HomeActivity");
         }
 
-        Log.d(TAG, "     |SANTI|      HOME_FAB");
+        Log.d(TAG, " HOME_FAB");
         FloatingActionButton home_fab = (FloatingActionButton) findViewById(R.id.home_fab);
         home_fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,16 +64,17 @@ public class HomeActivity extends AppCompatActivity {
 
                 FragmentManager manager = getFragmentManager();
 
-                MapLevelDialogFragment mldf = new MapLevelDialogFragment();
+                MapDifficultyDialog mldf = new MapDifficultyDialog();
                 mldf.show(manager, "");
 
             }
         });
 
+
     }
 
     public void onUserSelectDifficulty(String inputDifficulty) {
-        Log.d(TAG, "     |SANTI|     RECEIVED CHALLENGE LEVEL: "+inputDifficulty);
+        Log.d(TAG, "RECEIVED CHALLENGE LEVEL: "+inputDifficulty);
         mapDifficulty = inputDifficulty;
 
 
@@ -118,16 +129,16 @@ public class HomeActivity extends AppCompatActivity {
 
         // Retrieving songs played
         rspStr = pref.getString("recentSongsPlayed", null);
-        Log.d(TAG, "     |SANTI|     Shared Pref Retrieved");
+        Log.d(TAG, "Shared Pref Retrieved");
         recentSongsPlayed = rspStr.split(",");
-        Log.d(TAG, "     |SANTI|     recentSongsPlayed list: "+Arrays.toString(recentSongsPlayed));
+        Log.d(TAG, "recentSongsPlayed list: "+Arrays.toString(recentSongsPlayed));
 
         for (int i=1; i <= songs.size(); i++){
             if (!Arrays.asList(recentSongsPlayed).contains(""+i)) {
                 availableSongs.add(""+i);
             }
         }
-        Log.d(TAG, "     |SANTI|     availableSongs list: "+Arrays.toString(availableSongs.toArray()));
+        Log.d(TAG, "availableSongs list: "+Arrays.toString(availableSongs.toArray()));
 
         // All songs are in the recent songs so restart cycle through song list
         if (availableSongs.isEmpty()){
@@ -146,7 +157,7 @@ public class HomeActivity extends AppCompatActivity {
             newRspStr = rspStr+availableSongs.get(randomIndexAS);
         }
 
-        Log.d(TAG, "     |SANTI|     recentSongsPlayed updated to: "+newRspStr);
+        Log.d(TAG, "recentSongsPlayed updated to: "+newRspStr);
 
         // Update Preferences to include the newly chosen song
         editor.putString("recentSongsPlayed",newRspStr);

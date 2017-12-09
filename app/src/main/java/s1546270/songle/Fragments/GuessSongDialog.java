@@ -44,7 +44,7 @@ public class GuessSongDialog extends DialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        Log.d(TAG, "     |SANTI|      Dialog onCreateDialog Accessed");
+        Log.d(TAG, " Dialog onCreateDialog Accessed");
         builder.setTitle(R.string.dialog_guess_song);
 
         String check_song_options = check_song_options_determined();
@@ -62,7 +62,7 @@ public class GuessSongDialog extends DialogFragment {
                     public void onClick(DialogInterface dialog, int guess) {
 
                         guessedSong = guess;
-                        Log.d(TAG, "     |SANTI|      Guess Dialog Option Clicked "+guess);
+                        Log.d(TAG, " Guess Dialog Option Clicked "+guess);
 
                         System.out.print(guess);
 
@@ -73,7 +73,7 @@ public class GuessSongDialog extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
 
-                        Log.d(TAG, "     |SANTI|      Guess Dialog Ok Clicked "+id);
+                        Log.d(TAG, " Guess Dialog Ok Clicked "+id);
 
                         DrawerActivity callingActivity = (DrawerActivity) getActivity();
                         callingActivity.onUserGuessSong(guess_song_options.get(guessedSong));
@@ -84,7 +84,7 @@ public class GuessSongDialog extends DialogFragment {
                 .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Log.d(TAG, "     |SANTI|      Guess Dialog Cancel Clicked ");
+                        Log.d(TAG, " Guess Dialog Cancel Clicked ");
                     }
                 });
 

@@ -1,7 +1,9 @@
 package s1546270.songle.Activities;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
@@ -37,9 +39,10 @@ import s1546270.songle.DownloadTasks.DownloadXmlTask;
 import s1546270.songle.Fragments.AboutFragment;
 import s1546270.songle.Fragments.GuessSongDialog;
 import s1546270.songle.Fragments.HintsFragment;
-import s1546270.songle.Fragments.InstructionsFragment;
+import s1546270.songle.Fragments.InstructionsDialog;
 import s1546270.songle.Fragments.MapFragment;
 import s1546270.songle.Fragments.WordsFoundFragment;
+import s1546270.songle.Objects.NetworkReceiver;
 import s1546270.songle.Objects.Placemark;
 import s1546270.songle.Objects.Song;
 import s1546270.songle.Objects.Style;
@@ -69,6 +72,9 @@ public class DrawerActivity extends AppCompatActivity
     private HashMap<Integer, String> lyricsMap2 = new HashMap<>();
     List<String> lyricsLines;
 
+    NetworkReceiver networkReceiver;
+    static IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+
 
 
     @Override
@@ -84,10 +90,13 @@ public class DrawerActivity extends AppCompatActivity
 
         wordsFound = new ArrayList<>();
 
+        this.networkReceiver = new NetworkReceiver();
+        registerReceiver(this.networkReceiver, filter);
+
         try {
             gameSong = (Song) getIntent().getSerializableExtra("song");
             songs = (List<Song>) getIntent().getSerializableExtra("songsList");
-            Log.d(TAG, "     |SANTI|     Song that will be played: "+gameSong.getTitle()+" "+gameSong.getArtist());
+            Log.d(TAG, "Song that will be played: "+gameSong.getTitle()+" "+gameSong.getArtist());
         } catch (Exception e){
             Log.e(TAG, "Exception raised in DrawerActivity onCreate");
         }
@@ -96,7 +105,7 @@ public class DrawerActivity extends AppCompatActivity
         SharedPreferences pref = getSharedPreferences("SonglePref", 0);
         SharedPreferences.Editor editor = pref.edit();
         mapDifficulty = pref.getString("mapDifficulty", null);
-        Log.d(TAG, "     |SANTI|     Shared Pref Retrieved");
+        Log.d(TAG, "Shared Pref Retrieved");
 
 
         processLyrics();
@@ -138,6 +147,18 @@ public class DrawerActivity extends AppCompatActivity
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(networkReceiver);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerReceiver(networkReceiver, filter);
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -162,7 +183,7 @@ public class DrawerActivity extends AppCompatActivity
         // automatically handle clicks on the HomeActivity/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
 
-        Log.d(TAG, "     |SANTI|     Options Item Selected");
+        Log.d(TAG, "Options Item Selected");
         int id = item.getItemId();
 
 
@@ -170,7 +191,7 @@ public class DrawerActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
 
             FragmentManager manager = getSupportFragmentManager();
-            InstructionsFragment instructionsFragment = new InstructionsFragment();
+            InstructionsDialog instructionsFragment = new InstructionsDialog();
             instructionsFragment.show(manager, "");
         }
 
@@ -191,7 +212,7 @@ public class DrawerActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_map) {
-            Log.d(TAG, "     |SANTI|     DrawerActivity: map page selected");
+            Log.d(TAG, "DrawerActivity: map page selected");
 
             if (currentFragment != "mapFragment") {
                 currentFragment = "mapFragment";
@@ -204,7 +225,7 @@ public class DrawerActivity extends AppCompatActivity
             }
 
         } else if (id == R.id.nav_words_found) {
-            Log.d(TAG, "     |SANTI|     DrawerActivity: words_found page selected");
+            Log.d(TAG, "DrawerActivity: words_found page selected");
 
             if (currentFragment != "wordsFoundFragment") {
                 currentFragment = "wordsFoundFragment";
@@ -215,7 +236,7 @@ public class DrawerActivity extends AppCompatActivity
             }
 
         } else if (id == R.id.nav_hints) {
-            Log.d(TAG, "     |SANTI|     DrawerActivity: hints page selected");
+            Log.d(TAG, "DrawerActivity: hints page selected");
 
             if (currentFragment != "hintsFragment") {
                 currentFragment = "hintsFragment";
@@ -226,7 +247,7 @@ public class DrawerActivity extends AppCompatActivity
             }
 
         } else if (id == R.id.nav_about) {
-            Log.d(TAG, "     |SANTI|     DrawerActivity: about page selected");
+            Log.d(TAG, "DrawerActivity: about page selected");
 
             if (currentFragment != "aboutFragment") {
                 currentFragment = "aboutFragment";
@@ -399,7 +420,7 @@ public class DrawerActivity extends AppCompatActivity
             url = "http://www.inf.ed.ac.uk/teaching/courses/selp/data/songs/01/map2.kml";
         }
 
-        Log.d(TAG, "     |SANTI|     URL determined: "+url);
+        Log.d(TAG, "URL determined: "+url);
         Log.d(TAG, "SONG CHOSEN: "+songNumber);
         return url;
     }
@@ -519,7 +540,7 @@ public class DrawerActivity extends AppCompatActivity
         }
 
         String url = baseUrl + songNumber + "/words.txt";
-        Log.d(TAG, "     |SANTI|     URL determined: "+url);
+        Log.d(TAG, "URL determined: "+url);
 
         return url;
     }

@@ -70,6 +70,17 @@
 
     <string name="dialog_instructions_header">Instructions</string>
 
+    <string name="dialog_no_connection_header">No Connection Available.</string>
+    <string name="dialog_no_connection_text">
+        "Songle requires an internet connection to be able to provide the best experience possible!"
+        "Click Dismiss to wait for a connection or click Finish to close the app!"
+        "\nThe app may stop working as expected without a connection."
+    </string>
+    <string name="dialog_dismiss_button">Dismiss</string>
+    <string name="dialog_finish_button">Finish</string>
+    <string name="dialog_retry_button">Retry</string>
+
+
 
     <!-- about screen messages -->
     <string name="about_what">What?</string>

@@ -33,7 +33,7 @@ public class AboutFragment extends Fragment {
         view.findViewById(R.id.reveal_song_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "     |SANTI|     Hints Fragment: show lyrics line button pressed");
+                Log.d(TAG, "Hints Fragment: show lyrics line button pressed");
 
                 ((DrawerActivity)getActivity()).revealSongTitle();
             }

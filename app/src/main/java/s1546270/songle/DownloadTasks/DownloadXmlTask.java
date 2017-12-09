@@ -50,7 +50,7 @@ public class DownloadXmlTask extends AsyncTask<String, Void, List<Placemark>> {
     }
 
     private List<Placemark> loadXmlFromNetwork(String urlString) throws XmlPullParserException, IOException {
-        Log.d(TAG, "     |SANTI|     DownloadXmlTask loadXmlFromNetwork accessed");
+        Log.d(TAG, "DownloadXmlTask loadXmlFromNetwork accessed");
 
         InputStream stream = null;
         List<Placemark> placemarks = null;
