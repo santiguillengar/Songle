@@ -33,9 +33,6 @@ public class NetworkReceiver extends BroadcastReceiver{
         connection = isConnected(context);
         if (!connection) {
             showAlert(context);
-        } else {
-            Toast.makeText(context, "Connected!", Toast.LENGTH_SHORT ).show();
-
         }
     }
 

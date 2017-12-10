@@ -16,6 +16,7 @@
         "\n\nWalk around the map area, and when you're close enough to a placemark you'll be able to click on it and collect the hidden word!"
         "\n\nOnce you have enough words to know the song, click on the yellow button to guess it!"
         "\n\nHow many points can you get?"
+        "\n\nLog in with Facebook to make the Songle experience so much better!"
     </string>
     <string name="home_press_button_message">Press the yellow Map Button above to get started!</string>
     <string name="home_instructions_photo_header">This is what the game looks like:</string>
