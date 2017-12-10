@@ -57,9 +57,13 @@ public class HomeActivity extends AppCompatActivity {
     NetworkReceiver networkReceiver;
     CallbackManager callbackManager;
 
-    String fbData;
+    private String fbData;
+    private String storedFbData;
 
     private boolean loggedIn;
+
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
 
 
     @Override
@@ -70,8 +74,12 @@ public class HomeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
+        pref = getApplicationContext().getSharedPreferences("SonglePref", 0);
+        editor = pref.edit();
+
         this.networkReceiver = new NetworkReceiver();
         registerReceiver(this.networkReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+
 
         gameSong = selectGameplaySong();
         if (gameSong == null) {
@@ -94,20 +102,27 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        loggedIn = AccessToken.getCurrentAccessToken() != null;
+        Log.d(TAG, "loggedIn value: "+loggedIn);
+        if (loggedIn) {
+            // Check if the app had the user's data stored already.
+            storedFbData = pref.getString("fbData",null);
+            Log.d(TAG, "storedFbData available: "+storedFbData);
+            if (storedFbData != null) {
+                fbData = storedFbData;
+            }
+        }
 
         callbackManager = CallbackManager.Factory.create();
-        loggedIn = AccessToken.getCurrentAccessToken() != null;
 
         LoginButton fbButton = (LoginButton) findViewById(R.id.login_button);
         fbButton.setReadPermissions("email");
-        Log.d(TAG, "Reached here 4");
-
         fbButton.setVisibility(View.VISIBLE);
 
         fbButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Log.d(TAG,"Reached here Z1");
+                Log.d(TAG,"Success on user facebook login");
                 loggedIn = true;
 
                 GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(),
@@ -115,7 +130,12 @@ public class HomeActivity extends AppCompatActivity {
                             @Override
                             public void onCompleted(JSONObject object, GraphResponse response) {
                                 fbData = object.toString();
-                                Log.d(TAG, "penis");
+                                Log.d(TAG, "facebook data collected: "+fbData);
+
+
+                                // Retrieving songs played
+                                editor.putString("fbData", fbData);
+                                editor.commit();
                             }
                         });
 
@@ -129,12 +149,13 @@ public class HomeActivity extends AppCompatActivity {
 
             @Override
             public void onCancel() {
-                Log.d(TAG,"Reached here Z2");
+                Log.d(TAG,"Facebook login onCancel()");
+
             }
 
             @Override
             public void onError(FacebookException error) {
-                Log.d(TAG,"Reached here Z3");
+                Log.d(TAG,"Facebook login onError()");
             }
         });
 
