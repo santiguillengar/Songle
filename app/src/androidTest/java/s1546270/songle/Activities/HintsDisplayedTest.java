@@ -33,7 +33,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
-
+// Checks number of guessable songs is reduced when reduce hints option selected.
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class HintsDisplayedTest {
