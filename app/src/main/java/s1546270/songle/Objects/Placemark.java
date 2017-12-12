@@ -2,7 +2,7 @@ package s1546270.songle.Objects;
 
 
 /**
- * Created by SantiGuillenGar on 28/10/2017.
+ * Class models placemarks downloaded that will be placed in the map.
  */
 
 public class Placemark {

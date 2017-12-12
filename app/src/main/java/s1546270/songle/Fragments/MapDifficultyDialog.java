@@ -11,18 +11,16 @@ import s1546270.songle.Activities.HomeActivity;
 import s1546270.songle.R;
 
 /**
- * Created by SantiGuillenGar on 02/11/2017.
- *
  * Class implements dialog that pops up when user cicks FAB.
  * User inputs difficulty for map and fragment returns value to load appropriate map.
  */
 
 public class MapDifficultyDialog extends DialogFragment {
 
-
+    // Default difficulty is the middle option
     public String difficulty = "2";
 
-    private static final String TAG = "MapDifficultyDialog";
+    private static final String TAG = MapDifficultyDialog.class.getSimpleName();
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {

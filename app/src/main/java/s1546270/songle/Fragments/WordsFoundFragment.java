@@ -13,14 +13,13 @@ import java.util.List;
 
 import s1546270.songle.Activities.DrawerActivity;
 import s1546270.songle.R;
-import s1546270.songle.Recycler.MyAdapter;
+import s1546270.songle.Recycler.WordsFoundAdapter;
 
 /**
- * A simple {@link Fragment} subclass.
- * Following this tutorial: https://www.youtube.com/watch?v=CUWUBVdbDUA
+ * Fragment to show cards with words found
+ * I based it on this tutorial: https://www.youtube.com/watch?v=CUWUBVdbDUA
  */
 public class WordsFoundFragment extends Fragment {
-
 
     private RecyclerView rv;
     private static String[] wordsFound;
@@ -42,15 +41,13 @@ public class WordsFoundFragment extends Fragment {
 
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        rv.setAdapter(new MyAdapter(getActivity(), wordsFound));
+        rv.setAdapter(new WordsFoundAdapter(getActivity(), wordsFound));
 
         return view;
     }
 
     public static WordsFoundFragment newInstance() {
         WordsFoundFragment wordsFound = new WordsFoundFragment();
-
-
         return wordsFound;
     }
 

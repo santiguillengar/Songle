@@ -10,16 +10,16 @@ import android.widget.TextView;
 import s1546270.songle.R;
 
 /**
- * Created by SantiGuillenGar on 06/11/2017.
+ * Adapter for the recyclerview used to show the words found cards
  */
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RecyclerVH> {
+public class WordsFoundAdapter extends RecyclerView.Adapter<WordsFoundAdapter.RecyclerVH> {
 
 
     Context context;
     String[] wordsFound;
 
-    public MyAdapter(Context context, String[] wordsFound) {
+    public WordsFoundAdapter(Context context, String[] wordsFound) {
         this.context = context;
         this.wordsFound = wordsFound;
     }
@@ -42,7 +42,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.RecyclerVH> {
    }
 
 
-    //Viewholder class
     public class RecyclerVH extends RecyclerView.ViewHolder {
 
         TextView nameTxt;

@@ -64,58 +64,60 @@ public class DrawerActivity extends AppCompatActivity
     //For fragment refresh purposes
     private String currentFragment = null;
 
+    // Keep track of data necessary to run the game
     private Song gameSong;
     private List<Song> songs;
     private List<Placemark> placemarks;
+    private List<String> wordsFound;
     private List<Style> styles;
-    private String fbData;
+    private List<String> lyricsLines;
+    private HashMap<Integer, String> lyricsMap2 = new HashMap<>();
+
 
     private MapFragment mapFragment;
     private String mapDifficulty;
 
-    private List<String> wordsFound;
-
-    private HashMap<Integer, String> lyricsMap2 = new HashMap<>();
-    List<String> lyricsLines;
-
-
+    // Variables to collect user's facebook information
+    private String fbData;
     private TextView userName;
     private ImageView userPicture;
 
-
+    // Network receiver used to keep track of connectivity changes.
     NetworkReceiver networkReceiver;
     static IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-
     CallbackManager callbackManager;
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+        // Set up drawer activity with corresponding toolbar.
         setContentView(R.layout.activity_drawer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Songle");
-
-
         setSupportActionBar(toolbar);
 
         wordsFound = new ArrayList<>();
 
+        // Initialise network receiver to track connectivity changes
         this.networkReceiver = new NetworkReceiver();
         registerReceiver(this.networkReceiver, filter);
 
 
         try {
+
             gameSong = (Song) getIntent().getSerializableExtra("song");
             songs = (List<Song>) getIntent().getSerializableExtra("songsList");
             fbData = (String) getIntent().getSerializableExtra("fbData");
 
             setNavigationHeader();
             setUserProfile(fbData);
+
             Log.d(TAG,"Facebook data received: "+fbData);
             Log.d(TAG, "Song that will be played: "+gameSong.getTitle()+" "+gameSong.getArtist());
+
         } catch (Exception e){
             Log.e(TAG, "Exception raised in DrawerActivity onCreate");
         }
@@ -124,13 +126,13 @@ public class DrawerActivity extends AppCompatActivity
         SharedPreferences pref = getSharedPreferences("SonglePref", 0);
         SharedPreferences.Editor editor = pref.edit();
         mapDifficulty = pref.getString("mapDifficulty", null);
-        Log.d(TAG, "Shared Pref Retrieved");
+        Log.d(TAG, "Shared Pref Retrieved: map difficulty");
 
 
         processLyrics();
         downloadPlacemarksAndStyles();
 
-        //DEFAULT FAB
+        // Initialise floating action button.
         FloatingActionButton map_fab = (FloatingActionButton) findViewById(R.id.fab);
         map_fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,8 +158,6 @@ public class DrawerActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-
-
         //When Draweractivity first built, show map as default.
         MapFragment mapFragment = new MapFragment();
         FragmentManager manager = getSupportFragmentManager();
@@ -166,6 +166,7 @@ public class DrawerActivity extends AppCompatActivity
     }
 
 
+    // Add user's name and profile picture if available to the navigation header
     public void setNavigationHeader() {
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -180,6 +181,8 @@ public class DrawerActivity extends AppCompatActivity
 
     public void setUserProfile(String json) {
         try {
+
+            // Update user's picture and name into the drawer header.
             JSONObject response = new JSONObject(json);
             userName.setText(response.get("name").toString());
             JSONObject profilePicData = new JSONObject(response.get("picture").toString());
@@ -187,7 +190,7 @@ public class DrawerActivity extends AppCompatActivity
             Picasso.with(this).load(profilePicUrl.getString("url")).into(userPicture);
 
         } catch (Exception e) {
-
+            Log.e(TAG, "Exception raised setting user's profile in navigation drawer: "+e);
         }
     }
 
@@ -234,11 +237,10 @@ public class DrawerActivity extends AppCompatActivity
         // automatically handle clicks on the HomeActivity/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
 
-        Log.d(TAG, "Options Item Selected");
+        Log.d(TAG, "Options Item Selected: "+item);
         int id = item.getItemId();
 
-
-        //noinspection SimplifiableIfStatement
+        // Check if user has clicked instructions button.
         if (id == R.id.action_settings) {
 
             FragmentManager manager = getSupportFragmentManager();
@@ -252,14 +254,14 @@ public class DrawerActivity extends AppCompatActivity
 
     @Override
     public void onMapReady(GoogleMap mMap) {
-
     }
 
 
+    // Method updates fragments depending on user's click in navigation drawer.
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+
         int id = item.getItemId();
 
         if (id == R.id.nav_map) {
@@ -267,7 +269,7 @@ public class DrawerActivity extends AppCompatActivity
 
             if (currentFragment != "mapFragment") {
                 currentFragment = "mapFragment";
-                //Display Map Fragment
+
                 mapFragment = new MapFragment();
 
                 FragmentManager manager = getSupportFragmentManager();
@@ -282,7 +284,6 @@ public class DrawerActivity extends AppCompatActivity
                 currentFragment = "wordsFoundFragment";
 
                 WordsFoundFragment wordsFound = new WordsFoundFragment();
-
                 DrawerActivity.this.getSupportFragmentManager().beginTransaction().replace(R.id.mainLayout, wordsFound).commit();
             }
 
@@ -318,7 +319,7 @@ public class DrawerActivity extends AppCompatActivity
 
     public void onUserGuessSong(String guessedSongTitle) {
 
-        Log.d(TAG, "BACK TO DRAWER ACTIVITY. USER GUESSED: "+guessedSongTitle);
+        Log.d(TAG, "User has guessed song: "+guessedSongTitle);
 
         AlertDialog.Builder dialog = new AlertDialog.Builder(DrawerActivity.this);
         LayoutInflater inflater = getLayoutInflater();
@@ -332,9 +333,12 @@ public class DrawerActivity extends AppCompatActivity
         }
         Log.d(TAG, "User guessed the song with current score: "+score);
 
+
         if (guessedSongTitle.equals(gameSong.getTitle())){
 
+            // User guessed correctly
 
+            // Show correct guess screen with corresponding buttons
             View dialogView = inflater.inflate(R.layout.fragment_correct_guess, null);
 
             Button ok_Button = (Button) dialogView.findViewById(R.id.correct_guess_ok_button);
@@ -374,6 +378,10 @@ public class DrawerActivity extends AppCompatActivity
 
         } else {
 
+            // User guessed the wrong song
+            // Show wrong guess screen with corresponding buttons.
+
+            // Update score to penalise wrong guess
             editor.putInt("score",score-250000);
             editor.commit();
             View dialogView = inflater.inflate(R.layout.fragment_wrong_guess, null);
@@ -403,28 +411,26 @@ public class DrawerActivity extends AppCompatActivity
                         DrawerActivity.this.getSupportFragmentManager().beginTransaction().replace(R.id.mainLayout, hintsFragment).commit();
                     }
                     alertDialog.dismiss();
-
                 }
             });
 
             alertDialog.show();
-
         }
     }
 
+    // Handle placemarks for map.
     public void downloadPlacemarksAndStyles() {
-        // HANDLE PLACEMARKS FOR MAP
+
         String url = determineMapUrl();
         DownloadXmlTask dtPlacemarks = new DownloadXmlTask();
         DownloadStylesTask dtStyles = new DownloadStylesTask();
 
-
         try {
+
             dtPlacemarks.execute(url);
             placemarks = dtPlacemarks.get();
             dtStyles.execute(url);
             styles = dtStyles.get();
-
 
         } catch (Exception e) {
             Log.e(TAG, "ERROR: Couldn't download placemarks for map");
@@ -441,7 +447,7 @@ public class DrawerActivity extends AppCompatActivity
     }
 
 
-
+    // Determine map link to download placemarks depending on song number and difficulty.
     private String determineMapUrl() {
 
         // Example: "http://www.inf.ed.ac.uk/teaching/courses/selp/data/songs/01/map1.kml"
@@ -450,10 +456,11 @@ public class DrawerActivity extends AppCompatActivity
         String songNumber = null;
 
         if (gameSong != null) {
-            Log.d(TAG, "Determining Map URL: gameSong number: "+gameSong.getNumber());
+
+            // Append a zero at start of number for url string if necessary.
             if (gameSong.getNumber() < 10) {
                 songNumber = "0"+gameSong.getNumber();
-            } // I don't know why but when the number is 1 the above if doesn't catch it.
+            }
             else {
                 songNumber = ""+gameSong.getNumber();
             }
@@ -461,7 +468,6 @@ public class DrawerActivity extends AppCompatActivity
         } else {
 
             Log.e(TAG, "gameSong was null in determineMapUrl");
-
         }
 
         String url = baseUrl + songNumber + "/map" + mapDifficulty + ".kml";
@@ -472,7 +478,7 @@ public class DrawerActivity extends AppCompatActivity
         }
 
         Log.d(TAG, "URL determined: "+url);
-        Log.d(TAG, "SONG CHOSEN: "+songNumber);
+        Log.d(TAG, "Song chosen: "+songNumber);
         return url;
     }
 
@@ -626,6 +632,7 @@ public class DrawerActivity extends AppCompatActivity
 
     }
 
+    // Theres a secret button easter egg to reveal the answer somewhere in the app :)
     public void revealSongTitle() {
         Log.d(TAG, "someone called secret method to reveal answer!");
         Toast.makeText(this, gameSong.getTitle(), Toast.LENGTH_SHORT ).show();

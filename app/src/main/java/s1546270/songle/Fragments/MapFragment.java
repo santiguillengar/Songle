@@ -184,13 +184,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleA
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
 
-        LatLng pp = new LatLng(11.5448729, 194.8921668);
+        //LatLng pp = new LatLng(11.5448729, 194.8921668);
 
-        MarkerOptions option = new MarkerOptions();
-        option.position(pp).title("Tutorial");
+        //MarkerOptions option = new MarkerOptions();
+        //option.position(pp).title("Tutorial");
 
-        map.addMarker(option);
-        map.moveCamera(CameraUpdateFactory.newLatLng(pp));
+        //map.addMarker(option);
+       // map.moveCamera(CameraUpdateFactory.newLatLng(pp));
 
 
         try {

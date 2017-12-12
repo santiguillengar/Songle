@@ -8,13 +8,12 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
-import android.widget.Toast;
 
 import s1546270.songle.R;
 
 
 /**
- * Created by SantiGuillenGar on 09/12/2017.
+ * Class keeps track of connectivity changes.
  */
 
 public class NetworkReceiver extends BroadcastReceiver{
@@ -30,6 +29,7 @@ public class NetworkReceiver extends BroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent) {
 
+        // If no connection is available, show warning sign.
         connection = isConnected(context);
         if (!connection) {
             showAlert(context);
@@ -103,7 +103,5 @@ public class NetworkReceiver extends BroadcastReceiver{
         AlertDialog alert =  builder.create();
         alert.show();
     }
-
-
 
 }

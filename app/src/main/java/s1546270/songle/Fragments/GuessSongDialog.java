@@ -16,12 +16,9 @@ import s1546270.songle.Objects.Song;
 import s1546270.songle.R;
 
 /**
- *
+ * Dialog shows different songs user can guess from.
  */
 public class GuessSongDialog extends DialogFragment {
-
-    //private OnFragmentInteractionListener mListener;
-    int guess = -1;
 
     public GuessSongDialog() {
         // Required empty public constructor
@@ -39,7 +36,7 @@ public class GuessSongDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-
+        // Get song
         gameSong = ((DrawerActivity) getActivity()).getGameSong();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -47,6 +44,7 @@ public class GuessSongDialog extends DialogFragment {
         Log.d(TAG, " Dialog onCreateDialog Accessed");
         builder.setTitle(R.string.dialog_guess_song);
 
+        // Find songs user should guess from.
         String check_song_options = check_song_options_determined();
         if (check_song_options == "") {
             guess_song_options = ((DrawerActivity)getActivity()).makeSongList();;
@@ -55,6 +53,7 @@ public class GuessSongDialog extends DialogFragment {
             guess_song_options = new ArrayList<>(Arrays.asList(check_song_options.split(",")));
         }
 
+        // Build array of guessable songs and display to user
         String[] guess_song_array = guess_song_options.toArray(new String[guess_song_options.size()]);
         builder.setSingleChoiceItems(guess_song_array, 2,
                 new DialogInterface.OnClickListener() {
@@ -77,9 +76,7 @@ public class GuessSongDialog extends DialogFragment {
 
                         DrawerActivity callingActivity = (DrawerActivity) getActivity();
                         callingActivity.onUserGuessSong(guess_song_options.get(guessedSong));
-                        //Log.d(TAG,"FINDME GUESS: "+guessedSong);
-                        //Log.d(TAG,"FINDME What I Passed: "+guess_song_options.get(guessedSong));
-                    }
+                            }
                 })
                 .setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
                     @Override
@@ -89,12 +86,11 @@ public class GuessSongDialog extends DialogFragment {
                 });
 
         return builder.create();
-
     }
 
 
+    // Check if songs to guess from has been decided already.
     public String check_song_options_determined() {
-
 
         // Initialization
         SharedPreferences pref = this.getActivity().getSharedPreferences("SonglePref", 0);

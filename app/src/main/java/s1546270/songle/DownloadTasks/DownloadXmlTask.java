@@ -14,11 +14,12 @@ import java.util.List;
 import s1546270.songle.Objects.Placemark;
 
 /**
- * Created by SantiGuillenGar on 14/10/2017.
+ * AsyncTask to download placemarks for map.
  */
 
 public class DownloadXmlTask extends AsyncTask<String, Void, List<Placemark>> {
 
+    // For logging purposes.
     private static final String TAG = DownloadXmlTask.class.getSimpleName();
     StackOverflowXmlParser parser = new StackOverflowXmlParser();
 
@@ -28,7 +29,6 @@ public class DownloadXmlTask extends AsyncTask<String, Void, List<Placemark>> {
 
     @Override
     protected List<Placemark> doInBackground(String... urls) {
-
 
         List<Placemark> placemarks = null;
         try {
@@ -45,9 +45,8 @@ public class DownloadXmlTask extends AsyncTask<String, Void, List<Placemark>> {
 
     @Override
     protected void onPostExecute(List<Placemark> result) {
-
-
     }
+
 
     private List<Placemark> loadXmlFromNetwork(String urlString) throws XmlPullParserException, IOException {
         Log.d(TAG, "DownloadXmlTask loadXmlFromNetwork accessed");
@@ -74,7 +73,6 @@ public class DownloadXmlTask extends AsyncTask<String, Void, List<Placemark>> {
 
         URL url = new URL(urlString);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        // Also available: HttpsUrlConnection
 
         conn.setReadTimeout(10000 /*milliseconds*/);
         conn.setConnectTimeout(15000 /*milliseconds*/);

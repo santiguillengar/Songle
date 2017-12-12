@@ -14,7 +14,7 @@ import java.util.List;
 import s1546270.songle.Objects.Style;
 
 /**
- * Created by SantiGuillenGar on 14/10/2017.
+ * AsyncTask to download different placemark styles.
  */
 
 public class DownloadStylesTask extends AsyncTask<String, Void, List<Style>> {
@@ -28,10 +28,8 @@ public class DownloadStylesTask extends AsyncTask<String, Void, List<Style>> {
 
     @Override
     protected List<Style> doInBackground(String... urls) {
-
-
-
         List<Style> styles = null;
+
         try {
             styles = loadXmlFromNetwork(urls[0]);
             return styles;
@@ -46,7 +44,6 @@ public class DownloadStylesTask extends AsyncTask<String, Void, List<Style>> {
 
     @Override
     protected void onPostExecute(List<Style> result) {
-
     }
 
     private List<Style> loadXmlFromNetwork(String urlString) throws XmlPullParserException, IOException {

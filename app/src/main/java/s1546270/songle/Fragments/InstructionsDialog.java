@@ -11,7 +11,9 @@ import android.util.Log;
 
 import s1546270.songle.R;
 
-
+/**
+ * Dialog to show instructions when triple dot button clicked.
+ */
 public class InstructionsDialog extends DialogFragment {
 
     private String TAG = InstructionsDialog.class.getSimpleName();
@@ -38,6 +40,5 @@ public class InstructionsDialog extends DialogFragment {
         return builder.create();
 
     }
-
 
 }

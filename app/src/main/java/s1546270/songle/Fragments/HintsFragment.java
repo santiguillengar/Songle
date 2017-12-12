@@ -20,7 +20,7 @@ import s1546270.songle.Objects.Song;
 import s1546270.songle.R;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Screen to display instructions and differnet kinds of hints.
  */
 public class HintsFragment extends Fragment {
 
@@ -36,9 +36,6 @@ public class HintsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_hints, container, false);
-
 
         View view =  inflater.inflate(R.layout.fragment_hints, container, false);
 
@@ -70,7 +67,6 @@ public class HintsFragment extends Fragment {
 
         int score;
         String line;
-
 
         try {
             line = ((DrawerActivity)getActivity()).getLyricsLine();

@@ -11,17 +11,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
-import com.facebook.Profile;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
@@ -32,7 +28,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.Callable;
 
 import s1546270.songle.DownloadTasks.DownloadSongsTask;
 import s1546270.songle.Fragments.MapDifficultyDialog;
@@ -40,7 +35,10 @@ import s1546270.songle.Objects.NetworkReceiver;
 import s1546270.songle.Objects.Song;
 import s1546270.songle.R;
 
-
+/**
+ * Screen displayed after the splash screen.
+ * Shows basic welcome, facebook login, instructions and allows user to select game dificulty.
+ */
 public class HomeActivity extends AppCompatActivity {
 
     // For logging purposes
@@ -66,8 +64,10 @@ public class HomeActivity extends AppCompatActivity {
     private SharedPreferences.Editor editor;
 
 
+    // Set up the game
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -102,8 +102,10 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        // If user is logged in, recover user dataa from shared preferences
         loggedIn = AccessToken.getCurrentAccessToken() != null;
         Log.d(TAG, "loggedIn value: "+loggedIn);
+
         if (loggedIn) {
             // Check if the app had the user's data stored already.
             storedFbData = pref.getString("fbData",null);
@@ -115,6 +117,7 @@ public class HomeActivity extends AppCompatActivity {
 
         callbackManager = CallbackManager.Factory.create();
 
+        // Show facebook's login button.
         LoginButton fbButton = (LoginButton) findViewById(R.id.login_button);
         fbButton.setReadPermissions("email");
         fbButton.setVisibility(View.VISIBLE);
@@ -158,8 +161,6 @@ public class HomeActivity extends AppCompatActivity {
                 Log.d(TAG,"Facebook login onError()");
             }
         });
-
-
     }
 
 
@@ -171,6 +172,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
+    // User clicked ok in difficulty dialog, move to the drawer activity.
     public void onUserSelectDifficulty(String inputDifficulty) {
 
         Log.d(TAG, "RECEIVED CHALLENGE LEVEL: "+inputDifficulty);
@@ -227,7 +229,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
         // Retrieving songs played
-        rspStr = pref.getString("recentSongsPlayed", null);
+        rspStr = pref.getString("recentSongsPlayed", "");
         Log.d(TAG, "Shared Pref Retrieved");
         recentSongsPlayed = rspStr.split(",");
         Log.d(TAG, "recentSongsPlayed list: "+Arrays.toString(recentSongsPlayed));

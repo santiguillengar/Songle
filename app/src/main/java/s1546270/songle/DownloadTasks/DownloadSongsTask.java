@@ -14,7 +14,7 @@ import java.util.List;
 import s1546270.songle.Objects.Song;
 
 /**
- * Created by SantiGuillenGar on 14/10/2017.
+ * AsyncTask to download lyrics of chosen song for game.
  */
 
 public class DownloadSongsTask extends AsyncTask<String, Void, List<Song>> {
@@ -29,7 +29,7 @@ public class DownloadSongsTask extends AsyncTask<String, Void, List<Song>> {
     @Override
     protected List<Song> doInBackground(String... urls) {
 
-
+        // attempt to download list of songs available.
         List<Song> songs = null;
         try {
             songs = loadXmlFromNetwork(urls[0]);
@@ -45,8 +45,6 @@ public class DownloadSongsTask extends AsyncTask<String, Void, List<Song>> {
 
     @Override
     protected void onPostExecute(List<Song> result) {
-
-
     }
 
     private List<Song> loadXmlFromNetwork(String urlString) throws XmlPullParserException, IOException {

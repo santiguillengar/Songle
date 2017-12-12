@@ -1,9 +1,7 @@
 package s1546270.songle.Objects;
 
-import android.icu.util.ICUUncheckedIOException;
-
 /**
- * Created by SantiGuillenGar on 29/10/2017.
+ * Class represents a placemark style.
  */
 
 public class Style {

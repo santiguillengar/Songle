@@ -9,8 +9,7 @@ import android.content.Intent;
 import s1546270.songle.R;
 
 /**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
+ * First screen displayed when app is started.
  */
 public class SplashScreen extends AppCompatActivity {
 
@@ -24,11 +23,11 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
 
-        // Refresh important values to start of game state.
-        // Initialization
+        // Refresh important values at start of game state.
+
         SharedPreferences pref = getApplicationContext().getSharedPreferences("SonglePref", 0);
         SharedPreferences.Editor editor = pref.edit();
-        // Update Preferences to include the newly chosen song
+
         editor.putString("guessSongOptions","");
         editor.putString("mapDifficulty","");
         editor.putInt("numGuessableSongs",5);
@@ -36,11 +35,8 @@ public class SplashScreen extends AppCompatActivity {
         editor.commit();
 
 
+        // Once timer is over show the home activity screen.
         new Handler().postDelayed(new Runnable() {
-
-            /*
-             * Showing splash screen with a timer.
-             */
 
             @Override
             public void run() {

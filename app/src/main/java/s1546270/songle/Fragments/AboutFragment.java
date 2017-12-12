@@ -12,7 +12,7 @@ import s1546270.songle.Activities.DrawerActivity;
 import s1546270.songle.R;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Simple dialog showing information about the app.
  */
 public class AboutFragment extends Fragment {
 

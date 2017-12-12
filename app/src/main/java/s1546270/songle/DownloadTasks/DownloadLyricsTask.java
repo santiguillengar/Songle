@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by SantiGuillenGar on 14/10/2017.
+ * AsyncTask to download lyrics of chosen song for game.
  */
 
 public class DownloadLyricsTask extends AsyncTask<String, Void, List<String>> {
@@ -28,7 +28,7 @@ public class DownloadLyricsTask extends AsyncTask<String, Void, List<String>> {
     @Override
     protected List<String> doInBackground(String... urls) {
 
-
+        // attempt to download lyrics, return as list of lines.
         List<String> lyricsLines = null;
         try {
             lyricsLines = loadLyricsFromNetwork(urls[0]);
@@ -44,9 +44,8 @@ public class DownloadLyricsTask extends AsyncTask<String, Void, List<String>> {
 
     @Override
     protected void onPostExecute(List<String> result) {
-
-
     }
+
 
     private List<String> loadLyricsFromNetwork(String urlString) throws XmlPullParserException, IOException {
         Log.d(TAG, "DownloadLyricsTask loadLyricsFromNetwork accessed");
